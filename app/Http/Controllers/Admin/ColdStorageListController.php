@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ColdStorageListController extends Controller
 {
@@ -106,11 +107,36 @@ class ColdStorageListController extends Controller
         
         ColdStorageRegistration_Model::where('id', $id)->update($update);
         
-        $mob_number = $data->mobile_number;
+        // $mob_number = $data->mobile_number;
         $unique_id = $data->cold_storage_aplication_no;
-        $domain = "https://cold-storage.smartpmc.co.in/";
-    	$sms = "Your application no: " . $unique_id . " for cold storage licence has been approved by the PMC office successfully. Please visit the PMC office for further processes, including document verification and certificate issuance. You can also check your license status on " . $domain . " CORE OCEAN.";
-    	$this->sendsmsnew($sms,$mob_number);
+        // $domain = "https://cold-storage.smartpmc.co.in/";
+    	// $sms = "Your application no: " . $unique_id . " for cold storage licence has been approved by the PMC office successfully. Please visit the PMC office for further processes, including document verification and certificate issuance. You can also check your license status on " . $domain . " CORE OCEAN.";
+    	// $this->sendsmsnew($sms,$mob_number);
+
+
+        // $user_id=$data->inserted_by;
+        // $user = PetRegisteredUser::where('id',$user_id)->first();
+        $mob_number = $data->mobile_number;
+        // dd($mob_number);
+        $key= 'kbf8IN83hIxNTVgs';
+        // $unique_id = $data->pet_pplication_no;
+        $domain = "cold-storage.smartpmc.co.in";
+    	$sms = "Your application no: " . $unique_id . " for cat registration has been approved by the PMC office successfully. Please visit the PMC office for further processes, including document verification and certificate issuance. You can also check your license status on " . $domain . " CORE OCEAN.";
+    	$templateid = "1207171576775741291";
+        $senderid = "CoreOC";
+        $route = 1;
+
+        $response = Http::get('http://sms.adityahost.com/vb/apikey.php',[
+            'apikey'   => $key,
+            'senderid' => $senderid,
+            'number'   =>  $mob_number,
+            'message'  => $sms,
+            'route'    => $route,
+            'templateid'  => $templateid
+          ]);
+        $this->sendsmsnew($sms,$mob_number,$templateid,$response->body());
+        Log::info('SMS API Response: ', ['response' => $response->body()]);
+        
 
         // $app_no = $request->get('license_number');
         // $scheme = 'Cold Storage Registration Form';

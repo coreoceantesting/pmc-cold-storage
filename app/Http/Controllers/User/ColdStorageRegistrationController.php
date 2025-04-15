@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\PDF;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class ColdStorageRegistrationController extends Controller
 {
@@ -49,14 +51,14 @@ class ColdStorageRegistrationController extends Controller
                             
         
          
-      if(!empty($data)) {
+    //   if(!empty($data)) {
              
-                return redirect('/')->with('warning','You Have already apply for this form');
+    //             return redirect('/')->with('warning','You Have already apply for this form');
                 
-      } else {
+    //   } else {
              return view('user.cold_storage.cold_storage_terms');
         
-        }
+        // }
         
            
         } else {
@@ -685,20 +687,20 @@ class ColdStorageRegistrationController extends Controller
 
       $mainid = Auth::guard('meatregistereduser')->user()->id;
 
-      $check =  DB::table('coldstorage_registration_tbl AS t1')
-                                        ->select('*')
-                                        ->where('t1.inserted_by', '=', $mainid)
-                                        ->whereNull('t1.deleted_at')
-                                        ->orderBy('t1.id', 'DESC')
-                                        // ->whereMonth('inserted_dt', Carbon::now()->month)
-                                        ->count();
+    //   $check =  DB::table('coldstorage_registration_tbl AS t1')
+    //                                     ->select('*')
+    //                                     ->where('t1.inserted_by', '=', $mainid)
+    //                                     ->whereNull('t1.deleted_at')
+    //                                     ->orderBy('t1.id', 'DESC')
+    //                                     // ->whereMonth('inserted_dt', Carbon::now()->month)
+    //                                     ->count();
 
 
-      if($check > 0){
+    //   if($check > 0){
 
-        return redirect('/')->with('message','You Have already apply for this Form.');
+    //     return redirect('/')->with('message','You Have already apply for this Form.');
 
-      }else{
+    //   }else{
           $rules = [
         // Basic Details
         'applicant_title_id' => 'required|numeric',
@@ -1065,7 +1067,7 @@ class ColdStorageRegistrationController extends Controller
             // 'inserted_by' => $data->id,
         ];
         
-        
+        // dd($update);
         ColdStorageRegistration_Model::where('id', $data->id)->update($update);
        
         // $unique_id_new =$unique_id.$data->id;
@@ -1075,13 +1077,39 @@ class ColdStorageRegistrationController extends Controller
         // $sms = "Your application no:- " . $unique_id_new . " for " . $scheme . " is received at PMC office. You can also track your application on " . $domain . " CORE OCEAN.";
         // $this->sendsmsnew($sms,$mob_number);
          
-       
+            // $mob_number = Auth::guard('meatregistereduser')->user()->mobile_number;
+            $mob_number = $request->get('mobile_number');
+            // dd($mob_number);
+            Log::info($mob_number);
+            $scheme = 'Cold Storage Registration';
+            $domain = "cold-storage.smartpmc.co.in";
+            $application_no = $unique_id; 
+            $key = "kbf8IN83hIxNTVgs";
+             $senderid = "CoreOC";
+             $route = 1;
+            //  $sms = "Your application no:- $application_no for $scheme is received at PMC office. You can also track your application on $domain CORE OCEAN.";
+            $sms = "Your application no:- $application_no for $scheme is received at PMC office. You can also track your application on $domain CORE OCEAN."; 
+            $tempID= '1207171688071309898';
+           
+           
+             $response = Http::get('http://sms.adityahost.com/vb/apikey.php',[
+               'apikey'   => $key,
+               'senderid' => $senderid,
+               'number'   => $mob_number,
+               'message'  => $sms,
+               'route'    => $route,
+               'templateid'  => $tempID
+             ]);
+             Log::info('SMS API Response: ', ['response' => $response->body()]);
+            //  dd($response); 
+            $this->sendsmsnew($sms, $mob_number, $tempID , $response->body() );
+            //  dd($this);
 
         return redirect('/user/self_decleration')->with('message','Your Record Added Successfully.');
 
         // return redirect('/')->with('message','Your Record Added Successfully.');
 
-     }
+    //  }
 
     }
      public function self_decleration_view(request $request)
@@ -1430,7 +1458,8 @@ class ColdStorageRegistrationController extends Controller
         $message=$sms;
         $message_content=urlencode($message);
         
-        $senderid="CoreOC"; $route= 1;
+        $senderid="CoreOC";
+         $route= 1;
         $url = "http://sms.adityahost.com/vb/apikey.php?apikey=$key&senderid=$senderid&number=$mbl&message=$message_content";
                             
         $output = file_get_contents($url);  /*default function for push any url*/
