@@ -144,7 +144,7 @@ class ColdStorageRegistrationController extends Controller
     public function createss()
     {
         $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
-        $unit_Meat_Type = DB::table('unit_meat_type')->get();
+        $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
         
         $mainid = Auth::guard('meatregistereduser')->user()->id;
         
@@ -187,7 +187,7 @@ class ColdStorageRegistrationController extends Controller
         // $sql="SELECT *FROM mytable where date BETWEEN CAST('$pst-04-01' AS DATE) AND CAST('$pt-03-31' AS DATE)";
 
         $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
-        $unit_Meat_Type = DB::table('unit_meat_type')->get();
+        $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
 
         // print_r($unit_Meat_Type);die;
         
@@ -1260,7 +1260,7 @@ class ColdStorageRegistrationController extends Controller
     {
 
         $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
-        $unit_Meat_Type = DB::table('unit_meat_type')->get();
+        $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
         // dd($unit_Meat_Type);
         if($user_type == 'Cold_Storage')
         {
@@ -1305,7 +1305,7 @@ class ColdStorageRegistrationController extends Controller
        public function ApplicationForm_View(Request $request, $application_id, $user_type)
     {
         
-         $unit_Meat_Type = DB::table('unit_meat_type')->get();
+         $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
          $meat_registration_view = DB::table('coldstorage_registration_tbl AS t1')
                             ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
                                     )
@@ -1376,7 +1376,7 @@ class ColdStorageRegistrationController extends Controller
        
        public function GenerateenglishLicensepdf(request $request, $id)
     {
-         $unit_Meat_Type = DB::table('unit_meat_type')->get();
+         $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
            $meat_registration_pdf =  DB::table('coldstorage_registration_tbl AS t1')
                                          ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.id as approve_id', 't5.meat_pplication_id as approve_PET_UniqueID', 't5.total_recived_tax as approve_recived_tax', 't5.receipt_no as approve_receipt_no',
                                                   't5.date_of_receipt as approve_date_of_receipt', 't5.license_number as approve_license_number', 't5.date_of_license_obtain as approve_date_of_license_obtain',
@@ -1413,7 +1413,7 @@ class ColdStorageRegistrationController extends Controller
     
      public function GenerateMarathiLicensepdf(request $request,$id)
       {
-           $unit_Meat_Type = DB::table('unit_meat_type')->get();
+           $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
         // $mainid = Auth::guard('meatregistereduser')->user()->id;
          $meat_registration_pdf =  DB::table('coldstorage_registration_tbl AS t1')
                                          ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.id as approve_id', 't5.meat_pplication_id as approve_PET_UniqueID', 't5.total_recived_tax as approve_recived_tax', 't5.receipt_no as approve_receipt_no',

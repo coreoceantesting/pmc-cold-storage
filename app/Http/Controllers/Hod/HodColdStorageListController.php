@@ -39,7 +39,7 @@ class HodColdStorageListController extends Controller
 
     public function ColdStorageView(request $request, $id, $status)
     {
-        $unit_Meat_Type = DB::table('unit_meat_type')->get();
+        $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
         $meat_registration_view =  DB::table('coldstorage_registration_tbl AS t1')
                                         ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name')
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
@@ -164,7 +164,7 @@ class HodColdStorageListController extends Controller
 
      public function FinalApproveView(request $request, $id, $status)
      {
-         $unit_Meat_Type = DB::table('unit_meat_type')->get();
+         $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
          $meat_registration_view =  DB::table('coldstorage_registration_tbl AS t1')
                                         ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name')
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
@@ -298,7 +298,7 @@ class HodColdStorageListController extends Controller
 
      public function EnglishGenerateColdStorageRegistration(request $request, $id, $status)
      {
-           $unit_Meat_Type = DB::table('unit_meat_type')->get();
+           $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
         //   dd($unit_Meat_Type);
             $meat_registration_pdf =  DB::table('coldstorage_registration_tbl AS t1')
                                           ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.id as approve_id', 't5.meat_pplication_id as approve_PET_UniqueID', 't5.total_recived_tax as approve_recived_tax', 't5.receipt_no as approve_receipt_no',
@@ -338,7 +338,7 @@ class HodColdStorageListController extends Controller
 
      public function MarathiGenerateColdStorageRegistration(request $request, $id, $status)
      {
-         $unit_Meat_Type = DB::table('unit_meat_type')->get();
+         $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
         // $meat_registration_pdf =  DB::table('dog_registration_tbl AS t1')
            $meat_registration_pdf =  DB::table('coldstorage_registration_tbl AS t1')
                                          ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.id as approve_id', 't5.meat_pplication_id as approve_PET_UniqueID', 't5.total_recived_tax as approve_recived_tax', 't5.receipt_no as approve_receipt_no',

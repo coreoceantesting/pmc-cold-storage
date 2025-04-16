@@ -42,7 +42,7 @@ class ColdStorageListController extends Controller
 
       public function ColdStorageView(request $request, $id, $status)
     {
-         $unit_Meat_Type = DB::table('unit_meat_type')->get();
+         $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
         $meat_registration_view =  DB::table('coldstorage_registration_tbl AS t1')
                                         ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name')
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
