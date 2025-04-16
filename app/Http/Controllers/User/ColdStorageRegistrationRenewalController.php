@@ -19,7 +19,7 @@ class ColdStorageRegistrationRenewalController extends Controller
   public function create()
     {
           
-      $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
+      $unit_Meat_Type = DB::table('unit_meat_type')->get();
       if (Auth::guard('meatregistereduser')->check()) {
        
       $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
