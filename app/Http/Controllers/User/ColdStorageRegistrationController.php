@@ -51,14 +51,14 @@ class ColdStorageRegistrationController extends Controller
                             
         
          
-    //   if(!empty($data)) {
+      if(!empty($data)) {
              
-    //             return redirect('/')->with('warning','You Have already apply for this form');
+                return redirect('/')->with('warning','You Have already apply for this form');
                 
-    //   } else {
+      } else {
              return view('user.cold_storage.cold_storage_terms');
         
-        // }
+        }
         
            
         } else {
@@ -687,20 +687,20 @@ class ColdStorageRegistrationController extends Controller
 
       $mainid = Auth::guard('meatregistereduser')->user()->id;
 
-    //   $check =  DB::table('coldstorage_registration_tbl AS t1')
-    //                                     ->select('*')
-    //                                     ->where('t1.inserted_by', '=', $mainid)
-    //                                     ->whereNull('t1.deleted_at')
-    //                                     ->orderBy('t1.id', 'DESC')
-    //                                     // ->whereMonth('inserted_dt', Carbon::now()->month)
-    //                                     ->count();
+      $check =  DB::table('coldstorage_registration_tbl AS t1')
+                                        ->select('*')
+                                        ->where('t1.inserted_by', '=', $mainid)
+                                        ->whereNull('t1.deleted_at')
+                                        ->orderBy('t1.id', 'DESC')
+                                        // ->whereMonth('inserted_dt', Carbon::now()->month)
+                                        ->count();
 
 
-    //   if($check > 0){
+      if($check > 0){
 
-    //     return redirect('/')->with('message','You Have already apply for this Form.');
+        return redirect('/')->with('message','You Have already apply for this Form.');
 
-    //   }else{
+      }else{
           $rules = [
         // Basic Details
         'applicant_title_id' => 'required|numeric',
@@ -1109,7 +1109,7 @@ class ColdStorageRegistrationController extends Controller
 
         // return redirect('/')->with('message','Your Record Added Successfully.');
 
-    //  }
+     }
 
     }
      public function self_decleration_view(request $request)
