@@ -287,10 +287,16 @@ Route::post('/taluka_list', [ColdStorageRegistrationController::class, 'Taluka_L
 
 // ======================= Cold Storage Renewal Form =========================
 
+Route::get('/user/cold_storage_renewal', [ColdStorageRegistrationRenewalController::class, 'form_list'])->name('user.cold_storage_renewal_form');
 
-Route::get('/user/cold_storage_renewal_form', [ColdStorageRegistrationRenewalController::class, 'create'])->name('user.cold_storage_renewal_form');
+Route::get('/user/cold_storage_renewal_form/{id}/{user_type}', [ColdStorageRegistrationRenewalController::class, 'create'])->name('user.cold_storage_renewal_form');
 
-Route::post('/user/cold_storage_renewal_form', [ColdStorageRegistrationRenewalController::class, 'store'])->name('user.cold_storage_renewal_form.store');
+Route::post('/user/cold_storage_renewal_form/{id}/{user_type}/store', [ColdStorageRegistrationRenewalController::class, 'store'])->name('user.cold_storage_renewal_form.store');
+
+Route::get('/user/cold_storage_renewal/{id}/{user_type}', [ColdStorageRegistrationRenewalController::class, 'New_renewal'])->name('user.cold_storage_new_renewal');
+
+// Route::get('/user/cold_storage_renewal_form', [ColdStorageRegistrationRenewalController::class, 'renewal_list'])->name('user.cold_storage_renewal_form_list');
+
 
 Route::get('/user/appli_form/View_renewal/{application_no}/{user_type}', [ColdStorageRegistrationRenewalController::class, 'User_coldStorageRenewalForm_View'])->name('user.appli_form.View_renewal');
 

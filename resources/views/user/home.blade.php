@@ -800,21 +800,21 @@
                                                     </span>
                                                 @else
                                                     <span style="text-align:center;">
-                                                        <!--<a href="{{ url('/user/cold_storage_renewal_form') }}">-->
-                                                            <!--<button class="custom-btn btn-11">Renewal<div class="dot"></div></button>-->
-                                                        <!--</a>-->
-                                                        <a >
+                                                        <<a href="{{ url('/user/cold_storage_renewal') }}">
+                                                            <button class="custom-btn btn-11">Renewal<div class="dot"></div></button>
+                                                        </a>
+                                                        {{-- <a >
                                                             <h6 class="text-warning">Cold Storage Renewal License by 31 ,  March 2026</h6>
-                                                    </a>
+                                                    </a> --}}
                                                     </span>
                                                 @endif
                                             @else
                                                 <span style="text-align:center;">
-                                                    <!--<a href="{{ url('/user/cold_storage_terms') }}">-->
+                                                    {{-- <!--<a href="{{ url('/user/cold_storage_terms') }}">-->
                                                         <!--<button class="custom-btn btn-11">Renewal<div class="dot"></div></button>-->
-                                                    <!--</a>-->
+                                                    <!--</a>--> --}}
                                                     <a >
-                                                            <h6 class="text-warning">Cold Storage Renewal License by 31 ,  March 2026</h6>
+                                                            <h6 class="text-warning">Cold Storage Renewal License by 31 , March 2026</h6>
                                                     </a>
                                                 </span>
                                             @endif

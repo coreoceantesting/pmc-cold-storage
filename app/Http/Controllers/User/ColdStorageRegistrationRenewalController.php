@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\ColdStorageRegistration_Model;
 use App\Models\ColdStorageRenewalLicense_Model;
 use App\Models\MeatType_Master;
 use Illuminate\Http\Request;
@@ -16,40 +17,42 @@ class ColdStorageRegistrationRenewalController extends Controller
 {
 
 
-  public function create()
+  public function create(Request $request,$id,$user_type)
     {
-          
+        
       $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
       if (Auth::guard('meatregistereduser')->check()) {
        
       $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
 
       $mainid = Auth::guard('meatregistereduser')->user()->id;
+    //   dd($mainid);
       $data =   DB::table('coldstorage_registration_tbl AS t1')
-                            ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
-                                    ) 
+                            ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name',
+                                    't5.*','t1.id as registration_id') 
+                             ->leftJoin('coldstorage_renewal_license_tbl AS t5','t5.register_table_id','=', 't1.id')       
                             ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
                             ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
                             ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
                           
-                            ->where('t1.inserted_by', '=', $mainid)
+                            ->where('t5.id', '=', $id)
                             ->whereNull('t1.deleted_at')
                             ->whereNull('t2.deleted_at')
                             ->whereNull('t3.deleted_at')
                             ->whereNull('t4.deleted_at')
                             ->orderBy('t1.id', 'DESC')
                             ->first();
-
-        if(empty($data)) {
-
-                    return redirect('/')->with('warning','Apply For Cold Storage Registration License First');
-
-        }elseif($data->approve_date == ""){
-            
-              return redirect('/')->with('warning','Your Application status is still Pending');
-            
-           
-        }else {
+           if(empty($data)) {
+                                
+                                return redirect('/')->with('warning','Apply For Cold Storage Registration License First');
+                                
+                            }elseif($data->approve_date == ""){
+                                
+                                return redirect('/')->with('warning','Your Application status is still Pending');
+                                
+                                
+                            }else {
+            // dd($data);
             //  $approve_date = $data->approve_date;  
 
           
@@ -67,7 +70,7 @@ class ColdStorageRegistrationRenewalController extends Controller
 
 
 
-            return view('user.coldstorage_renewal.cold_storage_renewal_form', compact('data','meattype_mst','unit_Meat_Type'));
+            return view('user.coldstorage_renewal.cold_storage_renewal_form', compact('data','meattype_mst','unit_Meat_Type','id','user_type'));
 
             // }else{
               
@@ -87,13 +90,13 @@ class ColdStorageRegistrationRenewalController extends Controller
 
 
      public function store(Request $request)
-    {
-
-      $mainid = Auth::guard('meatregistereduser')->user()->id;
-
+     {
+        //   dd($request->all());
+        $mainid = Auth::guard('meatregistereduser')->user()->id;
+//  dd($mainid);
       $check =  DB::table('coldstorage_renewal_license_tbl AS t1')
                                         ->select('*')
-                                        ->where('t1.inserted_by', '=', $mainid)
+                                        ->where('t1.register_table_id', '=', $mainid)
                                         ->whereNull('t1.deleted_at')
                                         ->orderBy('t1.id', 'DESC')
                                         // ->whereMonth('inserted_dt', Carbon::now()->month)
@@ -110,52 +113,52 @@ class ColdStorageRegistrationRenewalController extends Controller
       $this->validate($request, [
             
             // Basic Details
-            'applicant_title_id' => 'required|numeric',
-            'applicant_fname' => 'required|string',
-            'applicant_mname' => 'required|string',
-            'applicant_lname' => 'required|string',
+            // 'applicant_title_id' => 'required|numeric',
+            // 'applicant_fname' => 'required|string',
+            // 'applicant_mname' => 'required|string',
+            // 'applicant_lname' => 'required|string',
             
-            'mobile_number' => 'required|string',
-            'email' => 'required|string',
-            // 'gender' => 'required|string',
-            'aadhar_number' => 'required|string',
+            // 'mobile_number' => 'required|string',
+            // 'email' => 'required|string',
+            // // 'gender' => 'required|string',
+            // 'aadhar_number' => 'required|string',
             
             // Residential Address of Applicant
-            'house_number' => 'required|string',
+            // 'house_number' => 'required|string',
             // 'house_name' => 'required|string',
-            'street_1' => 'required|string',
+            // 'street_1' => 'required|string',
             // 'street_2' => 'required|string',
-            'area_1' => 'required|string',
+            // 'area_1' => 'required|string',
             // 'area_2' => 'required|string',
-            'country_id' => 'required|string',
-            'state_id' => 'required|string',
-            'district_id' => 'required|string',
-            'taluka_id' => 'required|string',
-            'zipcode' => 'required|string',
+            // 'country_id' => 'required|string',
+            // 'state_id' => 'required|string',
+            // 'district_id' => 'required|string',
+            // 'taluka_id' => 'required|string',
+            // 'zipcode' => 'required|string',
             
             // Business Details
-            'business_name' => 'required|string',
-            'business_type' => 'required|numeric',
-            'meat_type' => 'required|string',
-            'per_day_capacity' => 'required|string',
-            'provision_water' => 'required|numeric',
-            'provision_electricty' => 'required|numeric',
-            'business_address' => 'required|string',
-            'sewerage_disposing' => 'required|numeric',
+            // 'business_name' => 'required|string',
+            // 'business_type' => 'required|numeric',
+            // 'meat_type' => 'required|string',
+            // 'per_day_capacity' => 'required|string',
+            // 'provision_water' => 'required|numeric',
+            // 'provision_electricty' => 'required|numeric',
+            // 'business_address' => 'required|string',
+            // 'sewerage_disposing' => 'required|numeric',
             // 'prcision_dispose_id' => 'required|string',
-            'place_id' => 'required|numeric',
+            // 'place_id' => 'required|numeric',
             
-            'regi_authority_name' => 'required|string',
-            'register_number' => 'required|string',
-            'valid_till' => 'required|string',
+            // 'regi_authority_name' => 'required|string',
+            // 'register_number' => 'required|string',
+            // 'valid_till' => 'required|string',
              
-             'areaof_business_place' => 'required|string',
-             'business_place' => 'required|numeric',
-             'property_tax_doc'=> 'required|mimes:jpeg,png,jpg,pdf|max:2048',
-            'paid_water_doc' =>'required|mimes:jpeg,png,jpg,pdf|max:2048',
-            'treatment_authorized_doc'=>'required|mimes:jpeg,png,jpg,pdf|max:2048',
-            'fitness_certificate_doc'=>'required|mimes:jpeg,png,jpg,pdf|max:2048',
-            'old_licence' => 'required|mimes:jpeg,png,jpg,pdf|max:2048',
+            //  'areaof_business_place' => 'required|string',
+            //  'business_place' => 'required|numeric',
+            //  'property_tax_doc'=> 'required|mimes:jpeg,png,jpg,pdf|max:2048',
+            // 'paid_water_doc' =>'required|mimes:jpeg,png,jpg,pdf|max:2048',
+            // 'treatment_authorized_doc'=>'required|mimes:jpeg,png,jpg,pdf|max:2048',
+            // 'fitness_certificate_doc'=>'required|mimes:jpeg,png,jpg,pdf|max:2048',
+            // 'old_licence' => 'required|mimes:jpeg,png,jpg,pdf|max:2048',
 
          ],[
               // Basic Details
@@ -269,77 +272,77 @@ class ColdStorageRegistrationRenewalController extends Controller
 
         $data = new ColdStorageRenewalLicense_Model();      
         
-       
+        //  dd($data);
         
-        if(!empty($request->hasFile('adharcard_doc'))){
-            $image1 = $request->file('adharcard_doc');
-            $image_name1 = $image1->getClientOriginalName();
-            $extension1 = $image1->getClientOriginalExtension();
-            $new_name1 = time().rand(10,999).'.'.$extension1;
-            $image1->move(public_path('/PMC_Cold_Storage/meat_file/adharcard_doc'),$new_name1);
+        // if(!empty($request->hasFile('adharcard_doc'))){
+        //     $image1 = $request->file('adharcard_doc');
+        //     $image_name1 = $image1->getClientOriginalName();
+        //     $extension1 = $image1->getClientOriginalExtension();
+        //     $new_name1 = time().rand(10,999).'.'.$extension1;
+        //     $image1->move(public_path('/PMC_Cold_Storage/meat_file/adharcard_doc'),$new_name1);
 
-            $image_path1 = "/PMC_Cold_Storage/meat_file/adharcard_doc" . $image_name1;
-            $data->adharcard_doc = $new_name1;
-        }
+        //     $image_path1 = "/PMC_Cold_Storage/meat_file/adharcard_doc" . $image_name1;
+        //     $data->adharcard_doc = $new_name1;
+        // }
         
         
         
-        if(!empty($request->hasFile('residitional_proof_doc'))){
-            $image2 = $request->file('residitional_proof_doc');
-            $image_name2 = $image2->getClientOriginalName();
-            $extension2 = $image2->getClientOriginalExtension();
-            $new_name2 = time().rand(10,999).'.'.$extension2;
-            $image2->move(public_path('/PMC_Cold_Storage/meat_file/residitional_proof_doc'),$new_name2);
-            $image_path2 = "/PMC_Cold_Storage/meat_file/residitional_proof_doc" . $image_name2;
-            $data->residitional_proof_doc = $new_name2;
-        }
+        // if(!empty($request->hasFile('residitional_proof_doc'))){
+        //     $image2 = $request->file('residitional_proof_doc');
+        //     $image_name2 = $image2->getClientOriginalName();
+        //     $extension2 = $image2->getClientOriginalExtension();
+        //     $new_name2 = time().rand(10,999).'.'.$extension2;
+        //     $image2->move(public_path('/PMC_Cold_Storage/meat_file/residitional_proof_doc'),$new_name2);
+        //     $image_path2 = "/PMC_Cold_Storage/meat_file/residitional_proof_doc" . $image_name2;
+        //     $data->residitional_proof_doc = $new_name2;
+        // }
         
-        if(!empty($request->hasFile('legal_business_doc'))){
-            $image3 = $request->file('legal_business_doc');
-            $image_name3 = $image3->getClientOriginalName();
-            $extension3 = $image3->getClientOriginalExtension();
-            $new_name3 = time().rand(10,999).'.'.$extension3;
-            $image3->move(public_path('/PMC_Cold_Storage/meat_file/legal_business_doc'),$new_name3);
+        // if(!empty($request->hasFile('legal_business_doc'))){
+        //     $image3 = $request->file('legal_business_doc');
+        //     $image_name3 = $image3->getClientOriginalName();
+        //     $extension3 = $image3->getClientOriginalExtension();
+        //     $new_name3 = time().rand(10,999).'.'.$extension3;
+        //     $image3->move(public_path('/PMC_Cold_Storage/meat_file/legal_business_doc'),$new_name3);
 
-            $image_path3 = "/PMC_Cold_Storage/meat_file/legal_business_doc" . $image_name3;
-            $data->legal_business_doc = $new_name3;
-        }
+        //     $image_path3 = "/PMC_Cold_Storage/meat_file/legal_business_doc" . $image_name3;
+        //     $data->legal_business_doc = $new_name3;
+        // }
         
-        if(!empty($request->hasFile('business_registration_doc'))){
-            $image4 = $request->file('business_registration_doc');
-            $image_name4 = $image4->getClientOriginalName();
-            $extension4 = $image4->getClientOriginalExtension();
-            $new_name4 = time().rand(10,999).'.'.$extension4;
-            $image4->move(public_path('/PMC_Cold_Storage/meat_file/business_registration_doc'),$new_name4);
+        // if(!empty($request->hasFile('business_registration_doc'))){
+        //     $image4 = $request->file('business_registration_doc');
+        //     $image_name4 = $image4->getClientOriginalName();
+        //     $extension4 = $image4->getClientOriginalExtension();
+        //     $new_name4 = time().rand(10,999).'.'.$extension4;
+        //     $image4->move(public_path('/PMC_Cold_Storage/meat_file/business_registration_doc'),$new_name4);
 
-            $image_path4 = "/PMC_Cold_Storage/meat_file/business_registration_doc" . $image_name4;
-            $data->business_registration_doc = $new_name4;
-        }
+        //     $image_path4 = "/PMC_Cold_Storage/meat_file/business_registration_doc" . $image_name4;
+        //     $data->business_registration_doc = $new_name4;
+        // }
         
         
         
-        if(!empty($request->hasFile('property_tax_doc'))){
-            $image5 = $request->file('property_tax_doc');
-            $image_name5 = $image5->getClientOriginalName();
-            $extension5 = $image5->getClientOriginalExtension();
-            $new_name5 = time().rand(10,999).'.'.$extension5;
-            $image5->move(public_path('/PMC_Cold_Storage/meat_file/property_tax_doc'),$new_name5);
+        // if(!empty($request->hasFile('property_tax_doc'))){
+        //     $image5 = $request->file('property_tax_doc');
+        //     $image_name5 = $image5->getClientOriginalName();
+        //     $extension5 = $image5->getClientOriginalExtension();
+        //     $new_name5 = time().rand(10,999).'.'.$extension5;
+        //     $image5->move(public_path('/PMC_Cold_Storage/meat_file/property_tax_doc'),$new_name5);
 
-            $image_path5 = "/PMC_Cold_Storage/meat_file/property_tax_doc" . $image_name5;
-            $data->property_tax_doc = $new_name5;
-        }
+        //     $image_path5 = "/PMC_Cold_Storage/meat_file/property_tax_doc" . $image_name5;
+        //     $data->property_tax_doc = $new_name5;
+        // }
         
         
-        if(!empty($request->hasFile('paid_water_doc'))){
-            $image6 = $request->file('paid_water_doc');
-            $image_name6 = $image6->getClientOriginalName();
-            $extension6 = $image6->getClientOriginalExtension();
-            $new_name6 = time().rand(10,999).'.'.$extension6;
-            $image6->move(public_path('/PMC_Cold_Storage/meat_file/paid_water_doc'),$new_name6);
+        // if(!empty($request->hasFile('paid_water_doc'))){
+        //     $image6 = $request->file('paid_water_doc');
+        //     $image_name6 = $image6->getClientOriginalName();
+        //     $extension6 = $image6->getClientOriginalExtension();
+        //     $new_name6 = time().rand(10,999).'.'.$extension6;
+        //     $image6->move(public_path('/PMC_Cold_Storage/meat_file/paid_water_doc'),$new_name6);
 
-            $image_path6 = "/PMC_Cold_Storage/meat_file/paid_water_doc" . $image_name6;
-            $data->paid_water_doc = $new_name6;
-        }
+        //     $image_path6 = "/PMC_Cold_Storage/meat_file/paid_water_doc" . $image_name6;
+        //     $data->paid_water_doc = $new_name6;
+        // }
         
         // if(!empty($request->hasFile('paid_receipt_doc'))){
         //     $image = $request->file('paid_receipt_doc');
@@ -352,94 +355,96 @@ class ColdStorageRegistrationRenewalController extends Controller
         //     $data->paid_receipt_doc = $new_name;
         // }
         
-        if(!empty($request->hasFile('treatment_authorized_doc'))){
-            $image7 = $request->file('treatment_authorized_doc');
-            $image_name7 = $image7->getClientOriginalName();
-            $extension7 = $image7->getClientOriginalExtension();
-            $new_name7 = time().rand(10,999).'.'.$extension7;
-            $image7->move(public_path('/PMC_Cold_Storage/meat_file/treatment_authorized_doc'),$new_name7);
+        // if(!empty($request->hasFile('treatment_authorized_doc'))){
+        //     $image7 = $request->file('treatment_authorized_doc');
+        //     $image_name7 = $image7->getClientOriginalName();
+        //     $extension7 = $image7->getClientOriginalExtension();
+        //     $new_name7 = time().rand(10,999).'.'.$extension7;
+        //     $image7->move(public_path('/PMC_Cold_Storage/meat_file/treatment_authorized_doc'),$new_name7);
 
-            $image_path7 = "/PMC_Cold_Storage/meat_file/treatment_authorized_doc" . $image_name7;
-            $data->treatment_authorized_doc = $new_name7;
-        }
+        //     $image_path7 = "/PMC_Cold_Storage/meat_file/treatment_authorized_doc" . $image_name7;
+        //     $data->treatment_authorized_doc = $new_name7;
+        // }
         
         
         
-        if(!empty($request->hasFile('fitness_certificate_doc'))){
-            $image8 = $request->file('fitness_certificate_doc');
-            $image_name8 = $image8->getClientOriginalName();
-            $extension8 = $image8->getClientOriginalExtension();
-            $new_name8 = time().rand(10,999).'.'.$extension8;
-            $image8->move(public_path('/PMC_Cold_Storage/meat_file/fitness_certificate_doc'),$new_name8);
+        // if(!empty($request->hasFile('fitness_certificate_doc'))){
+        //     $image8 = $request->file('fitness_certificate_doc');
+        //     $image_name8 = $image8->getClientOriginalName();
+        //     $extension8 = $image8->getClientOriginalExtension();
+        //     $new_name8 = time().rand(10,999).'.'.$extension8;
+        //     $image8->move(public_path('/PMC_Cold_Storage/meat_file/fitness_certificate_doc'),$new_name8);
 
-            $image_path8 = "/PMC_Cold_Storage/meat_file/fitness_certificate_doc" . $image_name8;
-            $data->fitness_certificate_doc = $new_name8;
-        }
+        //     $image_path8 = "/PMC_Cold_Storage/meat_file/fitness_certificate_doc" . $image_name8;
+        //     $data->fitness_certificate_doc = $new_name8;
+        // }
         
         
-        if(!empty($request->hasFile('issued_doc'))){
-            $image9 = $request->file('issued_doc');
-            $image_name9 = $image9->getClientOriginalName();
-            $extension9 = $image9->getClientOriginalExtension();
-            $new_name9 = time().rand(10,999).'.'.$extension9;
-            $image9->move(public_path('/PMC_Cold_Storage/meat_file/issued_doc'),$new_name9);
+        // if(!empty($request->hasFile('issued_doc'))){
+        //     $image9 = $request->file('issued_doc');
+        //     $image_name9 = $image9->getClientOriginalName();
+        //     $extension9 = $image9->getClientOriginalExtension();
+        //     $new_name9 = time().rand(10,999).'.'.$extension9;
+        //     $image9->move(public_path('/PMC_Cold_Storage/meat_file/issued_doc'),$new_name9);
 
-            $image_path9 = "/PMC_Cold_Storage/meat_file/issued_doc" . $image_name9;
-            $data->issued_doc = $new_name9;
-        }
+        //     $image_path9 = "/PMC_Cold_Storage/meat_file/issued_doc" . $image_name9;
+        //     $data->issued_doc = $new_name9;
+        // }
         
       
         
-        if(!empty($request->hasFile('slaughter_letter_doc'))){
-            $image10 = $request->file('slaughter_letter_doc');
-            $image_name10 = $image10->getClientOriginalName();
-            $extension10 = $image10->getClientOriginalExtension();
-            $new_name10 = time().rand(10,999).'.'.$extension10;
-            $image10->move(public_path('/PMC_Cold_Storage/meat_file/slaughter_letter_doc'),$new_name10);
+        // if(!empty($request->hasFile('slaughter_letter_doc'))){
+        //     $image10 = $request->file('slaughter_letter_doc');
+        //     $image_name10 = $image10->getClientOriginalName();
+        //     $extension10 = $image10->getClientOriginalExtension();
+        //     $new_name10 = time().rand(10,999).'.'.$extension10;
+        //     $image10->move(public_path('/PMC_Cold_Storage/meat_file/slaughter_letter_doc'),$new_name10);
 
-            $image_path10 = "/PMC_Cold_Storage/meat_file/slaughter_letter_doc" . $image_name10;
-            $data->slaughter_letter_doc = $new_name10;
-        }
+        //     $image_path10 = "/PMC_Cold_Storage/meat_file/slaughter_letter_doc" . $image_name10;
+        //     $data->slaughter_letter_doc = $new_name10;
+        // }
         
-        if(!empty($request->hasFile('applicant_signature'))){
-            $image11 = $request->file('applicant_signature');
-            $image_name11 = $image11->getClientOriginalName();
-            $extension11 = $image11->getClientOriginalExtension();
-            $new_name11 = time().rand(10,999).'.'.$extension11;
-            $image11->move(public_path('/PMC_Cold_Storage/meat_file/applicant_signature'),$new_name11);
+        // if(!empty($request->hasFile('applicant_signature'))){
+        //     $image11 = $request->file('applicant_signature');
+        //     $image_name11 = $image11->getClientOriginalName();
+        //     $extension11 = $image11->getClientOriginalExtension();
+        //     $new_name11 = time().rand(10,999).'.'.$extension11;
+        //     $image11->move(public_path('/PMC_Cold_Storage/meat_file/applicant_signature'),$new_name11);
 
-            $image_path11 = "/PMC_Cold_Storage/meat_file/applicant_signature" . $image_name11;
-            $data->applicant_signature = $new_name11;
-        }
+        //     $image_path11 = "/PMC_Cold_Storage/meat_file/applicant_signature" . $image_name11;
+        //     $data->applicant_signature = $new_name11;
+        // }
         
-        if(!empty($request->hasFile('profile_photo'))){
-            $image12 = $request->file('profile_photo');
-            $image_name12 = $image12->getClientOriginalName();
-            $extension12 = $image12->getClientOriginalExtension();
-            $new_name12 = time().rand(10,999).'.'.$extension12;
-            $image12->move(public_path('/PMC_Cold_Storage/meat_file/profile_photo'),$new_name12);
+        // if(!empty($request->hasFile('profile_photo'))){
+        //     $image12 = $request->file('profile_photo');
+        //     $image_name12 = $image12->getClientOriginalName();
+        //     $extension12 = $image12->getClientOriginalExtension();
+        //     $new_name12 = time().rand(10,999).'.'.$extension12;
+        //     $image12->move(public_path('/PMC_Cold_Storage/meat_file/profile_photo'),$new_name12);
 
-            $image_path12 = "/PMC_Cold_Storage/meat_file/profile_photo" . $image_name12;
-            $data->profile_photo = $new_name12;
-        }
+        //     $image_path12 = "/PMC_Cold_Storage/meat_file/profile_photo" . $image_name12;
+        //     $data->profile_photo = $new_name12;
+        // }
         
         
         // dd($data->applicant_signature); die;
-         if(!empty($request->hasFile('old_licence'))){
-            $image = $request->file('old_licence');
-            $image_name = $image->getClientOriginalName();
-            $extension = $image->getClientOriginalExtension();
-            $new_name = time().rand(10,999).'.'.$extension;
-            $image->move(public_path('/PMC_Cold_Storage/meat_file/old_licence'),$new_name);
+        //  if(!empty($request->hasFile('old_licence'))){
+        //     $image = $request->file('old_licence');
+        //     $image_name = $image->getClientOriginalName();
+        //     $extension = $image->getClientOriginalExtension();
+        //     $new_name = time().rand(10,999).'.'.$extension;
+        //     $image->move(public_path('/PMC_Cold_Storage/meat_file/old_licence'),$new_name);
 
-            $image_path = "/PMC_Cold_Storage/meat_file/old_licence" . $image_name;
-            $data->old_licence = $new_name;
-        }
+        //     $image_path = "/PMC_Cold_Storage/meat_file/old_licence" . $image_name;
+        //     $data->old_licence = $new_name;
+        // }
         // Basic Details
-
+        
         $data->coldstorage_regi_id = $request->get('coldstorage_regi_id');
+        // dd($data->place_id = $request);
         // $data->renwal_liceans_no = $request->get('renwal_liceans_no');
         $data->applicant_title_id = $request->get('applicant_title_id');
+        // dd($request->get('applicant_title_id'));
         $data->applicant_fname = $request->get('applicant_fname');
         $data->applicant_mname = $request->get('applicant_mname');
         $data->applicant_lname = $request->get('applicant_lname');
@@ -453,7 +458,7 @@ class ColdStorageRegistrationRenewalController extends Controller
         // Residential Address of Applicant
         $data->house_number = $request->get('house_number');
         $data->house_name = $request->get('house_name');
-
+        $data ->is_renewal = 1;
         $data->street_1 = $request->get('street_1');
         $data->street_2 = $request->get('street_2');
         $data->area_1 = $request->get('area_1');
@@ -476,7 +481,6 @@ class ColdStorageRegistrationRenewalController extends Controller
         $data->sewerage_disposing = $request->get('sewerage_disposing');
         $data->prcision_dispose_id = $request->get('prcision_dispose_id');
         $data->place_id = $request->get('place_id');
-        
         $data->regi_authority_name = $request->get('regi_authority_name');
         $data->register_number = $request->get('register_number');
         $data->valid_till = $request->get('valid_till');
@@ -484,23 +488,34 @@ class ColdStorageRegistrationRenewalController extends Controller
         $data->areaof_business_place = $request->get('areaof_business_place');
         $data->business_place = $request->get('business_place');
         $data->business_place_other = $request->get('business_place_other');
-        
+        $data->register_table_id =$request->get('register_table_id');
+        $data->is_renewal=1;
         $data->inserted_dt = date("Y-m-d H:i:s");
         $data->inserted_by = Auth::guard('meatregistereduser')->user()->id;
-        
-       
+        //  dd($request->get('register_table_id'));
+        ColdStorageRenewalLicense_Model::where("register_table_id",$request->get('register_table_id'))->update(['is_renewal' =>0]);
+
+
+        $unique_id ="PMC-COLD-".rand(1000,10000000);
+            
+        $data->renwal_liceans_no = $unique_id;
         $data->save();
         
-        $unique_id = "PMC-COLD-".rand(1000,10000000);
-        $update = [
-            'renwal_liceans_no' => $unique_id.$data->id ,
-            // 'inserted_by' => $data->id,
-        ];
+        // ColdStorageRegistration_Model::where('id',$request->get('register_table_id'))->update(['is_renewal' =>0]);
         
+        // dd($data->register_table_id);
+        //  dd($data);
+        // $update = [
+        //     'renwal_liceans_no' => $unique_id.$data->id ,
+        //     // 'inserted_by' => $data->id,
+        // ];
+      
+        // dd($unique_id);
+        ColdStorageRegistration_Model::where('id',$request->get('register_table_id'))->update(['is_renewal' =>0]);
+
+        // ColdStorageRenewalLicense_Model::where('id', $data->id)->update($update);
         
-        ColdStorageRenewalLicense_Model::where('id', $data->id)->update($update);
-        
-        $app_no = $unique_id.$data->id;
+        $app_no = $unique_id;
         $scheme = 'Cold Storage Registration Form';
         $domain = "https://".$_SERVER['HTTP_HOST'];
         $project_folder = 'PMC_Cold_Storage';
@@ -1157,4 +1172,203 @@ class ColdStorageRegistrationRenewalController extends Controller
             
     }
 
+    public function renewal_list()
+
+    {
+        if (Auth::guard('meatregistereduser')->check()) {
+            $user_id = Auth::guard('meatregistereduser')->user()->id;
+
+
+                            $renewal_list =  DB::table('coldstorage_renewal_license_tbl AS t1')
+                            ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
+                                    )
+                                    
+                            ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
+                        
+                            ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
+                            ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
+                        
+
+                            ->where('t1.inserted_by', '=',$user_id)
+                            ->whereNull('t1.deleted_at')
+                            ->whereNull('t2.deleted_at')
+                            ->whereNull('t3.deleted_at')
+                            ->whereNull('t4.deleted_at')
+                        
+                            ->orderBy('t1.id', 'DESC')
+                            ->get();                 
+
+                    $meats_renewal_license_status =  DB::table('coldstorage_renewal_license_tbl AS t1')
+                                        ->select('t1.id', 't1.status')
+                                        ->where('t1.inserted_by', '=',$user_id)
+                                        ->orderBy('t1.id', 'DESC')
+                                        ->whereNull('t1.deleted_at')
+                                        ->first();
+                    $meatrenewal_license_status  = $meats_renewal_license_status ? $meats_renewal_license_status->status : 0; 
+
+                    if (isset($user_list)){
+
+                    return view('user.cold_storage.user_applicant_form', compact('user_list','renewal_list','meat_license_status','meatrenewal_license_status'));
+                    }else{
+                    return redirect('/');
+                    }
+                    } else {
+                    return redirect('/user/login');
+                    }
+
+                    }
+
+     public function form_list(Request $request)
+    {
+        if (Auth::guard('meatregistereduser')->check()) {
+            $user_id = Auth::guard('meatregistereduser')->user()->id;
+            // return $user_id;
+            
+            $user_list =  DB::table('coldstorage_registration_tbl AS t1')
+                            ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
+                                    )
+                                    
+                            ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
+                         
+                            ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
+                            ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
+
+                            ->where('t1.is_renewal', '=',1)
+                            ->where('t1.final_approve', '=', 1)
+                            ->where('t1.inserted_dt', '<=', \Carbon\Carbon::now()->subMinute())
+                            ->where('t1.inserted_by', '=',$user_id)
+                            ->whereNull('t1.deleted_at')
+                            ->whereNull('t2.deleted_at')
+                            ->whereNull('t3.deleted_at')
+                            ->whereNull('t4.deleted_at')
+                           
+                            ->orderBy('t1.id', 'DESC')
+                            ->get();
+                            
+              $meats_license_status =  DB::table('coldstorage_registration_tbl AS t1')
+                                        ->select('t1.id', 't1.status')
+                                        ->where('t1.inserted_by', '=',$user_id)
+                                        ->orderBy('t1.id', 'DESC')
+                                        ->whereNull('t1.deleted_at')
+                                        ->first();
+            $meat_license_status  = $meats_license_status ? $meats_license_status->status : 0; 
+            
+
+            // dd($user_list);
+            $renewal_list =  DB::table('coldstorage_renewal_license_tbl AS t1')
+                            ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
+                                    )
+                                    
+                            ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
+                            ->leftJoin('coldstorage_registration_tbl AS t5','t5.id','=','t1.register_table_id')
+                            ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
+                            ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
+
+                            ->where('t1.re_final_approve', '=', 1)
+                            ->where('t1.is_renewal', '=',1)
+                            ->where('t1.inserted_dt', '<=', \Carbon\Carbon::now()->subMinute())
+                            ->where('t1.inserted_by', '=',$user_id)
+                            ->whereNull('t1.deleted_at')
+                            ->whereNull('t2.deleted_at')
+                            ->whereNull('t3.deleted_at')
+                            ->whereNull('t4.deleted_at')
+                           
+                            ->orderBy('t1.id', 'DESC')
+                            ->get();                 
+            //  dd($renewal_list);
+            $meats_renewal_license_status =  DB::table('coldstorage_renewal_license_tbl AS t1')
+                                        ->select('t1.id', 't1.status')
+                                        ->where('t1.inserted_by', '=',$user_id)
+                                        ->orderBy('t1.id', 'DESC')
+                                        ->whereNull('t1.deleted_at')
+                                        ->first();
+            $meatrenewal_license_status  = $meats_renewal_license_status ? $meats_renewal_license_status->status : 0; 
+            
+           if (isset($user_list)){
+     
+            return view('user.coldstorage_renewal.user_applicant_form_renewal', compact('user_list','renewal_list','meat_license_status','meatrenewal_license_status'));
+            }else{
+                 return redirect('/');
+            }
+        } else {
+            return redirect('/user/login');
+        }
+        
+    }
+
+
+    public function New_renewal(Request $request,$id,$user_type)
+    {
+
+  
+          $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
+          if (Auth::guard('meatregistereduser')->check()) {
+           
+          $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
+    
+          $mainid = Auth::guard('meatregistereduser')->user()->id;
+        //   dd($mainid);
+          $data =   DB::table('coldstorage_registration_tbl AS t1')
+                                ->select('t1.*','t1.id AS registration_id', 't2.meat_name','t3.dist_name','t4.taluka_name') 
+                                 ->leftJoin('coldstorage_renewal_license_tbl AS t5','t5.register_table_id','=', 't1.id')       
+                                ->leftJoin('meat_type_mst AS t2', 't2.id', '=', 't1.meat_type')
+                                ->leftJoin('mst_dist AS t3', 't3.id', '=', 't1.district_id')
+                                ->leftJoin('mst_taluka AS t4', 't4.id', '=', 't1.taluka_id')
+                              
+                                ->where('t1.id', '=', $id)
+                                ->whereNull('t1.deleted_at')
+                                ->whereNull('t2.deleted_at')
+                                ->whereNull('t3.deleted_at')
+                                ->whereNull('t4.deleted_at')
+                                ->orderBy('t1.id', 'DESC')
+                                ->first();
+
+                                // dd($data);
+               if(empty($data)) {
+                                    
+                                    return redirect('/')->with('warning','Apply For Cold Storage Registration License First');
+                                    
+                                }elseif($data->approve_date == ""){
+                                    
+                                    return redirect('/')->with('warning','Your Application status is still Pending');
+                                    
+                                    
+                                }else {
+                // dd($data);
+                //  $approve_date = $data->approve_date;  
+    
+              
+                 
+                // $newEndingDate = date("Y-m-d", strtotime(date("Y-m-d", strtotime($approve_date)) . " + 1 year"));
+    
+                // $currentDate = date('Y-m-d');
+    
+    
+                // $timestamp1 = strtotime($currentDate);
+                // $timestamp2 = strtotime($newEndingDate);
+    
+                
+                // if($timestamp1 > $timestamp2) { 
+    
+    
+    
+                return view('user.coldstorage_renewal.cold_storage_renewal_form', compact('data','meattype_mst','unit_Meat_Type','id','user_type'));
+    
+                // }else{
+                  
+                //       $diff = $timestamp1 -$timestamp2 ; 
+                //       $x = abs(floor($diff / (60 * 60 * 24))) ;
+    
+                //      return redirect('/')->with('message','Your license has not yet expired. '  .$x.' days Remaining');
+                  
+                // } 
+                 } 
+                } else {
+                return redirect('/user/login');
+            }      
+                                
+               
+    
+    }
+ 
 }

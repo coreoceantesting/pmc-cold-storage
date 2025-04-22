@@ -209,7 +209,7 @@
                                 <div class="form-group row">
                                    
                                     <div class="col-sm-3 col-md-3 p-2">
-                                        <select class="form-control @error('applicant_title_id') is-invalid @enderror"  name="applicant_title_id" id="applicant_title_id" style="width: 100%; height: 38px; pointer-events:none">
+                                        <select class="form-control @error('applicant_title_id') is-invalid @enderror"  name="applicant_title_id" id="applicant_title_id" style="width: 100%; height: 38px; ">
                                             <option value=" ">Select Applicant Title</option>
                                             <option value="1" {{ $data->applicant_title_id == '1' ? 'selected' : '' }}>Kum.</option>
                                             <option value="2" {{ $data->applicant_title_id == '2' ? 'selected' : '' }}>M/s</option>
@@ -231,7 +231,7 @@
                                     
                                     
                                     <div class="col-sm-3 col-md-3 p-2">
-                                        <input type="text" name="applicant_fname" id="inputTextBox" class="form-control @error('applicant_fname') is-invalid @enderror" value="{{ $data->applicant_fname }}" placeholder="Applicant First Name." readonly>
+                                        <input type="text" name="applicant_fname" id="inputTextBox" class="form-control @error('applicant_fname') is-invalid @enderror" value="{{ $data->applicant_fname }}" placeholder="Applicant First Name." >
                                         @error('applicant_fname')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -241,7 +241,7 @@
                                     </div>
 
                                     <div class="col-sm-3 col-md-3 p-2">
-                                        <input type="text" name="applicant_mname" id="inputTextBox" class="form-control @error('applicant_mname') is-invalid @enderror" value="{{ $data->applicant_mname }}" placeholder="Applicant Middle Name." readonly>
+                                        <input type="text" name="applicant_mname" id="inputTextBox" class="form-control @error('applicant_mname') is-invalid @enderror" value="{{ $data->applicant_mname }}" placeholder="Applicant Middle Name." >
                                         @error('applicant_mname')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -251,7 +251,7 @@
                                     
                                     <!--<label class="col-sm-1"><strong>Last Name : <span style="color:red;">*</span></strong></label>-->
                                     <div class="col-sm-3 col-md-3 p-2">
-                                        <input type="text" name="applicant_lname" id="inputTextBox" class="form-control @error('applicant_lname') is-invalid @enderror" value="{{ $data->applicant_lname }}" placeholder="Applicant Last Name." readonly>
+                                        <input type="text" name="applicant_lname" id="inputTextBox" class="form-control @error('applicant_lname') is-invalid @enderror" value="{{ $data->applicant_lname }}" placeholder="Applicant Last Name." >
                                         @error('applicant_lname')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -264,7 +264,7 @@
                                 <div class="form-group row">
                                      <label class="col-sm-2"><strong>Mobile Number / (मोबाईल नंबर) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <input type="text" name="mobile_number" id="mobile_number" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control @error('mobile_number') is-invalid @enderror" value="{{ $data->mobile_number }}" readonly placeholder="Mobile Number / (मोबाईल नंबर)">
+                                        <input type="text" name="mobile_number" id="mobile_number" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" class="form-control @error('mobile_number') is-invalid @enderror" value="{{ $data->mobile_number }}"  placeholder="Mobile Number / (मोबाईल नंबर)">
                                         @error('mobile_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -274,7 +274,7 @@
                                     
                                     <label class="col-sm-2"><strong>Email Id / (ई - मेल आयडी) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ $data->email }}" readonly placeholder="Email Id / (ई - मेल आयडी)">
+                                        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ $data->email }}"  placeholder="Email Id / (ई - मेल आयडी)">
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -284,7 +284,7 @@
                                     
                                     <label class="col-sm-2"><strong>Aadhar Number / (आधार क्रमांक) :      </strong></label>                      
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <input type="text" name="aadhar_number" id="aadhar_number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="12" class="form-control " value="{{ $data->aadhar_number }}" readonly placeholder="Aadhar Number / (आधार क्रमांक)">
+                                        <input type="text" name="aadhar_number" id="aadhar_number" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" maxlength="12" class="form-control " value="{{ $data->aadhar_number }}"  placeholder="Aadhar Number / (आधार क्रमांक)">
                                         
                                     </div>
                                 </div>
@@ -298,7 +298,7 @@
                                  <div class="form-group row">
                                     <label class="col-sm-2"><strong>House Number / (घर क्रमांक) :  <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <input type="text" name="house_number" id="house_number" class="form-control @error('house_number') is-invalid @enderror" value="{{ $data->house_number }}" readonly placeholder="House Number / (घर क्रमांक)">
+                                        <input type="text" name="house_number" id="house_number" class="form-control @error('house_number') is-invalid @enderror" value="{{ $data->house_number }}"  placeholder="House Number / (घर क्रमांक)">
                                         @error('house_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -308,7 +308,7 @@
                                     
                                     <label class="col-sm-2"><strong>House Name / (घराचे नाव) :</strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <input type="text" name="house_name" id="house_name" class="form-control @error('house_name') is-invalid @enderror" value="{{ $data->house_name }}" readonly placeholder="House Name / (घराचे नाव)">
+                                        <input type="text" name="house_name" id="house_name" class="form-control @error('house_name') is-invalid @enderror" value="{{ $data->house_name }}"  placeholder="House Name / (घराचे नाव)">
                                         @error('house_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -321,7 +321,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Street 1 / <br> ( रस्ता १ ): <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <input type="text" name="street_1" id="street_1" class="form-control @error('street_1') is-invalid @enderror" value="{{ $data->street_1 }}" readonly placeholder="Street 1 / (रस्ता १)">
+                                        <input type="text" name="street_1" id="street_1" class="form-control @error('street_1') is-invalid @enderror" value="{{ $data->street_1 }}"  placeholder="Street 1 / (रस्ता १)">
                                         @error('street_1')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -333,14 +333,14 @@
                                     
                                     <label class="col-sm-2"><strong>Street 2 / <br> ( रस्ता 2 ) : </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <input class="form-control " name="street_2" id="street_2" value="{{ $data->street_2 }}" readonly>
+                                        <input class="form-control " name="street_2" id="street_2" value="{{ $data->street_2 }}" >
                                     </div>
                                 </div>
                             
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Area 1 / ( क्षेत्र १ ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                         <input type="text" name="area_1" id="area_1" class="form-control @error('area_1') is-invalid @enderror" value="{{ $data->area_1 }}" readonly placeholder="Area 1 / (क्षेत्र १)">
+                                         <input type="text" name="area_1" id="area_1" class="form-control @error('area_1') is-invalid @enderror" value="{{ $data->area_1 }}"  placeholder="Area 1 / (क्षेत्र १)">
                                         @error('area_1')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -351,7 +351,7 @@
                                     
                                     <label class="col-sm-2"><strong>Area 2 / <br> ( क्षेत्र  २ ) : </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <input class="form-control " name="area_2" id="area_2" value="{{ $data->area_2 }}" readonly>
+                                        <input class="form-control " name="area_2" id="area_2" value="{{ $data->area_2 }}" >
                                     </div>
                                 </div>
                             
@@ -367,7 +367,7 @@
                                     ?>
                                     <label class="col-sm-2"><strong>Country / <br> ( देश ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                         <select class="form-control @error('country_id') is-invalid @enderror"  name="country_id" id="country_id" style="width: 100%; height: 38px; pointer-events:none" > 
+                                         <select class="form-control @error('country_id') is-invalid @enderror"  name="country_id" id="country_id" style="width: 100%; height: 38px; "  > 
                                             <option value=" ">Select Country / (देश) </option>
                                             <option value="1" {{ $data->country_id == '1' ? 'selected' : '' }}>India</option>
                                         </select>
@@ -381,7 +381,7 @@
                                     
                                     <label class="col-sm-2"><strong>State / ( राज्य ) <span style="color:red;">*</span>: </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                         <select class="form-control  @error('state_id') is-invalid @enderror"  name="state_id" id="state_id" style="width: 100%; height: 38px; pointer-events:none" >
+                                         <select class="form-control  @error('state_id') is-invalid @enderror"  name="state_id" id="state_id" style="width: 100%; height: 38px; " >
                                             <option value=" ">Select State / (राज्य) </option>
                                             <option value="1"  {{ $data->state_id == '1' ? 'selected' : '' }}>Maharashtra</option>
                                         </select>
@@ -406,7 +406,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>District / <br> ( जिल्हा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <select class="form-control @error('district_id') is-invalid @enderror"  name="district_id" id="district_id" style="width: 100%; height: 38px; pointer-events:none">
+                                        <select class="form-control @error('district_id') is-invalid @enderror"  name="district_id" id="district_id" style="width: 100%; height: 38px; ">
                                             <option value=" ">Select District / (जिल्हा) </option>
                                             @foreach ($mst_dist as $key => $value)
                                                 <option value="{{ $value->id }}" {{ $data->district_id == $value->id ? 'selected' : '' }}>{{ $value->dist_name }}</option>
@@ -428,7 +428,7 @@
                                 ?>
                                     <label class="col-sm-2"><strong>Taluka / <br> ( तालुका ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                         <select class="form-control  @error('taluka_id') is-invalid @enderror"  name="taluka_id" id="taluka_id" style="width: 100%; height: 38px; pointer-events:none">
+                                         <select class="form-control  @error('taluka_id') is-invalid @enderror"  name="taluka_id" id="taluka_id" style="width: 100%; height: 38px; ">
                                             <option value=" ">Select Taluka / (तालुका)</option>
                                           @foreach ($mst_taluka as $key => $value)
                                                 <option value="{{ $value->id }}" {{ $data->taluka_id == $value->id ? 'selected' : '' }}>{{ $value->taluka_name }}</option>
@@ -449,7 +449,7 @@
                                     <label class="col-sm-2"><strong>Zip Code / <br> ( पिनकोड ): <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
 
-                                        <input type="text" name="zipcode" id="zipcode" maxlength="6" class="form-control @error('zipcode') is-invalid @enderror" value="{{ $data->zipcode }}"  readonly placeholder="Zip Code / पिनकोड ">
+                                        <input type="text" name="zipcode" id="zipcode" maxlength="6" class="form-control @error('zipcode') is-invalid @enderror" value="{{ $data->zipcode }}"   placeholder="Zip Code / पिनकोड ">
                                         @error('zipcode')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -470,7 +470,7 @@
                                  <div class="form-group row">
                                     <label class="col-sm-2"><strong>Name of the business / (व्यवसायाचे नाव) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <input type="text" name="business_name" id="business_name"  class="form-control @error('business_name') is-invalid @enderror" value="{{ $data->business_name }}" readonly placeholder="Name of the business / व्यवसायाचे नाव">
+                                        <input type="text" name="business_name" id="business_name"  class="form-control @error('business_name') is-invalid @enderror" value="{{ $data->business_name }}"  placeholder="Name of the business / व्यवसायाचे नाव">
                                         @error('business_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -484,7 +484,7 @@
                                     <div class="col-sm-4 col-md-4 p-2">
                                        
 
-                                    <select class="form-control @error('business_type') is-invalid @enderror"  name="business_type" id="business_type" style="width: 100%; height: 38px; pointer-events:none">
+                                    <select class="form-control @error('business_type') is-invalid @enderror"  name="business_type" id="business_type" style="width: 100%; height: 38px; ">
                                         <option value=" ">Select Kind of Business / (व्यवसायाचा प्रकार)</option>
                                         <option value="1" {{ $data->business_type  == '1' ? 'selected' : '' }}>Butcher Shop ( मांस  विक्री  केंद्र )</option>
                                         <option value="2" {{ $data->business_type  == '2' ? 'selected' : '' }}>Meat Processing Plant ( मांस  प्रक्रिया   केंद्र  )</option>
@@ -503,7 +503,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <select class="form-control  @error('meat_type') is-invalid @enderror"  name="meat_type" id="meat_type" style="width: 100%; height: 38px; pointer-events:none">
+                                        <select class="form-control  @error('meat_type') is-invalid @enderror"  name="meat_type" id="meat_type" style="width: 100%; height: 38px;">
                                             <option value=" ">Select Meat Type / (मांसाचा प्रकार) </option>
                                             @foreach ($meattype_mst as $key => $value)
                                             <option value="{{ $key }}" {{ $data->meat_type == $key ? 'selected' : '' }}>{{ $value }}</option>
@@ -521,7 +521,7 @@
                                     
                                     <label class="col-sm-2"><strong>Per Day Capacity / (प्रतिदिन क्षमता) : <span style="color:red;">*</span> </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                         <input type="text" name="per_day_capacity" id="per_day_capacity" class="form-control @error('per_day_capacity') is-invalid @enderror" value="{{ $data->per_day_capacity  }}" readonly placeholder="Per Day Capacity / प्रतिदिन क्षमता">
+                                         <input type="text" name="per_day_capacity" id="per_day_capacity" class="form-control @error('per_day_capacity') is-invalid @enderror" value="{{ $data->per_day_capacity  }}"  placeholder="Per Day Capacity / प्रतिदिन क्षमता">
                                         @error('per_day_capacity')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -535,7 +535,7 @@
                                          
                                             <label class="col-sm-2"><strong>Provision of water / (पाण्याची व्यवस्था आहे का ?) : <span style="color:red;">*</span></strong></label>
                                             <div class="col-sm-4 col-md-4 p-2">
-                                                 <select class="form-control  @error('provision_water') is-invalid @enderror"  name="provision_water" id="provision_water" style="width: 100%; height: 38px; pointer-events:none">
+                                                 <select class="form-control  @error('provision_water') is-invalid @enderror"  name="provision_water" id="provision_water" style="width: 100%; height: 38px; ">
                                             <option value=" ">Select Provision of water / (पाण्याची व्यवस्था आहे का ?) </option>
                                             <option value="1" {{ $data->provision_water == '1' ? 'selected' : '' }}>Yes</option>
                                             <option value="2" {{ $data->provision_water == '2' ? 'selected' : '' }}>No</option>
@@ -552,7 +552,7 @@
                                           
                                             <label class="col-sm-2"><strong>Provision of electricity / (विजेची व्यवस्था आहे का ? ) : <span style="color:red;">*</span></strong></label>
                                             <div class="col-sm-4 col-md-4 p-2">
-                                                 <select class="form-control  @error('provision_electricty') is-invalid @enderror"  name="provision_electricty" id="provision_electricty" style="width: 100%; height: 38px; pointer-events:none">
+                                                 <select class="form-control  @error('provision_electricty') is-invalid @enderror"  name="provision_electricty" id="provision_electricty" style="width: 100%; height: 38px; ">
                                             <option value=" ">Select Provision of electricity / (विजेची व्यवस्था आहे का ?) </option>
                                             <option value="1" {{ $data->provision_electricty == '1' ? 'selected' : '' }}>Yes</option>
                                             <option value="2" {{ $data->provision_electricty == '2' ? 'selected' : '' }}>No</option>
@@ -571,7 +571,7 @@
                                          <div class="form-group row">
                                             <label class="col-sm-2"><strong>Address of the business / (व्यवसायाचा पत्ता) : <span style="color:red;">*</span> </strong></label>
                                             <div class="col-sm-12 col-md-12 p-2">
-                                                <textarea type="text" name="business_address" id="business_address" class="form-control @error('business_address') is-invalid @enderror" value="{{ $data->business_address }}" readonly placeholder="Address of the business / (व्यवसायाचा पत्ता)" style="height:120px;">{{ $data->business_address }} </textarea>
+                                                <textarea type="text" name="business_address" id="business_address" class="form-control @error('business_address') is-invalid @enderror" value="{{ $data->business_address }}"  placeholder="Address of the business / (व्यवसायाचा पत्ता)" style="height:120px;">{{ $data->business_address }} </textarea>
                                         @error('business_address')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -587,7 +587,7 @@
                                             
                                              <label class="col-sm-2"><strong>Provision of sewerage for disposing effluent / (सांडपाण्याची भूमिगत गटाराची व्यवस्था आहे का ?) : <span style="color:red;">*</span></strong></label>
                                             <div class="col-sm-4 col-md-4 p-2">
-                                                <select class="form-control  @error('sewerage_disposing') is-invalid @enderror"  name="sewerage_disposing" id="sewerage_disposing" style="width: 100%; height: 38px; pointer-events:none">
+                                                <select class="form-control  @error('sewerage_disposing') is-invalid @enderror"  name="sewerage_disposing" id="sewerage_disposing" style="width: 100%; height: 38px; ">
                                             <option value=" ">Select Provision of sewerage for disposing effluent / (सांडपाण्याची भूमिगत गटाराची व्यवस्था आहे का ?) </option>
                                             <option value="1" {{ $data->sewerage_disposing == '1' ? 'selected' : '' }}>Yes</option>
                                             <option value="2" {{ $data->sewerage_disposing == '2' ? 'selected' : '' }}>No</option>
@@ -602,7 +602,7 @@
                                             
                                             <label class="col-sm-2"><strong>If not explain provision to dispose effluent / (नसल्यास सांडपाण्याची विल्हेवाट कशी लावली जाते ) : </strong></label>
                                             <div class="col-sm-4 col-md-4 p-2">
-                                                 <textarea type="text" name="prcision_dispose_id" id="prcision_dispose_id" class="form-control @error('prcision_dispose_id') is-invalid @enderror" value="{{ $data->prcision_dispose_id }}" readonly placeholder="If not explain provision to dispose effluent /(नसल्यास सांडपाण्याची  विल्हेवाट कशी  लावली जाते ) " style="height:80px;">{{ $data->prcision_dispose_id }}</textarea>
+                                                 <textarea type="text" name="prcision_dispose_id" id="prcision_dispose_id" class="form-control @error('prcision_dispose_id') is-invalid @enderror" value="{{ $data->prcision_dispose_id }}"  placeholder="If not explain provision to dispose effluent /(नसल्यास सांडपाण्याची  विल्हेवाट कशी  लावली जाते ) " style="height:80px;">{{ $data->prcision_dispose_id }}</textarea>
                                         @error('prcision_dispose_id')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -617,7 +617,7 @@
                                         <strong>Is place is located at least 50mt. away form <br> Place of worship / educational institute / hospital & clinic <br> (जागेपासून प्रार्थनास्थळे / शिक्षणसंस्था /इस्पितळे व दवाखाने कमीत कमी ५० मीटर पेक्षा जास्त अंतरावर आहेत का ? ) : <span style="color:red;">*</span></strong>
                                     </label>
                                     <div class="col-sm-12 col-md-12 ">
-                                        <select class="form-control  @error('place_id') is-invalid @enderror"  name="place_id" id="place_id" style="width: 100%; height: 38px; pointer-events:none">
+                                        <select class="form-control  @error('place_id') is-invalid @enderror"  name="place_id" id="place_id" style="width: 100%; height: 38px; ">
                                             <option value=" ">Select Is place is located at least 50mt. away form place of worship / educational institute / hospital & clinic  </option>
                                             <option value="1" {{ $data->place_id == '1' ? 'selected' : '' }}>Yes</option>
                                             <option value="2" {{ $data->place_id == '2' ? 'selected' : '' }}>No</option>
@@ -640,7 +640,7 @@
                                     <label class="col-sm-2"><strong> Registration authority name  / (नोंदणी प्राधिकरणाचे नाव) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 ">
 
-                                         <input type="text" name="regi_authority_name" id="regi_authority_name"  class="form-control @error('regi_authority_name') is-invalid @enderror" value="{{ $data->regi_authority_name }}" readonly placeholder="Registration authority name  / नोंदणी प्राधिकरणाच नाव">
+                                         <input type="text" name="regi_authority_name" id="regi_authority_name"  class="form-control @error('regi_authority_name') is-invalid @enderror" value="{{ $data->regi_authority_name }}"  placeholder="Registration authority name  / नोंदणी प्राधिकरणाच नाव">
                                         @error('regi_authority_name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -653,7 +653,7 @@
                                     <label class="col-sm-2"><strong> Registration Number   / (नोंदणी क्रमांक) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 ">
 
-                                        <input type="text" name="register_number" id="register_number"  class="form-control @error('register_number') is-invalid @enderror" value="{{ $data->register_number  }}" readonly placeholder="Registration Number  / नोंदणी क्रमांक">
+                                        <input type="text" name="register_number" id="register_number"  class="form-control @error('register_number') is-invalid @enderror" value="{{ $data->register_number  }}"  placeholder="Registration Number  / नोंदणी क्रमांक">
                                         @error('register_number')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -666,7 +666,7 @@
                                   <div class="form-group row">   
                                     <label class="col-sm-2"><strong> Valid till / (पर्यंत वैध) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4">
-                                       <input type="Date" name="valid_till" id="valid_till" class="form-control  @error('valid_till') is-invalid @enderror" value="{{ $data->valid_till  }}" placeholder="valid till " readonly>
+                                       <input type="Date" name="valid_till" id="valid_till" class="form-control  @error('valid_till') is-invalid @enderror" value="{{ $data->valid_till  }}" placeholder="valid till " >
                                         @error('valid_till')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -683,7 +683,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong> Area of business place(sq/mtr)  / (व्यवसायाच्या ठिकाणाचे क्षेत्रफळ (चौरस/मीटर) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                       <input type="text" name="areaof_business_place" id="areaof_business_place"  class="form-control @error('areaof_business_place') is-invalid @enderror" value="{{ $data->areaof_business_place  }}" readonly placeholder="Area of business place(sq/mtr)  / (व्यवसायाच्या ठिकाणाचे क्षेत्रफळ (च नाव">
+                                       <input type="text" name="areaof_business_place" id="areaof_business_place"  class="form-control @error('areaof_business_place') is-invalid @enderror" value="{{ $data->areaof_business_place  }}"  placeholder="Area of business place(sq/mtr)  / (व्यवसायाच्या ठिकाणाचे क्षेत्रफळ (च नाव">
                                         @error('areaof_business_place')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -697,7 +697,7 @@
                                         
                                         
                                         
-                                            <select class="form-control  @error('business_place') is-invalid @enderror"  name="business_place" id="business_place" style="width: 100%; height: 38px; pointer-events:none"  onchange="showDiv('hidden_div', this)">
+                                            <select class="form-control  @error('business_place') is-invalid @enderror"  name="business_place" id="business_place" style="width: 100%; height: 38px; "  onchange="showDiv('hidden_div', this)">
                                             <option value=" ">Select  place   </option>
                                             <option value="1" {{ $data->business_place == '1' ? 'selected' : '' }}>सिडको  मार्केटमधील जागा/ Place in CIDCO Market </option>
                                             <option value="2" {{ $data->business_place == '2' ? 'selected' : '' }}>वाणिज्य वापराखालील जागा/ Space under commercial use </option>
@@ -716,7 +716,7 @@
                                     <label class="col-sm-2"><strong> Other  : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4">
                                       
-                                         <input  class="form-control" value="{{ $data->business_place_other  }}" readonly>
+                                         <input  class="form-control" value="{{ $data->business_place_other  }}" >
                                     </div>
                                 </div>       
                                         

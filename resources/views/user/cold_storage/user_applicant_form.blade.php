@@ -334,24 +334,14 @@
 
                                         @endif
                                         
-                                        	@if (!empty($renewal_list) && count($renewal_list) > 0)
-        								@if($renewal_list[0]->re_final_approve == 1)
+                                        
         								<th class="no-export">Cold Storage License Certificate</th>
-        								@endif
-        								 @endif
+        							
         								 
-        								 	@if (!empty($renewal_list) && count($renewal_list) > 0)
-        								  @if($renewal_list[0]->status == '1') 
+        								 
                                              <th>Invoice</th>
-                                        @endif
-                                         @endif
+                                       
                 
-                <!--                          @if($meatrenewal_license_status == '2')-->
-        								<!--<th>Reasons for Rejection</th>-->
-        								<!--@endif-->
-        								<!--@if($meatrenewal_license_status == 1)-->
-        								<!--<th class="no-export">ColdStorage Renewal License Certificate</th>-->
-        								<!--@endif-->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -405,13 +395,13 @@
         								      <td>{{ $value->re_final_reason_for_rejection }}</td>
         								    @endif
                                             
-                    <!--                        @if($value->status == '2')-->
+                    {{-- <!--                        @if($value->status == '2')-->
             								<!--<td>{{ $value->reject_resion }}</td>-->
-            								<!--@endif-->
+            								<!--@endif--> --}}
             								
-            								 @if($value->re_final_approve == 1)
                                             
                                             <td style="display:flex;">
+                                                @if($value->re_final_approve == 1)
                                             
                                               <a href='{{ url("/user/self_affadevit_renewal_pdf/{$value->id}") }}' class="btn btn-success btn-sm">
                                                Affidavit
@@ -425,18 +415,18 @@
                                                Marathi 
                                              </a>
                                             
+                                             @endif
                                              </td>
-                                               @endif
                                                
-                                                @if($value->status == 1)
                                                <td> 
+                                                   @if($value->status == 1)
                                                <a href='{{ url("/user/appli_form/invoice_renewal/{$value->id}/{$value->type}") }}' class="btn btn-primary waves-effect m-r-20" target="_blank">
                                                   
                                                   
                                                   Invoice
                                                 </a>
-                                                </td>
                                                 @endif
+                                                </td>
                                                 
                                                <td style="display:flex;" class="no-export">
                                                   @if($value->re_hod_status == '0' && $value->status == '0' && $value->re_final_approve == '0')
@@ -458,7 +448,6 @@
                                             </td>
                                             
                                             
-                                        
                                             
                                             
                                         </tr>

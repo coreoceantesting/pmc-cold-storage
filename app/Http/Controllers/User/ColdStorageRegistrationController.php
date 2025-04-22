@@ -1055,7 +1055,7 @@ class ColdStorageRegistrationController extends Controller
         $data->areaof_business_place = $request->get('areaof_business_place');
         $data->business_place = $request->get('business_place');
         $data->business_place_other = $request->get('business_place_other');
-        
+        $data->is_renewal = 1;
         $data->inserted_dt = date("Y-m-d H:i:s");
         $data->inserted_by = Auth::guard('meatregistereduser')->user()->id;
         $data->save();
@@ -1214,8 +1214,9 @@ class ColdStorageRegistrationController extends Controller
                                         ->first();
             $meat_license_status  = $meats_license_status ? $meats_license_status->status : 0; 
             
+            // dd($meat_license_status);
 
-
+            // dd($user_list);
             $renewal_list =  DB::table('coldstorage_renewal_license_tbl AS t1')
                             ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
                                     )

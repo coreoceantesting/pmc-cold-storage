@@ -1169,6 +1169,7 @@ class ColdStorageRegistrationController extends Controller
     
      public function User_ApplicationForm(Request $request)
     {
+        // dd($request);
         if (Auth::guard('meatregistereduser')->check()) {
             $user_id = Auth::guard('meatregistereduser')->user()->id;
             // return $user_id;
@@ -1199,7 +1200,7 @@ class ColdStorageRegistrationController extends Controller
                                         ->first();
             $meat_license_status  = $meats_license_status ? $meats_license_status->status : 0; 
             
-
+            // dd($user_list);
 
             $renewal_list =  DB::table('coldstorage_renewal_license_tbl AS t1')
                             ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'

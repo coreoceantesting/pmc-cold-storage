@@ -50,7 +50,7 @@ class HodColdStorageRenewalListController extends Controller
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
-                                        ->leftJoin('coldstorage_registration_tbl AS t5', 't5.id', '=', 't1.coldstorage_regi_id')
+                                        ->leftJoin('coldstorage_registration_tbl AS t5', 't5.id', '=', 't1.register_table_id')
                                         // ->where('t1.status', '=', $status)
                                         ->where('t1.re_hod_status', '=', $status)
                                         ->where('t1.id', '=', $id)
