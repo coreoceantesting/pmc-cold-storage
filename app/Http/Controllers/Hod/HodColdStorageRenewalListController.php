@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 use App\Models\ColdStorageRenewalLicense_Model;
 use App\Models\ApproverenewalAdmin_Model;
 use App\Models\ApproveAdmin_Model;
+use App\Models\MeatRegisteredUser;
 use App\Models\MeatType_Master;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class HodColdStorageRenewalListController extends Controller
 {
@@ -238,10 +241,40 @@ class HodColdStorageRenewalListController extends Controller
              're_final_approve_date' => date("Y-m-d"),
              're_final_approve_by' => Auth::user()->id,
          ];
-         
+         $data = ColdStorageRenewalLicense_Model::where('id', $id)->first();
 
          ColdStorageRenewalLicense_Model::where('id', $id)->update($update);
  
+         $unique_id = $data->renwal_liceans_no;
+        //  dd($unique_id);
+         $user_id=$data->inserted_by;
+       $user = MeatRegisteredUser::where('id',$user_id)->first();
+         $mob_number = $data->mobile_number;
+            //  dd($mob_number);
+         Log::info($mob_number);
+         $scheme = 'Application For Cold Storage Renewal License';
+         $application_no = $unique_id; 
+        //   dd($application_no);
+         // $sms = "Your application no: 458789754 for Cat Registration is received at PMC office. You can also track your application on https://cat-license.smartpmc.co.in/ CORE OCEAN.";
+         //  $tempID= '1207171688071309898';
+ 
+           $key = "kbf8IN83hIxNTVgs";
+          $senderid = "CoreOC";
+          $route = 1;
+          $sms = "Your application no: $application_no for $scheme has been approved by the PMC office successfully CORE OCEAN.";
+          $tempID= '1207171576716170457';
+          
+          $response = Http::get('http://sms.adityahost.com/vb/apikey.php',[
+            'apikey'   => $key,
+            'senderid' => $senderid,
+            'number'   => $mob_number,
+            'message'  => $sms,
+            'route'    => $route,
+            'templateid'  => $tempID
+          ]);
+          Log::info('SMS API Response: ', ['response' => $response->body()]);
+        //    dd($response);
+
          return redirect('/admin_approve_list_renewal/1')->with('message', 'Cold Storage Renewal Form Hod Final Approved Successfully'); //Redirect user somewhere
          
      }

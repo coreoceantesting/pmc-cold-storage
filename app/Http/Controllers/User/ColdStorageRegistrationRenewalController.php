@@ -515,15 +515,28 @@ class ColdStorageRegistrationRenewalController extends Controller
 
         // ColdStorageRenewalLicense_Model::where('id', $data->id)->update($update);
         
-        $app_no = $unique_id;
-        $scheme = 'Cold Storage Registration Form';
-        $domain = "https://".$_SERVER['HTTP_HOST'];
-        $project_folder = 'PMC_Cold_Storage';
+        // $app_no = $unique_id;
+        // $scheme = 'Cold Storage Registration Form';
+        // $domain = "https://".$_SERVER['HTTP_HOST'];
+        // $project_folder = 'PMC_Cold_Storage';
         
-        $msg = "Your application no:- $app_no for $scheme is received at PMC office. You can also track your application on $domain / PMC.";
-        $tempID= '1207167447455213113';
-        $this->sendsms($msg,$request->mobile_number,$tempID);
+        // $msg = "Your application no:- $app_no for $scheme is received at PMC office. You can also track your application on $domain / PMC.";
+        // $tempID= '1207167447455213113';
 
+        $app_no = $unique_id;
+        $scheme = 'Cold Storage Renewal Form';
+        $mobile_number = $request->get('mobile_number');
+        // dd($mobile_number);
+        $domain = 'cold-storagee.smartpmc.co.in/';
+        $senderid = "CoreOC";
+        $project_folder = 'PMC_Pet_Registration';
+        $route = 1;
+        $key= 'kbf8IN83hIxNTVgs';
+        $msg = " Your application no:- $app_no for $scheme is received at PMC office. You can also track your application on $domain CORE OCEAN.";
+        $tempID = '1207171688071309898';
+
+        $this->sendsms($msg,$mobile_number,$tempID);
+// dd($this);
         return redirect('/user/appli_form')->with('message','Your License Renawal Record Added Successfully.');
 
         // return redirect('/')->with('message','Your Record Added Successfully.');
@@ -1140,7 +1153,7 @@ class ColdStorageRegistrationRenewalController extends Controller
 		$priority = "ndnd";
 	
 
-        $key= 'Ef96BBH3ZZPSXoz6';
+        $key= 'kbf8IN83hIxNTVgs';
 		$route= 2;
 		
 		
@@ -1300,7 +1313,7 @@ class ColdStorageRegistrationRenewalController extends Controller
     public function New_renewal(Request $request,$id,$user_type)
     {
 
-  
+        // dd($request->all());
           $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
           if (Auth::guard('meatregistereduser')->check()) {
            
@@ -1323,7 +1336,7 @@ class ColdStorageRegistrationRenewalController extends Controller
                                 ->orderBy('t1.id', 'DESC')
                                 ->first();
 
-                                // dd($data);
+                            //  dd($data);
                if(empty($data)) {
                                     
                                     return redirect('/')->with('warning','Apply For Cold Storage Registration License First');

@@ -9,11 +9,13 @@ use App\Models\ColdStorageRenewalLicense_Model;
 use App\Models\ApproverenewalAdmin_Model;
 
 use App\Models\ApproveAdmin_Model;
+use App\Models\MeatRegisteredUser;
 use App\Models\MeatType_Master;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class ColdStorageRenewalListController extends Controller
 {
@@ -44,9 +46,7 @@ class ColdStorageRenewalListController extends Controller
 
      public function ColdStorageView(request $request, $id, $status)
     {
-        
-        
-        
+       
          $meat_renewal_view = DB::table('coldstorage_renewal_license_tbl AS t1')
                                         ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.adharcard_doc as regi_adharcard_doc','t5.residitional_proof_doc as regi_residitional_proof_doc','t5.authority_letter_doc as regi_authority_letter_doc','t5.legal_business_doc as regi_legal_business_doc','t5.business_registration_doc as regi_business_registration_doc','t5.agreement_owner_doc as agreement_owner_renewal','t5.noc_owner_doc as doc_owner','t5.property_tax_doc as property_doc','t5.paid_water_doc as paid_water','t5.paid_receipt_doc as receipt_doc','t5.treatment_authorized_doc as tre_authority_doc','t5.fitness_certificate_doc as fitness_doc','t5.issued_doc as regi_issued_doc','t5.registration_doc as regi_doc','t5.slaughter_letter_doc as letter_doc','t5.profile_photo as regi_profile_photo','t5.applicant_signature as regi_app_sign')
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
@@ -103,7 +103,7 @@ class ColdStorageRenewalListController extends Controller
             'approve_by' => Auth::user()->id,
         ];
         
-        ColdStorageRenewalLicense_Model::where('id', $id)->update($update);
+       $data = ColdStorageRenewalLicense_Model::where('id', $id)->first();
 
         // $app_no = $request->get('license_number');
         // $scheme = 'Cold Storage Registration Form';
@@ -117,11 +117,45 @@ class ColdStorageRenewalListController extends Controller
         // $tempID= '1207167447455213113';
         // $this->sendsms($msg,$data->mobile_number,$tempID);
         
-       
+        $renewal_list=ColdStorageRenewalLicense_Model::where('id', $id)->update($update);
+
+        $unique_id = $data->renwal_liceans_no;
+        //  dd($unique_id);
+        $user_id=$data->inserted_by;
+        $user = MeatRegisteredUser::where('id',$user_id)->first();
+        $mob_number=$data->mobile_number;
+        //  dd($data->mobile_number);
+        $schema="Cold Storage";
+        $domain = "cold-storagee.smartpmc.co.in/";
+    	$sms = "Your application no: " . $unique_id . " for ".$schema." has been approved by the PMC office successfully. Please visit the PMC office for further processes, including document verification and certificate issuance. You can also check your license status on " . $domain . " CORE OCEAN.";
+    	$templateid = "1207171576775741291";
+        $senderid = "CoreOC";
+        $route = 1;
+        Log::info('Preparing to send SMS to: ' . $mob_number);
+
+        
+        $this->sendsmsnew($sms,$mob_number,$templateid);
+        // dd($this);
 
         return redirect('/cold_storage_renewal_list/1')->with('message', 'Cold Storage Renewal Form Approved Successfully'); //Redirect user somewhere
     }
 
+
+    public function sendsmsnew($sms,$mob_number,$templateid)
+    {
+
+        $key = "kbf8IN83hIxNTVgs";
+        $mbl=$mob_number;   /*or $mbl="XXXXXXXXXX,XXXXXXXXXX";*/
+        $message=$sms;
+        $message_content=urlencode($message);
+        $tempID= $templateid;
+        $senderid="CoreOC";
+        $route= 1;
+        $url = "http://sms.adityahost.com/vb/apikey.php?apikey=$key&senderid=$senderid&number=$mbl&message=$message_content&templateid=$tempID";
+
+        $output = file_get_contents($url);  /*default function for push any url*/
+
+    }
 
      public function RejectColdStoragerenewal(request $request, $id){
         
