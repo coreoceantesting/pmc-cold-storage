@@ -473,7 +473,8 @@ class ColdStorageRegistrationRenewalController extends Controller
         // Business Details
         $data->business_name = $request->get('business_name');
         $data->business_type = $request->get('business_type');
-        $data->meat_type = $request->get('meat_type');
+        $data->meat_type = implode(",", $request->get('meat_type'));
+        // dd($request->get('meat_type'));
         $data->per_day_capacity = $request->get('per_day_capacity');
         $data->provision_water = $request->get('provision_water');
         $data->provision_electricty = $request->get('provision_electricty');
@@ -500,7 +501,7 @@ class ColdStorageRegistrationRenewalController extends Controller
             
         $data->renwal_liceans_no = $unique_id;
         $data->save();
-        
+        // dd($data);
         // ColdStorageRegistration_Model::where('id',$request->get('register_table_id'))->update(['is_renewal' =>0]);
         
         // dd($data->register_table_id);
@@ -537,6 +538,7 @@ class ColdStorageRegistrationRenewalController extends Controller
 
         $this->sendsms($msg,$mobile_number,$tempID);
 // dd($this);
+
         return redirect('/user/appli_form')->with('message','Your License Renawal Record Added Successfully.');
 
         // return redirect('/')->with('message','Your Record Added Successfully.');
@@ -1267,7 +1269,7 @@ class ColdStorageRegistrationRenewalController extends Controller
             $meat_license_status  = $meats_license_status ? $meats_license_status->status : 0; 
             
 
-            // dd($user_list);
+            //  dd($user_list);
             $renewal_list =  DB::table('coldstorage_renewal_license_tbl AS t1')
                             ->select('t1.*', 't2.meat_name','t3.dist_name','t4.taluka_name'
                                     )
@@ -1288,7 +1290,7 @@ class ColdStorageRegistrationRenewalController extends Controller
                            
                             ->orderBy('t1.id', 'DESC')
                             ->get();                 
-            //  dd($renewal_list);
+            //   dd($renewal_list);
             $meats_renewal_license_status =  DB::table('coldstorage_renewal_license_tbl AS t1')
                                         ->select('t1.id', 't1.status')
                                         ->where('t1.inserted_by', '=',$user_id)
@@ -1336,7 +1338,7 @@ class ColdStorageRegistrationRenewalController extends Controller
                                 ->orderBy('t1.id', 'DESC')
                                 ->first();
 
-                            //  dd($data);
+                    //   dd($data);
                if(empty($data)) {
                                     
                                     return redirect('/')->with('warning','Apply For Cold Storage Registration License First');
@@ -1362,9 +1364,9 @@ class ColdStorageRegistrationRenewalController extends Controller
     
                 
                 // if($timestamp1 > $timestamp2) { 
-    
-    
-    
+                //     $meatTypeIds = explode(',', $data->meat_type);
+                // $selectedMeatTypes =  $meatTypeIds->pluck('id')->toArray();
+                //                 dd($selectedMeatTypes);
                 return view('user.coldstorage_renewal.cold_storage_renewal_form', compact('data','meattype_mst','unit_Meat_Type','id','user_type'));
     
                 // }else{

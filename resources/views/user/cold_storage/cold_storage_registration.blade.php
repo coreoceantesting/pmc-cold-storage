@@ -496,8 +496,9 @@
                                                     {{ $item->unit_name }}
                                                 </option>
                                             @endforeach
+                                          
                                         </select>
-                                        
+                                        {{-- @dump($unit_Meat_Type) --}}
                                         @error('unit')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -703,7 +704,7 @@
 
 
                                     </div>
-                                    <div class="form-group row other_b" id="hidden_div" style="display:none">   
+                                <div class="form-group row other_b" id="hidden_div" style="display:none">   
                                     <label class="col-sm-2"><strong> Other  : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4">
                                         <input type="text" name="business_place_other" id="business_place_other" class="form-control  @error('business_place_other') is-invalid @enderror" value="{{ old('business_place_other') }}" placeholder="other ">

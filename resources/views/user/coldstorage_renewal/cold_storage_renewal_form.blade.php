@@ -389,54 +389,55 @@
                                                         </div>
 
                                                         <?php
-                                                        $mst_dist = DB::select('SELECT
-                                                                                                                        `mst_dist`.`id`, `mst_dist`.`dist_name`
-                                                                                                                    FROM `mst_dist`
-                                                                                                                    WHERE `mst_dist`.`deleted_at` is NULL
-                                                                                                                    ORDER BY `mst_dist`.`id` DESC
-                                                                                                                    ');
-                                                        ?>
+                                $mst_dist = DB::select('SELECT
+                                                            `mst_dist`.`id`, `mst_dist`.`dist_name`
+                                                        FROM `mst_dist`
+                                                        WHERE `mst_dist`.`deleted_at` is NULL
+                                                        ORDER BY `mst_dist`.`id` DESC
+                                                        ');
+                                                        
+                                                        // dd($data);
+                                $mst_taluka = DB::select('SELECT
+                                                                `mst_taluka`.`id`, `mst_taluka`.`taluka_name`
+                                                            FROM `mst_taluka`
+                                                            WHERE
+                                                            `mst_taluka`.`dist_id` = '.$data->district_id.' AND
+                                                            `mst_taluka`.`deleted_at` is NULL
 
-                                                        <div class="form-group row">
-                                                            <label class="col-sm-2"><strong>District / <br> ( जिल्हा ) : <span style="color:red;">*</span></strong></label>
-                                                            <div class="col-sm-4 col-md-4 p-2">
-                                                                <select class="form-control @error('district_id') is-invalid @enderror" name="district_id" id="district_id" style="width: 100%; height: 38px;">
-                                                                    <option value=" ">Select District / (जिल्हा) </option>
-                                                                    @foreach ($mst_dist as $key => $value)
-                                                                        <option value="{{ $value->id }}" {{ $data->district_id == $value->id ? 'selected' : '' }}>{{ $value->dist_name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('district_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                            <?php
-                                                            $mst_taluka = DB::select('SELECT
-                                                                                                                            `mst_taluka`.`id`, `mst_taluka`.`taluka_name`
-                                                                                                                        FROM `mst_taluka`
-                                                                                                                        WHERE `mst_taluka`.`deleted_at` is NULL
-                                                                                                                        ORDER BY `mst_taluka`.`id` DESC
-                                                                                                                        ');
-                                                            ?>
-                                                            <label class="col-sm-2"><strong>Taluka / <br> ( तालुका ) : <span style="color:red;">*</span></strong></label>
-                                                            <div class="col-sm-4 col-md-4 p-2">
-                                                                <select class="form-control @error('taluka_id') is-invalid @enderror" name="taluka_id" id="taluka_id" style="width: 100%; height: 38px; ">
-                                                                    <option value=" ">Select Taluka / (तालुका)</option>
-                                                                    @foreach ($mst_taluka as $key => $value)
-                                                                        <option value="{{ $value->id }}" {{ $data->taluka_id == $value->id ? 'selected' : '' }}>{{ $value->taluka_name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('taluka_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
+                                                            ORDER BY `mst_taluka`.`id` DESC
+                                                        ');
+                            ?>
+                                <div class="form-group row">
+                                    <label class="col-sm-2"><strong>जिल्हा / <br> District : </strong></label>
+                                    <div class="col-sm-4 col-md-4 p-2">
+                                        <select class="form-control custom-select2 @error('district_id') is-invalid @enderror"  name="district_id" id="district_id" style="width: 100%; height: 38px;">
+                                            <option value=" ">Select District / ( जिल्हा )</option>
+                                            @foreach ($mst_dist as $key => $value)
+                                                <option value="{{ $value->id }}" {{ $data->district_id == $value->id ? 'selected' : '' }}>{{ $value->dist_name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('district_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                           @enderror
+                                    </div> 
+                                    <label class="col-sm-2"><strong>तालुका / <br> Taluka  : </strong></label>
+                                    <div class="col-sm-4 col-md-4 p-2">
+                                        <select class="form-control custom-select2 @error('taluka_id') is-invalid @enderror"  name="taluka_id" id="taluka_id" style="width: 100%; height: 38px;">
+                                            @foreach ($mst_taluka as $key => $value)
+                                                <option value="{{ $value->id }}" {{ $data->taluka_id == $value->id ? 'selected' : '' }}> {{ $value->taluka_name }}</option>
+                                            @endforeach
 
+                                        </select>
+                                        @error('taluka_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
-                                                        </div>
 
 
                                                         <div class="form-group row">
@@ -507,20 +508,18 @@
 
                                                             <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
-                                                                <select class="form-control @error('meat_type') is-invalid @enderror" name="meat_type" id="meat_type" style="width: 100%; height: 38px; ">
-                                                                    <option value=" ">Select Meat Type / (मांसाचा प्रकार) </option>
+                                                                <select class="form-control custom-select2 @error('meat_type') is-invalid @enderror" name="meat_type[]" id="meat_type" multiple style="width: 100%; height: 38px;">
+                                                                    <option value=" ">Select Meat Type / (मांसाचा प्रकार)</option>
                                                                     @foreach ($meattype_mst as $key => $value)
-                                                                        <option value="{{ $key }}" {{ $data->meat_type == $key ? 'selected' : '' }}>{{ $value }}</option>
+                                                                    <option value="{{ $key }}" {{ in_array($key, old('meat_type',$selectedMeatTypes ?? [])) ? 'selected' : '' }}>{{ $value }}</option>
                                                                     @endforeach
                                                                 </select>
-
+                                                                {{-- @dump($meattype_mst) --}}
                                                                 @error('meat_type')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
                                                                 @enderror
-
-
                                                             </div>
                                                         </div>
                                                         <div class="form-group row">
@@ -749,18 +748,31 @@
                                                                 }
 
                                                                 ?>
-                                                                <input  class="form-control" id="business_place" value="{{ $business_place }}">
-                                                            </div>
+<select class="form-control custom-select2 @error('business_place') is-invalid @enderror" name="business_place" id="business_place" style="width: 100%; height: 38px;">
+    <option value="">Select place</option>
+    
+    <option value="1" {{ $data->business_place == '1' ? 'selected' : '' }}>महानगर पालिका बाजार/ Mahanagara Palika Bazar</option>
+    <option value="2" {{$data->business_place == '2' ? 'selected' : '' }}>खाजगी जागा/ Private space</option>
+</select>
+@error('business_place')
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+@enderror                                                            </div>
+
                                                         </div>
-                                                        <div class="form-group row other_b" id="hidden_div" style="display:none">
-                                                            <label class="col-sm-2"><strong> Other : <span style="color:red;">*</span></strong></label>
+                                                        
+                                                        <div class="form-group row other_b" id="hidden_div" style="display:none">   
+                                                            <label class="col-sm-2"><strong> Other  : <span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4">
-
-                                                                <input class="form-control" value="{{ $data->business_place_other }}" name="business_place_other" >
+                                                                <input type="text" name="business_place_other" id="business_place_other" class="form-control  @error('business_place_other') is-invalid @enderror" value="{{ old('business_place_other') }}" placeholder="other ">
+                                                                @error('business_place_other')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
-
-
                                                         <div class="form-group row mt-4">
                                                             <!-- Back button on the left -->
                                                             <div class="col-md-6 text-left">
@@ -801,374 +813,228 @@
                                                         </strong>
                                                         <hr>
 
-                                                        <div id="div1" style="display: none;">
-
-                                                            <div class="form-group row">
-
-                                                                <label class="col-sm-2"><strong>Upload Municipal Corporation Permission Letter <br> (महापालिकेचे परवानगी पत्र करा ) : </strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-                                                                    <input type="file" name="municipal_corpor_doc" id="municipal_corpor_doc" accept=".png, .jpg, .jpeg, .pdf"
-                                                                        class="form-control @error('municipal_corpor_doc') is-invalid @enderror" value="{{ old('municipal_corpor_doc') }}" placeholder="Upload municipal corpor doc of applicant">
-                                                                    <small class="text-secondary text-justify "> Note : The file should be less than 5MB .</small>
-                                                                    <br>
-                                                                    <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
-                                                                    <br>
-                                                                    @error('adharcard_doc')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-
-
-
-                                                            </div>
-                                                        </div>
                                                         <div id="div2" style="display: none;">
-                                                            <div class="form-group row">
-
-                                                                <label class="col-sm-2"><strong>Upload ID proof (Adharcard) of the applicant <br> (अर्जदाराचा आयडी पुरावा (आधारकार्ड) अपलोड करा ) : </strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-                                                                    <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $data->adharcard_doc }}" target="_blank">
-                                                                        <div class="form-group">
-                                                                            <?php $document_path = $data->adharcard_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                                            <p class="mt-3 mb-0" id="image_div">
-                                                                                <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $data->adharcard_doc }}  " alt="image" class="img-fluid rounded" width="200"
-                                                                                    height="100" style="max-height:150px;">
-                                                                            </p>
-                                                                            <?php }
-                                                                else{
-                                                                    ?>
-                                                                            <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $data->adharcard_doc }}" target="_blank" download>
-                                                                                <p class="mt-3 mb-0" id="image_div">
-                                                                                    <button type="button"class="btn btn-info">
-                                                                                        Download File
-                                                                                    </button>
-                                                                                </p>
-                                                                            </a>
-                                                                            <?php }?>
-                                                                        </div>
-                                                                    </a>
-
-                                                                </div>
-
-                                                                <label class="col-sm-2"><strong>Upload Ration card, electricity / telephone bill. <br> ( रेशन कार्ड, वीज / टेलिफोन बिल अपलोड करा ) :</strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-
-                                                                    <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $data->residitional_proof_doc }}" target="_blank">
-                                                                        <div class="form-group">
-                                                                            <?php $document_path = $data->residitional_proof_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                                            <p class="mt-3 mb-0" id="image_div">
-                                                                                <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $data->residitional_proof_doc }}" alt="image" class="img-fluid rounded"
-                                                                                    width="200" height="100" style="max-height:150px;">
-                                                                            </p>
-                                                                            <?php }
-                                                                else{
-                                                                    ?>
-                                                                            <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $data->residitional_proof_doc }} " target="_blank" download>
-                                                                                <p class="mt-3 mb-0" id="image_div">
-                                                                                    <button type="button"class="btn btn-info">
-                                                                                        Download File
-                                                                                    </button>
-                                                                                </p>
-                                                                            </a>
-                                                                            <?php }?>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-2"><strong>Upload legal document of the business place <br> ( जागेचा अधिकृततेचा पुरावा अपलोड करा ) : </strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-
-                                                                    <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $data->legal_business_doc }}" target="_blank">
-                                                                        <div class="form-group">
-                                                                            <?php $document_path = $data->legal_business_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                                            <p class="mt-3 mb-0" id="image_div">
-                                                                                <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $data->legal_business_doc }} " alt="image" class="img-fluid rounded"
-                                                                                    width="200" height="100" style="max-height:150px;">
-                                                                            </p>
-                                                                            <?php }
-                                                                else{
-                                                                    ?>
-                                                                            <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $data->legal_business_doc }}" target="_blank" download>
-                                                                                <p class="mt-3 mb-0" id="image_div">
-                                                                                    <button type="button"class="btn btn-info">
-                                                                                        Download File
-                                                                                    </button>
-                                                                                </p>
-                                                                            </a>
-                                                                            <?php }?>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-
-                                                                <label class="col-sm-2"><strong>Upload business registration certificate <br> ( व्यवसाय नोंदणी प्रमाणपत्र अपलोड करा ) : </strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-
-
-                                                                    <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $data->business_registration_doc }}" target="_blank">
-                                                                        <div class="form-group">
-                                                                            <?php $document_path = $data->business_registration_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                                            <p class="mt-3 mb-0" id="image_div">
-                                                                                <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $data->business_registration_doc }} " alt="image"
-                                                                                    class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                                            </p>
-                                                                            <?php }
-                                                                else{
-                                                                    ?>
-                                                                            <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $data->business_registration_doc }}" target="_blank" download>
-                                                                                <p class="mt-3 mb-0" id="image_div">
-                                                                                    <button type="button"class="btn btn-info">
-                                                                                        Download File
-                                                                                    </button>
-                                                                                </p>
-                                                                            </a>
-                                                                            <?php }?>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
 
                                                             <div class="form-group row">
-                                                                <label class="col-sm-2"><strong>Upload receipt of recently paid property tax <br> ( मालमत्ता कर भरल्याचा पुरावा अपलोड करा ): <span style="color:red;">*</span></strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-                                                                    <input type="file" name="property_tax_doc" id="property_tax_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('property_tax_doc') is-invalid @enderror"
-                                                                        value="{{ old('property_tax_doc') }}" placeholder="Upload receipt of recently paid water">
-
-                                                                    <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
-                                                                    <br>
-                                                                    <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
-                                                                    <br>
-                                                                    @error('property_tax_doc')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-
-                                                                <label class="col-sm-2"><strong>Upload receipt of recently paid water ( पानी पट्टी पावती अपलोड करा ) : </strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-                                                                    <input type="file" name="paid_water_doc" id="paid_water_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('paid_water_doc') is-invalid @enderror"
-                                                                        value="{{ old('paid_water_doc') }}" placeholder="Upload receipt of recently paid water">
-
-                                                                    <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
-                                                                    <br>
-                                                                    <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
-                                                                    <br>
-                                                                    @error('paid_water_doc')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-
-                                                                </div>
-                                                            </div>
-
+                                                             
+                                                             <label class="col-sm-2"><strong>Upload ID proof (Adharcard) of the applicant  <br> (अर्जदाराचा आयडी पुरावा (आधारकार्ड) अपलोड करा ) : <span style="color:red;">*</span></strong></label> 
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="adharcard_doc" id="adharcard_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('adharcard_doc') is-invalid @enderror" value="{{ old('$data->adharcard_doc') }}" placeholder="Upload adharcard of applicant">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('adharcard_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div>
+                                                               
+                                                               <label class="col-sm-2"><strong>Upload Ration card, electricity / telephone bill. <br> ( रेशन कार्ड, वीज / टेलिफोन बिल अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="residitional_proof_doc" id="residitional_proof_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('residitional_proof_doc') is-invalid @enderror" value="{{ old('residitional_proof_doc') }}" placeholder="Upload residitional proof of applicat">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('residitional_proof_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div> 
+                                                               
+                                                               
+                                                                 
+                                                           </div>
+                                                           
+                                                          
+                                                           <div class="form-group row">
+                                                               <label class="col-sm-2"><strong>Upload legal document of the business place <br> ( जागेचा अधिकृततेचा पुरावा अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="legal_business_doc" id="legal_business_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('legal_business_doc') is-invalid @enderror" value="{{ old('legal_business_doc') }}" placeholder="Upload legal document of the business place">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('legal_business_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div>
+                                                               
+                                                               <label class="col-sm-2"><strong>Upload business registration certificate <br> ( व्यवसाय नोंदणी प्रमाणपत्र अपलोड करा ) : </strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                    <input type="file" name="business_registration_doc" id="business_registration_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('business_registration_doc') is-invalid @enderror" value="{{ old('business_registration_doc') }}" placeholder="Upload business registration certificate">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                  
+                                                                   @error('business_registration_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div> 
+                                                           </div>
                                                             <div class="form-group row">
-
-                                                                <label class="col-sm-2"><strong>Upload details & authority letter from authorized slaughter house / poultry form & authority letter <br>( अधिकृत कुक्कुट पालन करणाऱ्या संस्थेचे व
-                                                                        कत्तलखाण्याची माहिती ई संमातीपत्र अपलोड करा ) : </strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-
-                                                                    <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $data->slaughter_letter_doc }}" target="_blank">
-                                                                        <div class="form-group">
-                                                                            <?php $document_path = $data->slaughter_letter_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                                            <p class="mt-3 mb-0" id="image_div">
-                                                                                <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $data->slaughter_letter_doc }}" alt="image" class="img-fluid rounded"
-                                                                                    width="200" height="100" style="max-height:150px;">
-                                                                            </p>
-                                                                            <?php }
-                                                                else{
-                                                                    ?>
-                                                                            <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $data->slaughter_letter_doc }}" target="_blank" download>
-                                                                                <p class="mt-3 mb-0" id="image_div">
-                                                                                    <button type="button"class="btn btn-info">
-                                                                                        Download File
-                                                                                    </button>
-                                                                                </p>
-                                                                            </a>
-                                                                            <?php }?>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-
-                                                                <label class="col-sm-2"><strong>Upload pest control treatment certificate issued from authorized agency <br> ( नोंदणीकृत संस्थेकडून कीटनाशक फवारणी केल्याचे प्रमाणपत्र अपलोड करा ): <span
-                                                                            style="color:red;">*</span></strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-                                                                    <input type="file" name="treatment_authorized_doc" id="treatment_authorized_doc" accept=".png, .jpg, .jpeg, .pdf"
-                                                                        class="form-control @error('treatment_authorized_doc') is-invalid @enderror" value="{{ old('treatment_authorized_doc') }}"
-                                                                        placeholder="Upload receipt of recently paid water">
-
-                                                                    <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
-                                                                    <br>
-                                                                    <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
-                                                                    <br>
-
-                                                                    @error('treatment_authorized_doc')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-
-
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-2"><strong>Upload medical fitness certificate of workers 
- issued by registered  general practitioner <br> (  कामगारांचे वैद्यकीय फिटनेस प्रमाणपत्र अपलोड करा नोंदणीकृत जनरल प्रॅक्टिशनरने जारी केले आहे ): </strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-                                                                    <input type="file" name="fitness_certificate_doc" id="fitness_certificate_doc" accept=".png, .jpg, .jpeg, .pdf"
-                                                                        class="form-control @error('fitness_certificate_doc') is-invalid @enderror" value="{{ old('fitness_certificate_doc') }}"
-                                                                        placeholder="Upload receipt of recently paid water">
-
-                                                                    <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
-                                                                    <br>
-                                                                    <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
-                                                                    <br>
-                                                                    @error('fitness_certificate_doc')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-
-                                                                {{-- <label class="col-sm-2"><strong>Upload FSSAI Registration Certificate  <br> (अन्न  सुरक्षा व मानदे अधिनियम २००६ व नियम  व नियमन,२०११ अन्वये, व्यवसाय नोंदणी प्रमाणपत्र )करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-
-                                         <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $data->issued_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $data->issued_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $data->issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                else{
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $data->issued_doc }}" target="_blank" download>
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            Download File
-                                                                        </button>
-                                                                        </p>
-                                                                    </a>
-                                                        <?php }?>
-                                                    </div>
-                                                </a>
-                                    </div> --}}
-                                                            </div>
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-2"><strong>Upload applicant signature / ( अर्जदाराची स्वाक्षरी अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-
-
-
-                                                                    <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $data->applicant_signature }}" target="_blank">
-                                                                        <div class="form-group">
-                                                                            <?php $document_path = $data->applicant_signature;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                                            <p class="mt-3 mb-0" id="image_div">
-                                                                                <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $data->applicant_signature }} " alt="image" class="img-fluid rounded"
-                                                                                    width="200" height="100" style="max-height:150px;">
-                                                                            </p>
-                                                                            <?php }
-                                                                else{
-                                                                    ?>
-                                                                            <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $data->applicant_signature }}" target="_blank" download>
-                                                                                <p class="mt-3 mb-0" id="image_div">
-                                                                                    <button type="button"class="btn btn-info">
-                                                                                        Download File
-                                                                                    </button>
-                                                                                </p>
-                                                                            </a>
-                                                                            <?php }?>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-
-                                                                <label class="col-sm-2"><strong>Upload applicant profile photo / ( अर्जदाराचा प्रोफाइल फोटो अपलोड करा ): <span style="color:red;">*</span></strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-
-                                                                    <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/profile_photo/{{ $data->profile_photo }}" target="_blank">
-                                                                        <div class="form-group">
-                                                                            <?php $document_path = $data->profile_photo;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                                            <p class="mt-3 mb-0" id="image_div">
-                                                                                <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/profile_photo/{{ $data->profile_photo }} " alt="image" class="img-fluid rounded" width="200"
-                                                                                    height="100" style="max-height:150px;">
-                                                                            </p>
-                                                                            <?php }
-                                                                else{
-                                                                    ?>
-                                                                            <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/profile_photo/{{ $data->profile_photo }}" target="_blank" download>
-                                                                                <p class="mt-3 mb-0" id="image_div">
-                                                                                    <button type="button"class="btn btn-info">
-                                                                                        Download File
-                                                                                    </button>
-                                                                                </p>
-                                                                            </a>
-                                                                            <?php }?>
-                                                                        </div>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
+                                                               <label class="col-sm-2"><strong>Upload receipt of recently paid property tax <br> ( मालमत्ता कर भरल्याचा पुरावा अपलोड करा ): </strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="property_tax_doc" id="property_tax_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('property_tax_doc') is-invalid @enderror" value="{{ old('property_tax_doc') }}" placeholder="Upload receipt of recently paid property tax">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('property_tax_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div>
+                                                               
+                                                               <label class="col-sm-2"><strong>Upload receipt of recently paid water ( पानी पट्टी पावती अपलोड करा ) : </strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="paid_water_doc" id="paid_water_doc" accept=".png, .jpg, .jpeg, .pdf"  class="form-control @error('paid_water_doc') is-invalid @enderror" value="{{ old('paid_water_doc') }}" placeholder="Upload receipt of recently paid water">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('paid_water_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div> 
+                                                           </div>
+                                                           <div class="form-group row">
+                                                               
+                                                               
+                                                                 <label class="col-sm-2"><strong>Upload details & authority letter from authorized slaughter house / poultry form & authority letter <br>( अधिकृत कुक्कुट पालन करणाऱ्या संस्थेचे व कत्तलखाण्याची माहिती ई संमातीपत्र अपलोड करा ) : </strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="slaughter_letter_doc" id="slaughter_letter_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('slaughter_letter_doc') is-invalid @enderror" value="{{ old('slaughter_letter_doc') }}" placeholder="Upload details & authority letter from authorized slaughter house / poultry form & authority letter">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('slaughter_letter_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div>
+                                                               
+                                                               <label class="col-sm-2"><strong>Upload pest control treatment certificate issued from authorized agency <br> ( नोंदणीकृत  संस्थेकडून  कीटनाशक फवारणी केल्याचे प्रमाणपत्र अपलोड करा ): </strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="treatment_authorized_doc" id="treatment_authorized_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('treatment_authorized_doc') is-invalid @enderror" value="{{ old('treatment_authorized_doc') }}" placeholder="Upload pest control treatment certificate issued from authorized agency">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('treatment_authorized_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div>
+                                                           </div>
+                                                           <div class="form-group row">
+                                                               <label class="col-sm-2"><strong>Upload medical fitness certificate of workers 
+                            issued by registered  general practitioner <br> (  कामगारांचे वैद्यकीय फिटनेस प्रमाणपत्र अपलोड करा नोंदणीकृत जनरल प्रॅक्टिशनरने जारी केले आहे ):</strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="fitness_certificate_doc" id="fitness_certificate_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('fitness_certificate_doc') is-invalid @enderror" value="{{ old('fitness_certificate_doc') }}" placeholder="Upload medical fitness certificate issued by Municipal hospital">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('fitness_certificate_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div> 
+                                                               
+                                                               <label class="col-sm-2"><strong>Upload Factory registration and license to operate the factory <br> (कारखाना नोंदणी व कारखाना चालवण्याचा परवाना ): </strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="Factory_reg_and_license_doc" id="Factory_reg_and_license_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('Factory_reg_and_license_doc') is-invalid @enderror" value="{{ old('Factory_reg_and_license_doc') }}" placeholder="Upload Factory registration and license to operate the factory">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('fitness_certificate_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div> 
+                                                               
+                                                                <label class="col-sm-2"><strong>Upload FSSAI Registration Certificate  <br> (FSSAI नोंदणी प्रमाणपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="issued_doc" id="issued_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('issued_doc') is-invalid @enderror" value="{{ old('issued_doc') }}" placeholder="Upload document issued by APEDA, MPCB(ETP), FSSAI">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                    @error('issued_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div> 
+                                                           </div>
+                                                           <div class="form-group row">
+                                                               <label class="col-sm-2"><strong>Upload applicant signature / ( अर्जदाराची स्वाक्षरी अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="applicant_signature" id="applicant_signature" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('applicant_signature') is-invalid @enderror" value="{{ old('applicant_signature') }}" placeholder="Upload applicant signature">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('applicant_signature')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div>
+                                                               
+                                                               <label class="col-sm-2"><strong>Upload applicant profile photo / ( अर्जदाराचा प्रोफाइल फोटो अपलोड करा ): <span style="color:red;">*</span></strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="profile_photo" id="profile_photo" accept=".png, .jpg, .jpeg, .pdf"  class="form-control @error('profile_photo') is-invalid @enderror" value="{{ old('profile_photo') }}" placeholder="Upload applicant profile photo">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('profile_photo')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div> 
+                                                           </div>
+                           
+                                                           </div>
+                                                           <div id="div1" style="display: none;">
+                                                                <div class="form-group row">
+                                                             
+                                                             <label class="col-sm-2"><strong>Upload Municipal Corporation Permission Letter <br> (महापालिकेचे परवानगी पत्र करा ) : <span style="color:red;">*</span></strong></label>
+                                                               <div class="col-sm-4 col-md-4 p-2">
+                                                                   <input type="file" name="municipal_corpor_doc" id="municipal_corpor_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('municipal_corpor_doc') is-invalid @enderror" value="{{ old('municipal_corpor_doc') }}" placeholder="Upload municipal corpor doc of applicant">
+                                                                   <small class="text-secondary text-justify "> Note : The file should be less than 10MB .</small>
+                                                                   <br>
+                                                                   <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                   <br>
+                                                                   @error('adharcard_doc')
+                                                                       <span class="invalid-feedback" role="alert">
+                                                                           <strong>{{ $message }}</strong>
+                                                                       </span>
+                                                                   @enderror
+                                                               </div>
+                                                               
+                                                              
+                                                                 
+                                                           </div>
 
                                                             <div class="form-group row">
                                                                 <label class="col-sm-2"><strong>Upload previous year licence copy / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
@@ -1305,22 +1171,22 @@
 
     <!-- Get Taluka List -->
     <script>
-        $(document).ready(function() {
-
-            $('#district_id').on('change', function() {
+        $(document).ready(function () {
+            
+            $('#district_id').on('change', function () {
                 var idCountry = this.value;
                 $("#taluka_id").html('');
                 $.ajax({
-                    url: "{{ url('taluka_list') }}",
+                    url: "{{url('taluka_list')}}",
                     type: "POST",
                     data: {
                         district_id: idCountry,
-                        _token: '{{ csrf_token() }}'
+                        _token: '{{csrf_token()}}'
                     },
                     dataType: 'json',
-                    success: function(result) {
+                    success: function (result) {
                         $('#taluka_id').html('<option value="">Select Taluka / ( तालुका ) </option>');
-                        $.each(result.talukalist, function(key, value) {
+                        $.each(result.talukalist, function (key, value) {
                             $("#taluka_id").append('<option value="' + value
                                 .id + '">' + value.taluka_name + '</option>');
                         });
@@ -1328,7 +1194,7 @@
                     }
                 });
             });
-
+            
         });
     </script>
 
@@ -1427,6 +1293,7 @@
 
     <script>
         function showRelevantDiv() {
+            debugger
             var div1 = document.getElementById('div1');
             var div2 = document.getElementById('div2');
             var businessPlaceInput = $('#business_place').val();
@@ -1437,6 +1304,7 @@
                 return;
             }
 
+           
             var selectedValue = businessPlaceInput.trim();
 
             // Hide both divs initially
@@ -1444,9 +1312,9 @@
             div2.style.display = 'none';
 
             // Show the relevant div based on the selected option
-            if (selectedValue.includes('महानगर पालिका बाजार')) {
+            if (selectedValue==1) {
                 div1.style.display = 'block';
-            } else if (selectedValue.includes('खाजगी जागा')) {
+            } else if (selectedValue == 2) {
                 div2.style.display = 'block';
             }
         }
@@ -1455,6 +1323,10 @@
         $(document).ready(function() {
             showRelevantDiv();
         });
+
+        $('#business_place').on('change', function() {
+        showRelevantDiv();
+    });
     </script>
 
 
