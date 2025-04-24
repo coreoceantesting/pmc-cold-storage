@@ -274,6 +274,124 @@ class ColdStorageRegistrationRenewalController extends Controller
         
         //  dd($data);
         
+        if ($request->hasFile('adharcard_doc')) {
+            $aadharcardFile = $request->file('adharcard_doc');
+            $aadharcardName = time() . '_' . $aadharcardFile->getClientOriginalName();
+            $aadharcardFile->move(public_path('PMC_Cold_Storage/meat_file/adharcard_doc'), $aadharcardName);
+        } else {
+            $aadharcardName = $request->input('old_adharcard_doc'); // Use old file
+        }
+
+        if ($request->hasFile('residitional_proof_doc')) {
+            $residitionalproofFile = $request->file('residitional_proof_doc');
+            $residitionalproofName = time() . '_' . $residitionalproofFile->getClientOriginalName();
+            $residitionalproofFile->move(public_path('PMC_Cold_Storage/meat_file/residitional_proof_doc'), $residitionalproofName);
+        } else {
+            $residitionalproofName = $request->input('old_residitional_proof_doc'); // Use old file
+        }
+
+        if ($request->hasFile('legal_business_doc')) {
+            $legalbusinessFile = $request->file('legal_business_doc');
+            $legalbusinessName = time() . '_' . $legalbusinessFile->getClientOriginalName();
+            $legalbusinessFile->move(public_path('PMC_Cold_Storage/meat_file/legal_business_doc'), $legalbusinessName);
+        } else {
+            $legalbusinessName = $request->input('old_legal_business_doc'); // Use old file
+        }
+
+        if ($request->hasFile('business_registration_doc')) {
+            $businessregiFile = $request->file('business_registration_doc');
+            $businessregiName = time() . '_' . $businessregiFile->getClientOriginalName();
+            $businessregiFile->move(public_path('PMC_Cold_Storage/meat_file/business_registration_doc'), $businessregiName);
+        } else {
+            $businessregiName = $request->input('old_business_registration_doc'); // Use old file
+        }
+      
+        if ($request->hasFile('property_tax_doc')) {
+            $propertytaxFile = $request->file('property_tax_doc');
+            $propertytaxName = time() . '_' . $propertytaxFile->getClientOriginalName();
+            $propertytaxFile->move(public_path('PMC_Cold_Storage/meat_file/property_tax_doc'), $propertytaxName);
+        } else {
+            $propertytaxName = $request->input('old_property_tax_doc'); // Use old file
+        }
+
+        if ($request->hasFile('paid_water_doc')) {
+            $paidwaterFile = $request->file('paid_water_doc');
+            $paidwaterName = time() . '_' . $paidwaterFile->getClientOriginalName();
+            $paidwaterFile->move(public_path('PMC_Cold_Storage/meat_file/paid_water_doc'), $paidwaterName);
+        } else {
+            $propertytaxName = $request->input('old_paid_water_doc'); // Use old file
+        }
+        // dd($propertytaxName);
+    
+
+        if ($request->hasFile('slaughter_letter_doc')) {
+            $slugletterFile = $request->file('slaughter_letter_doc');
+            $slugletterName = time() . '_' . $slugletterFile->getClientOriginalName();
+            $slugletterFile->move(public_path('PMC_Cold_Storage/meat_file/slaughter_letter_doc'), $slugletterName);
+        } else {
+            $slugletterName = $request->input('old_slaughter_letter_doc'); // Use old file
+        }
+        if ($request->hasFile('treatment_authorized_doc')) {
+            $authorizedFile = $request->file('treatment_authorized_doc');
+            $authorizedName = time() . '_' . $authorizedFile->getClientOriginalName();
+            $authorizedFile->move(public_path('PMC_Cold_Storage/meat_file/treatment_authorized_doc'), $authorizedName);
+        } else {
+            $authorizedName = $request->input('old_treatment_authorized_doc'); // Use old file
+        }
+        if ($request->hasFile('fitness_certificate_doc')) {
+            $fitnessFile = $request->file('fitness_certificate_doc');
+            $fitnessName = time() . '_' . $fitnessFile->getClientOriginalName();
+            $fitnessFile->move(public_path('PMC_Cold_Storage/meat_file/fitness_certificate_doc'), $fitnessName);
+        } else {
+            $fitnessName = $request->input('old_fitness_certificate_doc'); // Use old file
+        }
+        // if ($request->hasFile('Factory_reg_and_license_doc')) {
+        //     $factoryregFile = $request->file('Factory_reg_and_license_doc');
+        //     $factoryregName = time() . '_' . $factoryregFile->getClientOriginalName();
+        //     $factoryregFile->move(public_path('PMC_Cold_Storage/meat_file/Factory_reg_and_license_doc'), $factoryregName);
+        // } else {
+        //     $factoryregName = $request->input('old_Factory_reg_and_license_doc'); // Use old file
+        // }
+        if ($request->hasFile('issued_doc')) {
+            $issueddocFile = $request->file('issued_doc');
+            $issueddocName = time() . '_' . $issueddocFile->getClientOriginalName();
+            $issueddocFile->move(public_path('PMC_Cold_Storage/meat_file/issued_doc'), $issueddocName);
+        } else {
+            $issueddocName = $request->input('old_issued_doc'); // Use old file
+        }
+
+        if ($request->hasFile('applicant_signature')) {
+            $appsignatureFile = $request->file('applicant_signature');
+            $appsignatureName = time() . '_' . $appsignatureFile->getClientOriginalName();
+            $appsignatureFile->move(public_path('PMC_Cold_Storage/meat_file/applicant_signature'), $appsignatureName);
+        } else {
+            $appsignatureName = $request->input('old_applicant_signature'); // Use old file
+        }
+
+        if ($request->hasFile('profile_photo')) {
+            $profilephotoFile = $request->file('profile_photo');
+            $profilephotoName = time() . '_' . $profilephotoFile->getClientOriginalName();
+            $profilephotoFile->move(public_path('PMC_Cold_Storage/meat_file/profile_photo'), $profilephotoName);
+        } else {
+            $profilephotoName = $request->input('old_profile_photo'); // Use old file
+        }
+
+
+        if ($request->hasFile('municipal_corpor_doc')) {
+            $muncipalcorporFile = $request->file('municipal_corpor_doc');
+            $muncipalcorporName = time() . '_' . $muncipalcorporFile->getClientOriginalName();
+            $muncipalcorporFile->move(public_path('PMC_Cold_Storage/meat_file/municipal_corpor_doc'), $muncipalcorporName);
+        } else {
+            $muncipalcorporName = $request->input('old_municipal_corpor_doc'); // Use old file
+        }
+        if ($request->hasFile('old_licence')) {
+            $oldlicenceFile = $request->file('old_licence');
+            $oldlicenceName = time() . '_' . $oldlicenceFile->getClientOriginalName();
+            $oldlicenceFile->move(public_path('PMC_Cold_Storage/meat_file/old_licence'), $oldlicenceName);
+        } else {
+            $oldlicenceName = $request->input('old_old_licence'); // Use old file
+        }
+    //    dd($legalbusinessName);
         // if(!empty($request->hasFile('adharcard_doc'))){
         //     $image1 = $request->file('adharcard_doc');
         //     $image_name1 = $image1->getClientOriginalName();
@@ -489,6 +607,21 @@ class ColdStorageRegistrationRenewalController extends Controller
         $data->areaof_business_place = $request->get('areaof_business_place');
         $data->business_place = $request->get('business_place');
         $data->business_place_other = $request->get('business_place_other');
+        $data->adharcard_doc =$aadharcardName;
+        $data->residitional_proof_doc=$residitionalproofName;
+        $data->legal_business_doc=$legalbusinessName;
+        $data->registration_doc=$businessregiName;
+        $data->property_tax_doc=$propertytaxName;
+        $data->paid_water_doc=$propertytaxName;
+        $data->slaughter_letter_doc=$slugletterName;
+        $data->treatment_authorized_doc=$authorizedName;
+        $data->fitness_certificate_doc=$fitnessName;
+        // $data->Factory_reg_and_license_doc=$factoryregName;
+        $data->issued_doc=$issueddocName;
+        $data->applicant_signature=$appsignatureName;
+        $data->profile_photo=$profilephotoName;
+        $data->municipal_corpor_doc=$muncipalcorporName;
+        $data->old_licence=$oldlicenceName;
         $data->register_table_id =$request->get('register_table_id');
         $data->is_renewal=1;
         $data->inserted_dt = date("Y-m-d H:i:s");
@@ -501,7 +634,7 @@ class ColdStorageRegistrationRenewalController extends Controller
             
         $data->renwal_liceans_no = $unique_id;
         $data->save();
-        // dd($data);
+    //  dd($data);
         // ColdStorageRegistration_Model::where('id',$request->get('register_table_id'))->update(['is_renewal' =>0]);
         
         // dd($data->register_table_id);

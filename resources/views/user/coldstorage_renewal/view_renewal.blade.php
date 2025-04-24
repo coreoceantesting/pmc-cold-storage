@@ -609,7 +609,7 @@
                                           <?php if(!empty($meat_renewal_view->adharcard_doc)) { ?>
                                              <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}" target="_blank">
                                                     <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->adharcard_doc;
+                                                        <?php $document_path =$meat_renewal_view->adharcard_doc;
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
@@ -621,6 +621,7 @@
                                                             <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
                                                         </p>
                                                         <?php }
+                                                      
                                                                 elseif($filter_ext == 'pdf'){
                                                                     ?>
                                                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}" target="_blank" >
@@ -664,7 +665,8 @@
 
 
                                              <?php   } ?>
-                                    </div>
+                                             {{-- @dump($meat_renewal_view->adharcard_doc) --}}
+                                            </div>
                                     
                                     <label class="col-sm-2"><strong>Upload Ration card, electricity / telephone bill. <br> ( रेशन कार्ड, वीज / टेलिफोन बिल अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
