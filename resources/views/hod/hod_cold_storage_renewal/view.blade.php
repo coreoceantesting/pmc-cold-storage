@@ -1072,7 +1072,7 @@
                                                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rejectModal">Reject</button>&nbsp;&nbsp;
 
                                                         <!-- <button type="button" class="btn btn-success waves-effect m-r-20" data-toggle="modal" data-target="#largeModal">Approve</button> -->
-                                                        <a href='{{ url("/approve_cold_registration_by_hod/{$meat_renewal_view->id}") }}'><button  type="button" class="btn btn-success">Approve </button> </a>
+                                                        <a href='{{ url("/approve_coldStorage_renewal_by_hod/{$meat_renewal_view->id}") }}'><button  type="button" class="btn btn-success">Approve </button> </a>
                                                     </div>
                                                 </div>
                                             <?php } elseif($meat_renewal_view->re_hod_status == 1){ ?>
