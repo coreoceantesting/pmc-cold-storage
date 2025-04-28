@@ -7,24 +7,24 @@
         <div class="block-header">
             <div class="row">
                 <div class="col-lg-7 col-md-6 col-sm-12">
-                   
+
                        <h2>Approve Cold Storage Renewal  Application tt</h2>
-                                  
-                               
+
+
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/hod/dashboard') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
                         <!--<li class="breadcrumb-item"><a href="{{ url('/#') }}">PET Application</a></li>-->
-                               
+
                                  <li class="breadcrumb-item active">Cold Storage Renewal  Application</li>
-                                    
-                              
-                                
-                             
+
+
+
+
                         <!--<li class="breadcrumb-item active">Meat Application</li>-->
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
-                
+
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
                 </div>
@@ -37,23 +37,23 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="card">
                         <div class="body">
-                            
+
 
                             <form method="post" action="{{ url('#') }}" class="form-horizontal" enctype="multipart/form-data">
                                 @csrf
-                            
+
                             <section class="pt-3">
                                 <strong class="pt-2 text-primary">
                                      Basic Details / ( मूलभूत तपशील )
                                 </strong>
                                 <hr>
                             <?php //print_r($meat_renewal_view);exit;?>
-                                
+
                                 <strong class="pb-1">Name of Applicant / ( अर्जदाराचे नाव ) : <span style="color:red;">*</span> </strong>
                                 <div class="form-group row">
                                     <?php
                                         $applicant_title_id = '';
-                                        
+
                                         if($meat_renewal_view->applicant_title_id == 1)
                                         {
                                             $applicant_title_id = 'Kum.';
@@ -82,193 +82,189 @@
                                         {
                                             $applicant_title_id = 'Dr.';
                                         }
-                                        
+
                                     ?>
-                                    
-                                    
+
+
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input class="form-control " value="{{ $applicant_title_id }}" readonly>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->applicant_fname }}" readonly>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->applicant_mname }}" readonly>
                                     </div>
-                                    
-                                    
+
+
                                     <div class="col-sm-3 col-md-3 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->applicant_lname }}" readonly>
                                     </div>
                                 </div>
-                                
-                                
+
+
                                     <div class="form-group row">
                                      <label class="col-sm-2"><strong>Mobile Number / (मोबाईल नंबर) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                          <input class="form-control " value="{{ $meat_renewal_view->mobile_number }}" readonly>
-                                       
+
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Email Id / (ई - मेल आयडी) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                           <input class="form-control " value="{{ $meat_renewal_view->email }}" readonly>
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Aadhar Number / (आधार क्रमांक) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                           <input class="form-control " value="{{ $meat_renewal_view->aadhar_number }}" readonly>
                                     </div>
                                 </div>
-                                
+
                                 <strong class="pt-2 text-primary">
                                      Residential Address of Applicant / ( अर्जदाराचा निवासी पत्ता )
                                 </strong>
                                 <hr>
-                                    
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>House Number / <br> ( घर क्रमांक ) :  <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->house_number }}" readonly>
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>House Name / <br> ( घराचे नाव ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->house_name }}" readonly>
                                     </div>
                                 </div>
-                            
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Street 1 / <br> ( रस्ता १ ): <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->street_1 }}" readonly>
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Street 2 / <br> ( रस्ता 2 ) : </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->street_2 }}" readonly>
                                     </div>
                                 </div>
-                            
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Area 1 / ( क्षेत्र १ ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->area_1 }}" readonly>
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Area 2 / <br> ( क्षेत्र  २ ) : </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->area_2 }}" readonly>
                                     </div>
                                 </div>
-                            
+
                                 <div class="form-group row">
                                     <?php
                                         $country_id = '';
-                                        
+
                                         if($meat_renewal_view->country_id == 1)
                                         {
                                             $country_id = 'India';
                                         }
-                                        
+
                                     ?>
                                     <label class="col-sm-2"><strong>Country / <br> ( देश ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $country_id }}" readonly>
                                     </div>
-                                    
+
                                     <?php
                                         $state_id = '';
-                                        
+
                                         if($meat_renewal_view->state_id == 1)
                                         {
                                             $state_id = 'Maharashtra';
-                                        }                                         
-                                        
+                                        }
+
                                     ?>
                                     <label class="col-sm-2"><strong>State / ( राज्य ) <span style="color:red;">*</span>: </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $state_id }}" readonly>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>District / <br> ( जिल्हा ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->dist_name }}" readonly>
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong>Taluka / <br> ( तालुका ) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->taluka_name }}" readonly>
                                     </div>
                                 </div>
-                            
+
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong>Zip Code / <br> ( पिनकोड ): <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <input class="form-control " value="{{ $meat_renewal_view->zipcode }}" readonly>
                                     </div>
-                                    
-                                 
+
+
                                 </div>
-                            
+
                                <strong class="pt-2 text-primary">
                                     Business Details / ( व्यवसाय तपशील )
                                 </strong>
                                 <hr>
-                                
+
                                  <div class="form-group row">
                                     <label class="col-sm-2"><strong>Name of the business / (व्यवसायाचे नाव) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                          <input class="form-control " value="{{ $meat_renewal_view->business_name }}" readonly>
                                     </div>
-                                    
-                                    <label class="col-sm-2"><strong>Kind of Business / (व्यवसायाचा प्रकार) : <span style="color:red;">*</span> </strong></label>
+                                    <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                       <?php
-                                                $business_type = '';
-                                                
-                                                if($meat_renewal_view->business_type == 1)
-                                                {
-                                                    $business_type = 'Butcher Shop ( मांस  विक्री  केंद्र )';
-                                                }
-                                                if($meat_renewal_view->business_type == 2)
-                                                {
-                                                    $business_type = 'Meat Processing Plant ( मांस प्रक्रिया केंद् )';
-                                                }
-                                                if($meat_renewal_view->business_type == 3)
-                                                {
-                                                    $business_type = 'Transportation of Meat ( मांसाची  वाहतूक )';
-                                                }
-                                                if($meat_renewal_view->business_type == 4)
-                                                {
-                                                    $business_type = 'Other ( इतर )';
-                                                }
-                                            ?>
-                                         <input class="form-control " value="{{ $business_type }}" readonly>
+                                        <input readonly  class="form-control " value="{{ $meat_renewal_view->meat_name }}" >
                                     </div>
+
                                 </div>
                                 <div class="form-group row">
-                                            <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
-                                            <div class="col-sm-4 col-md-4 p-2">
-                                                <input readonly  class="form-control " value="{{ $meat_renewal_view->meat_name }}" >
-                                            </div>
-                                            
+
+
                                             <label class="col-sm-2"><strong>Per Day Capacity / (प्रतिदिन क्षमता) : <span style="color:red;">*</span> </strong></label>
                                             <div class="col-sm-4 col-md-4 p-2">
                                                 <input readonly class="form-control" value="{{ $meat_renewal_view->per_day_capacity  }}" >
                                             </div>
+
+                                            <label class="col-sm-2"><strong>Unit / (युनिट) :  <span style="color:red;">*</span></strong></label>
+
+                                            <div class="col-sm-4 col-md-4 p-2">
+
+                                                <input type="text" class="form-control @error('unit') is-invalid @enderror"
+                                                       value="{{ $unit_Meat_Type->firstWhere('id', old('unit') ?? $meat_renewal_view->unit)->unit_name ?? '' }}"
+                                                       readonly style="width: 100%; height: 38px;" />
+
+                                                <!-- Hidden input to send the unit ID -->
+                                                <input type="hidden" name="unit"
+                                                       value="{{ old('unit') ?? $meat_renewal_view->unit }}" />
+
+                                                @error('meat_type')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                             </div>
-                            
+
                              <div class="form-group row">
                                             <?php
                                                 $provision_water = '';
-                                                
+
                                                 if($meat_renewal_view->provision_water == 1)
                                                 {
                                                     $provision_water = 'Yes';
@@ -282,10 +278,10 @@
                                             <div class="col-sm-4 col-md-4 p-2">
                                                 <input readonly class="form-control" value="{{ $provision_water }}" >
                                             </div>
-                                            
+
                                             <?php
                                                 $provision_electricty = '';
-                                                
+
                                                 if($meat_renewal_view->provision_electricty == 1)
                                                 {
                                                     $provision_electricty = 'Yes';
@@ -300,7 +296,7 @@
                                                 <input readonly class="form-control" value="{{ $provision_electricty }}" >
                                             </div>
                                         </div>
-                                        
+
                                          <div class="form-group row">
                                             <label class="col-sm-12"><strong>Address of the business / (व्यवसायाचा पत्ता) : <span style="color:red;">*</span> </strong></label>
                                             <div class="col-sm-12 col-md-12 p-2">
@@ -310,7 +306,7 @@
                                         <div class="form-group row">
                                             <?php
                                                 $sewerage_disposing = '';
-                                                
+
                                                 if($meat_renewal_view->sewerage_disposing == 1)
                                                 {
                                                     $sewerage_disposing = 'Yes';
@@ -324,7 +320,7 @@
                                             <div class="col-sm-4 col-md-4 p-2">
                                                 <input readonly class="form-control" value="{{ $sewerage_disposing }}" >
                                             </div>
-                                            
+
                                             @if(isset($meat_renewal_view->prcision_dispose_id))
                                             <label class="col-sm-2"><strong>If not explain provision to dispose effluent / (नसल्यास सांडपाण्याची विल्हेवाट कशी लावली जाते ) : </strong></label>
                                             <div class="col-sm-4 col-md-4 p-2">
@@ -332,10 +328,10 @@
                                             </div>
                                             @endif
                                         </div>
-                                        
+
                                           <?php
                                                 $place = '';
-                                                
+
                                                 if($meat_renewal_view->place_id == 1)
                                                 {
                                                     $place = 'Yes';
@@ -345,7 +341,7 @@
                                                     $place = 'No';
                                                 }
                                             ?>
-                                       
+
                                 <div class="form-group row">
                                     <label class="col-sm-12">
                                         <strong>Is place is located at least 50mt. away form <br> Place of worship / educational institute / hospital & clinic <br> (जागेपासून प्रार्थनास्थळे / शिक्षणसंस्था /इस्पितळे व दवाखाने कमीत कमी ५० मीटर पेक्षा जास्त अंतरावर आहेत का ? ) : <span style="color:red;">*</span></strong>
@@ -354,8 +350,8 @@
                                             <input readonly  class="form-control " value="{{ $place  }}" >
                                         </div>
                                     </div>
-                                        
-                                        
+
+
                                          <strong class="pt-2 text-primary">
                                     Business registration details / ( व्यवसाय नोंदणी तपशील )
                                 </strong>
@@ -363,29 +359,29 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong> Registration authority name  / (नोंदणी प्राधिकरणाचे नाव) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                       
+
                                          <input readonly class="form-control" value="{{ $meat_renewal_view->regi_authority_name  }}" >
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong> Registration Number   / (नोंदणी क्रमांक) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                      
+
                                         <input readonly class="form-control" value="{{ $meat_renewal_view->register_number  }}" >
                                     </div>
                                     </div>
-                                  <div class="form-group row">   
+                                  <div class="form-group row">
                                     <label class="col-sm-2"><strong> Valid till / (पर्यंत वैध) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4">
                                        <?php
-                                       
+
                                        $date = $meat_renewal_view->valid_till;
-                                       
-                                         $newDate = date("d-m-Y", strtotime($date));  
+
+                                         $newDate = date("d-m-Y", strtotime($date));
                                        ?>
                                         <input readonly class="form-control" value="{{ $newDate  }}" >
                                     </div>
                                 </div>
-                                        
+
                                    <strong class="pt-2 text-primary">
                                     Details of business place / ( व्यवसायाच्या ठिकाणाचा तपशील )
                                 </strong>
@@ -393,45 +389,36 @@
                                 <div class="form-group row">
                                     <label class="col-sm-2"><strong> Area of business place(sq/mtr)  / (व्यवसायाच्या ठिकाणाचे क्षेत्रफळ (चौरस/मीटर) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                    
+
                                          <input readonly class="form-control" value="{{ $meat_renewal_view->areaof_business_place  }}" >
                                     </div>
-                                    
+
                                     <label class="col-sm-2"><strong> Place   / (ठिकाण) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        
-                                        
-                                          <?php
-                                                $business_place = '';
-                                                
-                                                if($meat_renewal_view->business_place == 1)
-                                                {
-                                                    $business_place = 'सिडको  मार्केटमधील जागा/ Place in CIDCO Mark';
-                                                }
-                                                if($meat_renewal_view->business_place == 2)
-                                                {
-                                                    $business_place = 'वाणिज्य वापराखालील जागा/ Space under commercial ';
-                                                }
-                                                 if($meat_renewal_view->business_place == 3)
-                                                {
-                                                    $business_place = 'गावठाण भागातील  जागा/ Places in village( Gavthan ) are';
-                                                }
-                                                if($meat_renewal_view->business_place == 4)
-                                                {
-                                                    $business_place = 'इतर नमूद करणे/ To mention other';
-                                                }
-                                            ?>
-                                               <input readonly class="form-control" value="{{ $business_place  }}" >
+
+
+                                        <?php
+                                        $business_place = '';
+
+                                        if ($meat_renewal_view->business_place == 1) {
+                                            $business_place = 'महानगर पालिका बाजार/ Mahanagara Palika Bazar';
+                                        }
+                                        if ($meat_renewal_view->business_place == 2) {
+                                            $business_place = 'खाजगी जागा/ Private space';
+                                        }
+
+                                        ?>
+                                        <input readonly class="form-control" id="business_place" value="{{ $business_place }}">
                                     </div>
                                     </div>
-                                  <div class="form-group row other_b" id="hidden_div" style="display:none">   
+                                  <div class="form-group row other_b" id="hidden_div" style="display:none">
                                     <label class="col-sm-2"><strong> Other  : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4">
-                                      
+
                                          <input readonly class="form-control" value="{{ $meat_renewal_view->business_place_other  }}" >
                                     </div>
-                                </div>       
-                                        
+                                </div>
+
                                       <strong class="pt-2 text-primary">
                                     Upload Document / ( दस्तऐवज अपलोड करा )
                                 </strong>
@@ -443,814 +430,846 @@
                                 <!--<strong class="text-danger text-justify ">-->
                                 <!--    टीप :- कृपया  छायांकित  प्रती प्रमाणित करून सादर  करणे-->
                                 <!--</strong>-->
-                                <hr>    
-                                        
-                                <div class="form-group row">
-                                   
-                                  <label class="col-sm-2"><strong>Upload ID proof (Adharcard) of the applicant  <br> (अर्जदाराचा आयडी पुरावा (आधारकार्ड) अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
+                                <hr>
+                                <div id="div2" style="display: none;">
+                                    <div class="form-group row">
 
-                                          <?php if(!empty($meat_renewal_view->adharcard_doc)) { ?>
-                                             <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->adharcard_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
-                                                <?php } else {  ?>
+                                      <label class="col-sm-2"><strong>Upload ID proof (Adharcard) of the applicant  <br> (अर्जदाराचा आयडी पुरावा (आधारकार्ड) अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
 
-                                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->regi_adharcard_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_adharcard_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->regi_adharcard_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->regi_adharcard_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                              <?php if(!empty($meat_renewal_view->adharcard_doc)) { ?>
+                                                 <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->adharcard_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->adharcard_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+                                                    <?php } else {  ?>
 
-                                             <?php   } ?>
-                                    </div>
-                                    
-                                    <label class="col-sm-2"><strong>Upload Ration card, electricity / telephone bill. <br> ( रेशन कार्ड, वीज / टेलिफोन बिल अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                       <?php if(!empty($meat_renewal_view->residitional_proof_doc)) { ?>
-                                       <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->residitional_proof_doc }}" target="_blank">
-                                           <div class="form-group">
-                                                <?php $document_path = $meat_renewal_view->residitional_proof_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->residitional_proof_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->residitional_proof_doc }} " target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
-                                                <?Php }else { ?>
+                                                         <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->regi_adharcard_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->regi_adharcard_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->regi_residitional_proof_doc }}" target="_blank">
-                                           <div class="form-group">
-                                                <?php $document_path = $meat_renewal_view->regi_residitional_proof_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->regi_residitional_proof_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                               elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->regi_residitional_proof_doc }} " target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->regi_adharcard_doc }}  " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/adharcard_doc/{{ $meat_renewal_view->regi_adharcard_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
 
+                                                 <?php   } ?>
+                                        </div>
 
-                                             <?php   }?>
-                                              </div> 
-                                    
-                                            </div> 
-                                  <div class="form-group row">
-                                    <label class="col-sm-2"><strong>Upload legal document of the business place <br> ( जागेचा अधिकृततेचा पुरावा अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                       <?php if(!empty($meat_renewal_view->legal_business_doc)) { ?>
-                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->legal_business_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->legal_business_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->legal_business_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->legal_business_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                        <label class="col-sm-2"><strong>Upload Ration card, electricity / telephone bill. <br> ( रेशन कार्ड, वीज / टेलिफोन बिल अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+                                           <?php if(!empty($meat_renewal_view->residitional_proof_doc)) { ?>
+                                           <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->residitional_proof_doc }}" target="_blank">
+                                               <div class="form-group">
+                                                    <?php $document_path = $meat_renewal_view->residitional_proof_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                            <?php } else { ?>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->residitional_proof_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->residitional_proof_doc }} " target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+                                                    <?Php }else { ?>
 
-                                                 <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->regi_legal_business_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_legal_business_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->regi_legal_business_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->regi_legal_business_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->regi_residitional_proof_doc }}" target="_blank">
+                                               <div class="form-group">
+                                                    <?php $document_path = $meat_renewal_view->regi_residitional_proof_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->regi_residitional_proof_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/residitional_proof_doc/{{ $meat_renewal_view->regi_residitional_proof_doc }} " target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
 
-                                        <?php   } ?>
-                                    </div>
-                                    
-                                    <label class="col-sm-2"><strong>Upload business registration certificate <br> ( व्यवसाय नोंदणी प्रमाणपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                        
-                                        <?php if(!empty($meat_renewal_view->business_registration_doc)) { ?>
-                                          <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->business_registration_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->business_registration_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->business_registration_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->business_registration_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
 
-                                            <?php }else { ?>
+                                                 <?php   }?>
+                                                  </div>
 
-                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->regi_business_registration_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_business_registration_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->regi_business_registration_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->regi_business_registration_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"><strong>Upload legal document of the business place <br> ( जागेचा अधिकृततेचा पुरावा अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+                                           <?php if(!empty($meat_renewal_view->legal_business_doc)) { ?>
+                                            <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->legal_business_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->legal_business_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->legal_business_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->legal_business_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+
+                                                <?php } else { ?>
+
+                                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->regi_legal_business_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->regi_legal_business_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->regi_legal_business_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/legal_business_doc/{{ $meat_renewal_view->regi_legal_business_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
 
-                                        <?php } ?>
-                                    </div> 
-                                </div>
-                                
-                                  
-                                <div class="form-group row">
-                                    <label class="col-sm-2"><strong>Upload receipt of recently paid property tax <br> ( मालमत्ता कर भरल्याचा पुरावा अपलोड करा ): <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                     <?php if(!empty($meat_renewal_view->property_tax_doc)) { ?>   
-                                         <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_tax_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->property_tax_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_tax_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_tax_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                            <?php   } ?>
+                                        </div>
 
-                                            <?php } else { ?>
+                                        <label class="col-sm-2"><strong>Upload business registration certificate <br> ( व्यवसाय नोंदणी प्रमाणपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
 
-                                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->property_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <<?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                            <?php if(!empty($meat_renewal_view->business_registration_doc)) { ?>
+                                              <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->business_registration_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->business_registration_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->business_registration_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->business_registration_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+
+                                                <?php }else { ?>
+
+                                                      <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->regi_business_registration_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->regi_business_registration_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->regi_business_registration_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $meat_renewal_view->regi_business_registration_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
 
                                             <?php } ?>
+                                        </div>
                                     </div>
-                                    
-                                    <label class="col-sm-2"><strong>Upload receipt of recently paid water ( पानी पट्टी पावती अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                     <?php if(!empty($meat_renewal_view->paid_water_doc)) { ?>    
-                                       <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->paid_water_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"><strong>Upload receipt of recently paid property tax <br> ( मालमत्ता कर भरल्याचा पुरावा अपलोड करा ): <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+                                         <?php if(!empty($meat_renewal_view->property_tax_doc)) { ?>
+                                             <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_tax_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->property_tax_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                            <?php } else { ?>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_tax_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_tax_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
-                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->paid_water;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                <?php } else { ?>
 
+                                                         <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->property_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                            <?php } ?>
-                                    </div> 
-                                </div>
-                                
-                                <div class="form-group row">
-                                  
-                                      <label class="col-sm-2"><strong>Upload details & authority letter from authorized slaughter house / poultry form & authority letter <br>( अधिकृत कुक्कुट पालन करणाऱ्या संस्थेचे व कत्तलखाण्याची माहिती ई संमातीपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                          <?php if(!empty($meat_renewal_view->slaughter_letter_doc)) { ?>    
-                                         <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->slaughter_letter_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->slaughter_letter_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->slaughter_letter_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->slaughter_letter_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
-
-                                            <?php } else { ?>
-
-                                                  <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->letter_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->letter_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->letter_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->letter_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/property_tax_doc/{{ $meat_renewal_view->property_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
 
-                                            <?php } ?>
+
+                                                <?php } ?>
+                                        </div>
+
+                                        <label class="col-sm-2"><strong>Upload receipt of recently paid water ( पानी पट्टी पावती अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+                                         <?php if(!empty($meat_renewal_view->paid_water_doc)) { ?>
+                                           <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->paid_water_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+
+                                                <?php } else { ?>
+
+                                                      <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->paid_water;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/paid_water_doc/{{ $meat_renewal_view->paid_water }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+
+
+                                                <?php } ?>
+                                        </div>
                                     </div>
-                                    
-                                    <label class="col-sm-2"><strong>Upload pest control treatment certificate issued from authorized agency <br> ( नोंदणीकृत  संस्थेकडून  कीटनाशक फवारणी केल्याचे प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                       <?php if(!empty($meat_renewal_view->treatment_authorized_doc)) { ?>     
-                                          <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->treatment_authorized_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->treatment_authorized_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->treatment_authorized_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->treatment_authorized_doc }} " target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                    <div class="form-group row">
 
-                                            <?php } else { ?>
+                                          <label class="col-sm-2"><strong>Upload details & authority letter from authorized slaughter house / poultry form & authority letter <br>( अधिकृत कुक्कुट पालन करणाऱ्या संस्थेचे व कत्तलखाण्याची माहिती ई संमातीपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+                                              <?php if(!empty($meat_renewal_view->slaughter_letter_doc)) { ?>
+                                             <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->slaughter_letter_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->slaughter_letter_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                                 <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->tre_authority_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->tre_authority_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->tre_authority_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->tre_authority_doc }} " target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->slaughter_letter_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->slaughter_letter_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
-                                            <?php } ?>
-                                         </div>
-                                       </div>
-                                
-                                 <div class="form-group row">
-                                    <label class="col-sm-2"><strong>Upload medical fitness certificate issued by MBBS Doctor <br> ( एमबीबीएस डॉक्टरांनी दिलेले वैद्यकीय फिटनेस प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                   <?php if(!empty($meat_renewal_view->fitness_certificate_doc)) { ?>         
-                                       <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_certificate_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->fitness_certificate_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_certificate_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_certificate_doc }} " target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                <?php } else { ?>
 
-                                            <?php } else { ?>
+                                                      <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->letter_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->letter_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                                 <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->fitness_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_doc }} " target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->letter_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $meat_renewal_view->letter_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
 
-                                            <?php } ?>
-                                    </div> 
-                                    
-                                    {{-- <label class="col-sm-2"><strong>Upload FSSAI Registration Certificate  <br> (अन्न  सुरक्षा व मानदे अधिनियम २००६ व नियम  व नियमन,२०११ अन्वये, व्यवसाय नोंदणी प्रमाणपत्र )करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                      <?php if(!empty($meat_renewal_view->issued_doc)) { ?>   
-                                         <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->issued_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->issued_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->issued_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                <?php } ?>
+                                        </div>
 
-                                            <?php } else { ?>
+                                        <label class="col-sm-2"><strong>Upload pest control treatment certificate issued from authorized agency <br> ( नोंदणीकृत  संस्थेकडून  कीटनाशक फवारणी केल्याचे प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+                                           <?php if(!empty($meat_renewal_view->treatment_authorized_doc)) { ?>
+                                              <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->treatment_authorized_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->treatment_authorized_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                                <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->regi_issued_doc }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_issued_doc;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->regi_issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->regi_issued_doc }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->treatment_authorized_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->treatment_authorized_doc }} " target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
+                                                <?php } else { ?>
 
+                                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->tre_authority_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->tre_authority_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                          <?php } ?>
-                                    </div> --}}
-                                </div>
-                                  <div class="form-group row">
-                                    <label class="col-sm-2"><strong>Upload applicant signature / ( अर्जदाराची स्वाक्षरी अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                        <?php if(!empty($meat_renewal_view->applicant_signature)) { ?>   
-                                          <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->applicant_signature }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->applicant_signature;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->applicant_signature }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->applicant_signature }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->tre_authority_doc }}" alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/treatment_authorized_doc/{{ $meat_renewal_view->tre_authority_doc }} " target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
+                                                <?php } ?>
+                                             </div>
+                                           </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"><strong>Upload medical fitness certificate issued by MBBS Doctor <br> ( एमबीबीएस डॉक्टरांनी दिलेले वैद्यकीय फिटनेस प्रमाणपत्र अपलोड करा ): <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+                                       <?php if(!empty($meat_renewal_view->fitness_certificate_doc)) { ?>
+                                           <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_certificate_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->fitness_certificate_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                            <?php } else { ?>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_certificate_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_certificate_doc }} " target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
-                                                 <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->regi_app_sign }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_app_sign;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->regi_app_sign }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->regi_app_sign }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                <?php } else { ?>
+
+                                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->fitness_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/fitness_certificate_doc/{{ $meat_renewal_view->fitness_doc }} " target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
 
-                                           <?php } ?>
+                                                <?php } ?>
+                                        </div>
+
+                                        {{-- <label class="col-sm-2"><strong>Upload FSSAI Registration Certificate  <br> (अन्न  सुरक्षा व मानदे अधिनियम २००६ व नियम  व नियमन,२०११ अन्वये, व्यवसाय नोंदणी प्रमाणपत्र )करा ) : <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+                                          <?php if(!empty($meat_renewal_view->issued_doc)) { ?>
+                                             <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->issued_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->issued_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->issued_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+
+                                                <?php } else { ?>
+
+                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->regi_issued_doc }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->regi_issued_doc;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->regi_issued_doc }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_renewal_view->regi_issued_doc }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+
+
+
+                                              <?php } ?>
+                                        </div> --}}
                                     </div>
-                                    
-                                    <label class="col-sm-2"><strong>Upload applicant profile photo / ( अर्जदाराचा प्रोफाइल फोटो अपलोड करा ): <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                         <?php if(!empty($meat_renewal_view->profile_photo)) { ?>   
-                                          <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->profile_photo }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->profile_photo;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->profile_photo }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->profile_photo }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"><strong>Upload applicant signature / ( अर्जदाराची स्वाक्षरी अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+                                            <?php if(!empty($meat_renewal_view->applicant_signature)) { ?>
+                                              <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->applicant_signature }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->applicant_signature;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                            <?php } else { ?>
-
-                                                 <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->regi_profile_photo }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->regi_profile_photo;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->regi_profile_photo }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->regi_profile_photo }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->applicant_signature }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->applicant_signature }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
 
 
+                                                <?php } else { ?>
 
-                                       <?php   } ?>
-                                    </div> 
-                                </div>     
+                                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->regi_app_sign }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->regi_app_sign;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
 
-                                 <div class="form-group row">
-                                     <label class="col-sm-2"><strong>Upload previous year licence copy  / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                    <div class="col-sm-4 col-md-4 p-2">
-                                       
-                                          <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }}" target="_blank">
-                                                    <div class="form-group">
-                                                        <?php $document_path = $meat_renewal_view->old_licence;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                        </p>
-                                                        <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                                    <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }}" target="_blank" >
-                                                                        <p class="mt-3 mb-0" id="image_div">
-                                                                        <button type="button"class="btn btn-info">
-                                                                            View File
-                                                                        </button>
-                                                                        </p>                                                                
-                                                                    </a>
-                                                        <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                    </div>
-                                                </a>
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->regi_app_sign }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $meat_renewal_view->regi_app_sign }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+
+
+                                               <?php } ?>
+                                        </div>
+
+                                        <label class="col-sm-2"><strong>Upload applicant profile photo / ( अर्जदाराचा प्रोफाइल फोटो अपलोड करा ): <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+                                             <?php if(!empty($meat_renewal_view->profile_photo)) { ?>
+                                              <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->profile_photo }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->profile_photo;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->profile_photo }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->profile_photo }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+
+                                                <?php } else { ?>
+
+                                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->regi_profile_photo }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->regi_profile_photo;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->regi_profile_photo }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/profile_photo/{{ $meat_renewal_view->regi_profile_photo }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+
+
+
+                                           <?php   } ?>
+                                        </div>
                                     </div>
-                                </div>
+                                    </div>
+                                    <div id="div1" style="display: none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-2"><strong>Upload Municipal Corporation Permission Letter <br> (महापालिकेचे परवानगी पत्र करा ) : <span style="color:red;">*</span></strong></label>
+                                            <div class="col-sm-4 col-md-4 p-2">
+
+                                                <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/municipal_corpor_doc/{{ $meat_renewal_view->municipal_corpor_doc }}" target="_blank">
+                                                    <div class="form-group">
+                                                        <?php $document_path = $meat_renewal_view->municipal_corpor_doc;
+                                       $filter_path =  explode(".",$document_path);
+                                       $size_of_array = count($filter_path);
+                                       $filter_ext = $filter_path[$size_of_array - 1];
+
+                                    if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                    $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                       {?>
+                                                        <p class="mt-3 mb-0" id="image_div">
+                                                            <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/municipal_corpor_doc/{{ $meat_renewal_view->municipal_corpor_doc }} " alt="image"
+                                                                class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                        </p>
+                                                        <?php }
+                                            else{
+                                                ?>
+                                                        <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/municipal_corpor_doc/{{ $meat_renewal_view->municipal_corpor_doc }}" target="_blank">
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <button type="button"class="btn btn-info">
+                                                                    View File
+                                                                </button>
+                                                            </p>
+                                                        </a>
+                                                        <?php }?>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                    <div class="form-group row">
+                                         <label class="col-sm-2"><strong>Upload previous year licence copy  / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                        <div class="col-sm-4 col-md-4 p-2">
+
+                                              <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }}" target="_blank">
+                                                        <div class="form-group">
+                                                            <?php $document_path = $meat_renewal_view->old_licence;
+                                                               $filter_path =  explode(".",$document_path);
+                                                               $size_of_array = count($filter_path);
+                                                               $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                               {?>
+                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                            </p>
+                                                            <?php }
+                                                                    elseif($filter_ext == 'pdf'){
+                                                                        ?>
+                                                                        <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }}" target="_blank" >
+                                                                            <p class="mt-3 mb-0" id="image_div">
+                                                                            <button type="button"class="btn btn-info">
+                                                                                View File
+                                                                            </button>
+                                                                            </p>
+                                                                        </a>
+                                                            <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                        </div>
+                                                    </a>
+                                        </div>
+                                    </div>
 
                                 <?php if($meat_renewal_view->re_final_approve == 0){ ?>
                                             <div class="form-group row mt-4">
@@ -1259,9 +1278,9 @@
                                                     <a href="{{ url('/admin_approve_list_renewal/0') }}"><button type="button"  class="btn btn-danger">Cancel</button></a>&nbsp;&nbsp;
                                                     <!--<a href="{{ url('/reject_meat_renewal',$meat_renewal_view->id) }}"><button type="button" class="btn btn-primary">Reject</button></a>&nbsp;&nbsp;-->
                                                     <!--<a href="{{ url('/approve_meat_renewal',$meat_renewal_view->id) }}"><button  type="button" class="btn btn-success">Approve </button> </a>-->
-                                                    
+
                                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rejectModal">Reject</button>&nbsp;&nbsp;
-                                                    
+
                                                     <button type="button" class="btn btn-success waves-effect m-r-20" data-toggle="modal" data-target="#largeModal">Approve</button>
 
                                                     <!-- <a href='{{ url("/approve_coldStorage_renewal_by_hod/{$meat_renewal_view->id}") }}'><button  type="button" class="btn btn-success">Approve </button> </a> -->
@@ -1283,11 +1302,11 @@
                                                 </div>
                                             </div>
                                         <?php }?>
-                                        
-                                        
-                                        
+
+
+
                         </section>
-                            
+
                         </form>
                         </div>
                     </div>
@@ -1304,16 +1323,16 @@
             <div class="modal-header">
                 <h4 class="title text-danger" id="largeModalLabel">Approved By Admin</h4>
             </div>
-            <div class="modal-body"> 
+            <div class="modal-body">
                 <form method="POST" action="{{ url('final_approve_cold_renewal', $meat_renewal_view->id ) }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" class="form-control " id="mobile_number" name="mobile_number" value="{{ $meat_renewal_view->mobile_number }}" >
 
-                    
+
                     <input type="hidden" class="form-control " id="id" name="id" value="{{ $meat_renewal_view->id }}" >
 
                     <input type="hidden" class="form-control " id="meat_pplication_no" name="meat_pplication_no" value="{{ $meat_renewal_view->renwal_liceans_no }}" >
-                    
+
                     <div class="form-group row">
                         <label class="col-sm-2"><strong>स्विकारलेल्या एकूण कराची रक्कम / <br>  Total Amount of tax received  :  <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
@@ -1324,7 +1343,7 @@
                                 </span>
                             @enderror
                         </div>
-                        
+
                         <label class="col-sm-2"><strong>पावती क्रमांक / <br>  Receipt No : <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
                             <input type="text" name="receipt_no" id="receipt_no" required class="form-control @error('receipt_no') is-invalid @enderror" value="{{ old('receipt_no') }}" placeholder="पावती क्रमांक / Receipt No.">
@@ -1335,7 +1354,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label class="col-sm-2"><strong>पावती दिनांक / Date of Receipt  : <span style="color:red;">*</span> </strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
@@ -1346,7 +1365,7 @@
                                 </span>
                             @enderror
                         </div>
-                        
+
                         <label class="col-sm-2"><strong>परवाना क्रमांक / License Number : <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
                             <input type="text" name="license_number" id="license_number" readonly class="form-control @error('license_number') is-invalid @enderror" value="{{ $meat_renewal_view->renwal_liceans_no }}" placeholder="परवाना क्रमांक / License Number.">
@@ -1357,7 +1376,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="form-group row">
                         <label class="col-sm-2"><strong>परवाना दिल्याची दिनांक / Date of License Obtained  : <span style="color:red;">*</span> </strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
@@ -1368,7 +1387,7 @@
                                 </span>
                             @enderror
                         </div>
-                        
+
                         <label class="col-sm-2"><strong>दिनांक /  Date : <span style="color:red;">*</span></strong></label>
                         <div class="col-sm-4 col-md-4 p-2">
                             <input type="date" name="date" readonly max="<?php echo date("d-m-Y"); ?>" id="date" required class="form-control @error('date') is-invalid @enderror" value="<?php echo date('Y-m-d'); ?>" placeholder="परवाना क्रमांक / License Number.">
@@ -1379,7 +1398,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                      <div class="form-group row">
                         <label class="col-sm-3"><strong>Upload HOD Signature / <br>( विभाग प्रमुख स्वाक्षरी अपलोड करा ) : <span style="color:red;">*</span> </strong></label>
                         <div class="col-sm-3 col-md-3 p-2">
@@ -1388,7 +1407,7 @@
                             <br>
                             <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png format can be uploaded .</small>
                             <br>
-                            
+
                             @error('re_hod_sign')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -1396,7 +1415,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
                     <div class="form-group row mt-4">
                         <label class="col-md-3"></label>
                         <div class="col-md-9" style="display: flex; justify-content: flex-end;">
@@ -1410,7 +1429,7 @@
     </div>
 </div>
 
-<!-- Modal Dialogs ====== --> 
+<!-- Modal Dialogs ====== -->
 <!-- Large Size -->
 <div class="modal fade" id="rejectModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg" role="document">
@@ -1418,12 +1437,12 @@
             <div class="modal-header">
                 <h4 class="title text-danger" id="largeModalLabel">Reject By Admin</h4>
             </div>
-            <div class="modal-body"> 
+            <div class="modal-body">
                 <form method="POST" action="{{ url('final_reject_cold_renewal', $meat_renewal_view->id ) }}" enctype="multipart/form-data">
                     @csrf
-                    
+
                     <input type="hidden" class="form-control " id="meat_pplication_no" name="meat_pplication_no" value="{{ $meat_renewal_view->renwal_liceans_no }}" >
-                    
+
                       <input type="hidden" class="form-control " id="mobile_number" name="mobile_number" value="{{ $meat_renewal_view->mobile_number }}" >
 
                     <div class="form-group row">
@@ -1433,13 +1452,13 @@
                             <textarea  class="form-control" name ="reject_resion" id="reject_resion" value="" style="height:120px;"></textarea>
 
                         </div>
-                        
-                       
+
+
                     </div>
-                    
-                   
-                    
-                   
+
+
+
+
                     <div class="form-group row mt-4">
                         <label class="col-md-3"></label>
                         <div class="col-md-9" style="display: flex; justify-content: flex-end;">
@@ -1454,6 +1473,37 @@
 </div>
 
 
+<script>
+    function showRelevantDiv() {
+        var div1 = document.getElementById('div1');
+        var div2 = document.getElementById('div2');
+        var businessPlaceInput = $('#business_place').val();
+
+        // Check if the input value exists
+        if (businessPlaceInput === undefined || businessPlaceInput === null) {
+            console.error('The value of #business_place is undefined or null.');
+            return;
+        }
+
+        var selectedValue = businessPlaceInput.trim();
+
+        // Hide both divs initially
+        div1.style.display = 'none';
+        div2.style.display = 'none';
+
+        // Show the relevant div based on the selected option
+        if (selectedValue.includes('महानगर पालिका बाजार')) {
+            div1.style.display = 'block';
+        } else if (selectedValue.includes('खाजगी जागा')) {
+            div2.style.display = 'block';
+        }
+    }
+
+    // Run the function when the page loads
+    $(document).ready(function() {
+        showRelevantDiv();
+    });
+</script>
 
 
-@include('common.footer')  
+@include('common.footer')

@@ -14,10 +14,10 @@
                     @elseif ($status == 2)
                         <h2>Reject Cold Storage Renewal Application</h2>
                     @endif
-                    
+
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ url('/hod/dashboard') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
-                      
+
                         <li class="breadcrumb-item active">
                             @if ($status == 0)
                                 Pending Cold Storage Renewal Application
@@ -30,7 +30,7 @@
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
-                
+
                 <div class="col-lg-5 col-md-6 col-sm-12">
                     <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
                 </div>
@@ -51,7 +51,7 @@
                                 @elseif ($status == 2)
                                     <strong style="text-transform: capitalize;">Reject Cold Storage Renewal Application</strong>
                                 @endif
-                                
+
                             </h2>
                         </div>
                         <div class="body">
@@ -70,21 +70,21 @@
                                             <th>Per day capacity</th>
                                             @if (($status == 2))
                                              <th>Reasons for Rejection</th>
-                                            
+
                                              @endif
                                             <th>View Details</th>
                                              @if ($status == 1)
                                              <th>Generate Certificate</th>
                                              <!-- <th>Affidavit </th> -->
                                             @endif
-                                            
-                                         
+
+
                                              <th>Invoice</th>
-                                            
-                                          
+
+
                                              <!-- @if (($status == 2))
                                              <th>Reasons for Rejection</th>
-                                            
+
                                              @endif -->
         								</tr>
                                     </thead>
@@ -95,7 +95,7 @@
                                                 <td><b>{{ $value->renwal_liceans_no }}</b></td>
                                                 <?php
                                                     $applicant_title_id = '';
-                                                    
+
                                                     if($value->applicant_title_id == 1)
                                                     {
                                                         $applicant_title_id = 'Kum.';
@@ -131,7 +131,7 @@
                                                 <td>{{ $value->business_name }}</td>
                                                 <?php
                                                     $business_type = '';
-                                                    
+
                                                     if($value->business_type == 1)
                                                     {
                                                         $business_type = 'Butcher Shop ( मांस  विक्री  केंद्र )';
@@ -150,7 +150,17 @@
                                                     }
                                                 ?>
                                                 <!--<td>{{ $business_type }}</td>-->
-                                                <td>{{ $value->meat_name }}</td>
+                                                <td>
+                                                    @php
+                                                        $array = explode(",",$value->meat_type);
+
+                                                        $meatNames = DB::table('meat_type_mst')
+                                                                        ->whereIn('id', $array)
+                                                                        ->pluck('meat_name');
+                                                        $commaSeparatedMeatNames = $meatNames->implode(', ');
+                                                    @endphp
+                                                    {{ $commaSeparatedMeatNames }}
+                                                </td>
                                                 <td>{{ $value->per_day_capacity }}</td>
 
                                                 @if($value->re_final_approve == '2')
@@ -163,7 +173,7 @@
                                                 </td>
                                                  <?php if($value->re_final_approve == 1) { ?>
                                                  <td>
-                                                     
+
                                                     <a href='{{ url("/generate_english_cold_renewal_pdf/{$value->id}/{$value->re_final_approve}") }}'
                                                         class="btn btn-danger waves-effect waves-float btn-sm waves-green">
                                                         <i class="zmdi zmdi-file"></i> English
@@ -173,36 +183,36 @@
                                                         class="btn btn-danger waves-effect waves-float btn-sm waves-green">
                                                         <i class="zmdi zmdi-file"></i> Marathi
                                                     </a>
-                                                     
-                                                     
-                                                     
+
+
+
                                                 </td>
                                                 <!-- <td>
-                                                     
+
                                                       <a href='{{ url("/generate_renewal_affidavit_pdf/{$value->id}/{$value->status}") }}'
                                                         class="btn btn-primary waves-effect waves-float btn-sm waves-green">
                                                         <i class="zmdi zmdi-file"></i> Affidavit
                                                        </a>
-                                                      
+
                                                 </td> -->
                                                  <?php } ?>
-                                                 
-                                                 
-                                                <td> 
+
+
+                                                <td>
                                                 <a href='{{ url("/final_approve_renewa_invoice/{$value->id}/{$value->re_final_approve}") }}'  class="btn btn-primary waves-effect m-r-20" >
                                                         Invoice
                                                     </a>
                                                </td>
-                                           
-                                               
+
+
                                                   <?php //if(($value->status == 2) ){ ?>
-                                                      
+
                                                   <!-- <td>{{ $value->reject_resion }}</td>     -->
-                                                      <?php  //  } ?>  
+                                                      <?php  //  } ?>
             								</tr>
                                         @endforeach
                                     </tbody>
-                                    
+
                                 </table>
                             </div>
                         </div>
@@ -214,4 +224,4 @@
     </div>
 </section>
 
-@include('common.footer')  
+@include('common.footer')

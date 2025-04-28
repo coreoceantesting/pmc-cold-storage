@@ -55,9 +55,9 @@ class HodColdStorageListController extends Controller
                                         ->whereNull('t4.deleted_at')
                                         ->orderBy('t1.id', 'DESC')
                                         ->first();
-                                        
+
         // return $meat_registration_view;
-        
+
         return view('hod.cold_storage_registration.view', compact('meat_registration_view','unit_Meat_Type'));
     }
 
@@ -65,10 +65,10 @@ class HodColdStorageListController extends Controller
       // Approved Meat Registration Form ( Status - 1 )
       public function ApproveColdStorageRegistrations(request $request, $id)
       {
- 
+
          //print_r($request->get('mobile_number'));exit;
         //  $data = new ApproveAdmin_Model();
- 
+
         //  $data->meat_pplication_id = $request->id;
         //  $data->total_recived_tax = $request->get('total_recived_tax');
         //  $data->mobile_number = $request->get('mobile_number');
@@ -81,33 +81,33 @@ class HodColdStorageListController extends Controller
         //  $data->inserted_by = Auth::user()->id;
         //  // $data->status = 1; //Rejected
         //  $data->save();
-         
+
          $update = [
              'hod_status' => 1,
              'approve_date' => date("Y-m-d"),
              'approve_by' => Auth::user()->id,
          ];
-         
+
          ColdStorageRegistration_Model::where('id', $id)->update($update);
- 
+
         //  $app_no = $request->get('license_number');
         //  $scheme = 'Cold Storage Registration Form';
          //$domain = "https://".$_SERVER['HTTP_HOST'];
- 
-         //print_r($data->mobile_number);exit; 
+
+         //print_r($data->mobile_number);exit;
          //$project_folder = 'PMC_MeatRegistration';
-         
+
         //  $msg = "Your application no:- $app_no for $scheme is Approved Successfully.";
- 
+
         //  $tempID= '1207167447455213113';
         //  $this->sendsms($msg,$data->mobile_number,$tempID);
- 
+
          return redirect('/cold_storage_lists/1')->with('message', 'Cold Storage Registration Form Approved By HOD Successfully'); //Redirect user somewhere
-   
+
      }
- 
+
      public function RejectColdStorageRegistration(request $request, $id){
-         
+
          $data = ColdStorageRegistration_Model::where('id', $id)->first();
          $update = [
              'hod_status' => 2,
@@ -115,25 +115,25 @@ class HodColdStorageListController extends Controller
              'reject_date' => date("Y-m-d H:i:s"),
              'reject_by' => Auth::user()->id,
          ];
-         
+
          ColdStorageRegistration_Model::where('id', $id)->update($update);
          $mob_number = $data->mobile_number;
         $unique_id = $data->cold_storage_aplication_no;
         $reason = $request->get('reject_resion');
     	$sms = "Your application no:- " . $unique_id . " for cold storage license is rejected, Reason for rejection: " . $reason . " CORE OCEAN.";
     	$this->sendsmsnew($sms,$mob_number);
-         
+
         //  $app_no = $request->get('meat_pplication_no');
         //  $resion = $request->get('reject_resion');
         //  $mobile = $request->get('mobile_number');
         //  //$domain = "https://".$_SERVER['HTTP_HOST'];
-         
+
         //  $msg = "Your application no:- $app_no is Rejected Resion For  $resion .";
- 
+
         //  $tempID= '1207167447455213113';
         //  $this->sendsms($msg,$mobile,$tempID);
- 
- 
+
+
          return redirect('/cold_storage_lists/2')->with('message', 'Cold Storage Registration Form HOD Rejected Successfully'); //Redirect user somewhere
      }
 
@@ -146,8 +146,8 @@ class HodColdStorageListController extends Controller
                                             ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                             ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                             ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
-                                            ->where('t1.final_approve', '=', $status) 
-                                            ->where('t1.hod_status', '=', 1)         
+                                            ->where('t1.final_approve', '=', $status)
+                                            ->where('t1.hod_status', '=', 1)
                                             ->where('t1.status', '=', 1)
                                             ->whereNull('t1.deleted_at')
                                             ->whereNull('t2.deleted_at')
@@ -158,7 +158,7 @@ class HodColdStorageListController extends Controller
                                         //    ->ToSql();
 
         //    dd($meat_registration_list); die;
-           
+
          return view('hod.admin_approve_list.grid', compact('meat_registration_list', 'status'));
      }
 
@@ -180,12 +180,12 @@ class HodColdStorageListController extends Controller
                                         ->whereNull('t4.deleted_at')
                                         ->orderBy('t1.id', 'DESC')
                                         ->first();
-                                        
+
         // return $meat_registration_view;
-        
+
         return view('hod.admin_approve_list.view', compact('meat_registration_view','unit_Meat_Type'));
      }
- 
+
  //Cold_registraion_invoice
     public function coldRegistrationInvoice(request $request, $id, $status)
     {
@@ -198,25 +198,25 @@ class HodColdStorageListController extends Controller
                         ->first();
         return view('hod.admin_approve_list.invoice',compact('invoice'));
     }
-    
-    
+
+
      public function ApprovebyHodRegistration(request $request, $id)
      {
- 
+
         $datanew = ColdStorageRegistration_Model::where('id','=',$id)->firstOrFail();
          $data = new ApproveAdmin_Model();
-         
+
           if(!empty($request->hasFile('hod_sign'))){
                 $image = $request->file('hod_sign');
                 $image_name = $image->getClientOriginalName();
                 $extension = $image->getClientOriginalExtension();
                 $new_name = time().rand(10,999).'.'.$extension;
                 $image->move(public_path('/PMC_Cold_Storage/hod_sign/'),$new_name);
-    
+
                 $image_path = "/PMC_Cold_Storage/hod_sign/" . $image_name;
                 $data->hod_sign = $new_name;
             }
-  
+
           $data->meat_pplication_id = $request->id;
           $data->total_recived_tax = $request->get('total_recived_tax');
           $data->mobile_number = $request->get('mobile_number');
@@ -229,13 +229,13 @@ class HodColdStorageListController extends Controller
           $data->inserted_by = Auth::user()->id;
           // $data->status = 1; //Rejected
           $data->save();
-         
+
          $update = [
              'final_approve' => 1,
              'final_approve_date' => date("Y-m-d"),
              'final_approve_by' => Auth::user()->id,
          ];
-         
+
 
         ColdStorageRegistration_Model::where('id', $id)->update($update);
         $mob_number = $datanew->mobile_number;
@@ -243,33 +243,33 @@ class HodColdStorageListController extends Controller
         $scheme = 'cold storage licence';
         $sms = "Your application no:- " . $unique_id . " for " . $scheme . " has been approved by the PMC office successfully CORE OCEAN.";
         $this->sendsmsnew($sms,$mob_number);
- 
+
         return redirect('/admin_approve_list/1')->with('message', 'Cold Storage Registration Form Hod Final Approved Successfully');
- 
-         
+
+
      }
-      
+
 
      public function RejectByHodRegistration(request $request, $id)
      {
- 
+
         $data = ColdStorageRegistration_Model::where('id','=',$id)->firstOrFail();
           $update = [
              'final_approve' => 2,
              'final_reason_for_rejection'   =>$request->get('reject_resion'),
              'final_reject_dt' => date("Y-m-d"),
              'final_reject_by' => Auth::user()->id,
- 
+
          ];
-         
+
          ColdStorageRegistration_Model::where('id', $id)->update($update);
-         
+
          $mob_number = $data->mobile_number;
         $unique_id = $data->pet_pplication_no;
         $reason = $request->get('reject_resion');
     	$sms = "Your application no:- " . $unique_id . " for cold storage licence is rejected, Reason for rejection: " . $reason . " CORE OCEAN.";
     	$this->sendsmsnew($sms,$mob_number);
- 
+
          return redirect('/admin_approve_list/2')->with('message', 'Cold Storage Registration Form HOD Rejected Successfully'); //Redirect user somewhere
      }
 
@@ -277,22 +277,22 @@ class HodColdStorageListController extends Controller
 
      public function adminRejectedList(request $request, $status)
      {
- 
+
           $meat_registration_list =  DB::table('coldstorage_registration_tbl AS t1')
                                         ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name')
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
-                                        ->where('t1.status', '=', $status) 
+                                        ->where('t1.status', '=', $status)
                                         // ->where('t1.reject_by', '=', 2)
-                                        ->where('t1.hod_status', '=', 1)         
+                                        ->where('t1.hod_status', '=', 1)
                                         ->whereNull('t1.deleted_at')
                                         ->whereNull('t2.deleted_at')
                                         ->whereNull('t3.deleted_at')
                                         ->whereNull('t4.deleted_at')
                                         ->orderBy('t1.id', 'DESC')
                                         ->get();
- 
+
         return view('hod.admin_approve_list.rejected_list', compact('meat_registration_list', 'status'));
      }
 
@@ -319,19 +319,19 @@ class HodColdStorageListController extends Controller
                                          ->whereNull('t5.deleted_at')
                                          ->orderBy('t1.id', 'DESC')
                                          ->first();
-                                         
+
          $current_date = $meat_registration_pdf->inserted_dt;
          // dd($current_date);
-         
+
          $current_m = date('m', strtotime($current_date));
          $currentMonth = Carbon::today($current_m)->format('m');
          // dd($currentMonth);
          $fiscalYear = '';
-         
+
          $fiscalYear = $currentMonth > 3 ? Carbon::createFromFormat('d-m-Y', '31-03-'.date('Y'))->addYear()->toDateString() : Carbon::createFromFormat('d-m-Y', '31-03-'.date('Y'))->toDateString();
-         
+
          // dd($fiscalYear);
-                                         
+
          return view('hod.admin_approve_list.generate_english_coldstorage_registration_pdf', compact('meat_registration_pdf','fiscalYear','unit_Meat_Type'));
      }
 
@@ -360,19 +360,19 @@ class HodColdStorageListController extends Controller
                                         ->orderBy('t1.id', 'DESC')
                                         ->first();
         // return $pet_registration_pdf;
-        
+
         $current_date = $meat_registration_pdf->inserted_dt;
         // dd($current_date);
-        
+
         $current_m = date('m', strtotime($current_date));
         $currentMonth = Carbon::today($current_m)->format('m');
         // dd($currentMonth);
         $fiscalYear = '';
-        
+
         $fiscalYear = $currentMonth > 3 ? Carbon::createFromFormat('d-m-Y', '31-03-'.date('Y'))->addYear()->toDateString() : Carbon::createFromFormat('d-m-Y', '31-03-'.date('Y'))->toDateString();
-        
+
         // dd($fiscalYear);
-                                        
+
         return view('hod.admin_approve_list.generate_marathi_coldstorage_registration_pdf', compact('meat_registration_pdf','fiscalYear','unit_Meat_Type'));
      }
 
@@ -381,12 +381,12 @@ class HodColdStorageListController extends Controller
 
         $meat_registration_list =  DB::table('coldstorage_registration_tbl AS t1')
                                     ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.total_recived_tax','t5.license_number','t5.receipt_no','t5.date_of_receipt','t5.date_of_license_obtain','t5.inserted_dt as insert_date')
-                                
+
                                     ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                     ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                     ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
                                     ->leftJoin('approve_by_admin_tbl AS t5', 't5.meat_pplication_id', '=', 't1.id')
-                                    
+
                                     ->whereNull('t1.deleted_at')
                                     ->whereNull('t2.deleted_at')
                                     ->whereNull('t3.deleted_at')
@@ -410,17 +410,17 @@ class HodColdStorageListController extends Controller
         $business_type = $request->input('business_type');
 
         if($request->from_date && $request->to_date){
-     
+
         $meat_search_registration_list =  DB::table('coldstorage_registration_tbl AS t1')
                                          ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.total_recived_tax','t5.license_number','t5.receipt_no','t5.date_of_receipt','t5.date_of_license_obtain','t5.inserted_dt as insert_date')
-                                                
+
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
                                         ->leftJoin('approve_by_admin_tbl AS t5', 't5.meat_pplication_id', '=', 't1.id')
-                                        ->whereDate('t1.inserted_dt', '>=', $from_date)                                 
-                                        ->whereDate('t1.inserted_dt', '<=', $to_date)  
-                                       
+                                        ->whereDate('t1.inserted_dt', '>=', $from_date)
+                                        ->whereDate('t1.inserted_dt', '<=', $to_date)
+
                                         ->whereNull('t1.deleted_at')
                                         ->whereNull('t2.deleted_at')
                                         ->whereNull('t3.deleted_at')
@@ -435,7 +435,7 @@ class HodColdStorageListController extends Controller
 
             $meat_search_registration_list =  DB::table('coldstorage_registration_tbl AS t1')
                                          ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.total_recived_tax','t5.license_number','t5.receipt_no','t5.date_of_receipt','t5.date_of_license_obtain','t5.inserted_dt as insert_date')
-                                                
+
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
@@ -451,7 +451,7 @@ class HodColdStorageListController extends Controller
                                         ->get();
 
                 //   echo $meat_search_registration_list;
-            //   dd($meat_search_registration_list);                        
+            //   dd($meat_search_registration_list);
 
         }
 
@@ -459,7 +459,7 @@ class HodColdStorageListController extends Controller
 
             $meat_search_registration_list =  DB::table('coldstorage_registration_tbl AS t1')
                                          ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.total_recived_tax','t5.license_number','t5.receipt_no','t5.date_of_receipt','t5.date_of_license_obtain','t5.inserted_dt as insert_date')
-                                                
+
                                         ->leftJoin('mst_dist AS t2', 't2.id', '=', 't1.district_id')
                                         ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                         ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
@@ -484,7 +484,7 @@ class HodColdStorageListController extends Controller
                                             ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                             ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
                                             ->leftJoin('approve_by_admin_tbl AS t5', 't5.meat_pplication_id', '=', 't1.id')
-                                           
+
                                             ->Where('t1.hod_status', '=', $status )
                                             ->whereNull('t1.deleted_at')
                                             ->whereNull('t2.deleted_at')
@@ -503,7 +503,7 @@ class HodColdStorageListController extends Controller
                                             ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                             ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
                                             ->leftJoin('approve_by_admin_tbl AS t5', 't5.meat_pplication_id', '=', 't1.id')
-                                            
+
                                             ->Where('t1.status', '=', $adminstatus )
                                             ->whereNull('t1.deleted_at')
                                             ->whereNull('t2.deleted_at')
@@ -522,7 +522,7 @@ class HodColdStorageListController extends Controller
                                             ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                             ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
                                             ->leftJoin('approve_by_admin_tbl AS t5', 't5.meat_pplication_id', '=', 't1.id')
-                                            
+
                                             ->Where('t1.final_approve', '=', $finalstatus )
                                             ->whereNull('t1.deleted_at')
                                             ->whereNull('t2.deleted_at')
@@ -540,8 +540,8 @@ class HodColdStorageListController extends Controller
                                                 ->leftJoin('mst_taluka AS t3', 't3.id', '=', 't1.taluka_id')
                                                 ->leftJoin('meat_type_mst AS t4', 't4.id', '=', 't1.meat_type')
                                                 ->leftJoin('approve_by_admin_tbl AS t5', 't5.meat_pplication_id', '=', 't1.id')
-                                                ->whereDate('t1.inserted_dt', '>=', $from_date)                                 
-                                                ->whereDate('t1.inserted_dt', '<=', $to_date)  
+                                                ->whereDate('t1.inserted_dt', '>=', $from_date)
+                                                ->whereDate('t1.inserted_dt', '<=', $to_date)
                                                 ->Where('t1.hod_status', '=', $status )
                                                 ->Where('t1.status', '=', $adminstatus )
                                                 ->Where('t1.final_approve', '=', $finalstatus )
@@ -556,7 +556,7 @@ class HodColdStorageListController extends Controller
                                                 ->get();
         }
 
-        return view('hod.report.cold_storage_report',  compact('meat_search_registration_list'));                                
+        return view('hod.report.cold_storage_report',  compact('meat_search_registration_list'));
 
      }
 
@@ -575,24 +575,24 @@ class HodColdStorageListController extends Controller
                                         ->whereNull('t4.deleted_at')
                                         ->orderBy('t1.id', 'DESC')
                                         ->first();
-                                        
+
         // return $meat_registration_view;
-        
+
         return view('hod.report.report_view', compact('meat_registration_view'));
      }
-     
-     public function sendsmsnew($sms,$mob_number) 
-    { 
 
-        $key = "kbf8IN83hIxNTVgs";  
+     public function sendsmsnew($sms,$mob_number)
+    {
+
+        $key = "kbf8IN83hIxNTVgs";
         $mbl=$mob_number;   /*or $mbl="XXXXXXXXXX,XXXXXXXXXX";*/
         $message=$sms;
         $message_content=urlencode($message);
-        
+
         $senderid="CoreOC"; $route= 1;
         $url = "http://sms.adityahost.com/vb/apikey.php?apikey=$key&senderid=$senderid&number=$mbl&message=$message_content";
-                            
+
         $output = file_get_contents($url);  /*default function for push any url*/
-        
+
     }
 }

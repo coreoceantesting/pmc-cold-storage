@@ -289,7 +289,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2"><strong>House Number / (घर क्रमांक) : <span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
-                                                                <input type="text" name="house_number" id="house_number" class="form-control @error('house_number') is-invalid @enderror" value="{{ $data->house_number }}" 
+                                                                <input type="text" name="house_number" id="house_number" class="form-control @error('house_number') is-invalid @enderror" value="{{ $data->house_number }}"
                                                                     placeholder="House Number / (घर क्रमांक)">
                                                                 @error('house_number')
                                                                     <span class="invalid-feedback" role="alert">
@@ -300,7 +300,7 @@
 
                                                             <label class="col-sm-2"><strong>House Name / (घराचे नाव) :</strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
-                                                                <input type="text" name="house_name" id="house_name" class="form-control @error('house_name') is-invalid @enderror" value="{{ $data->house_name }}" 
+                                                                <input type="text" name="house_name" id="house_name" class="form-control @error('house_name') is-invalid @enderror" value="{{ $data->house_name }}"
                                                                     placeholder="House Name / (घराचे नाव)">
                                                                 @error('house_name')
                                                                     <span class="invalid-feedback" role="alert">
@@ -314,7 +314,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2"><strong>Street 1 / <br> ( रस्ता १ ): <span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
-                                                                <input type="text" name="street_1" id="street_1" class="form-control @error('street_1') is-invalid @enderror" value="{{ $data->street_1 }}" 
+                                                                <input type="text" name="street_1" id="street_1" class="form-control @error('street_1') is-invalid @enderror" value="{{ $data->street_1 }}"
                                                                     placeholder="Street 1 / (रस्ता १)">
                                                                 @error('street_1')
                                                                     <span class="invalid-feedback" role="alert">
@@ -395,7 +395,7 @@
                                                         WHERE `mst_dist`.`deleted_at` is NULL
                                                         ORDER BY `mst_dist`.`id` DESC
                                                         ');
-                                                        
+
                                                         // dd($data);
                                 $mst_taluka = DB::select('SELECT
                                                                 `mst_taluka`.`id`, `mst_taluka`.`taluka_name`
@@ -421,7 +421,7 @@
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                            @enderror
-                                    </div> 
+                                    </div>
                                     <label class="col-sm-2"><strong>तालुका / <br> Taluka  : </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
                                         <select class="form-control custom-select2 @error('taluka_id') is-invalid @enderror"  name="taluka_id" id="taluka_id" style="width: 100%; height: 38px;">
@@ -444,7 +444,7 @@
                                                             <label class="col-sm-2"><strong>Zip Code / <br> ( पिनकोड ): <span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
 
-                                                                <input type="text" name="zipcode" id="zipcode" maxlength="6" class="form-control @error('zipcode') is-invalid @enderror" value="{{ $data->zipcode }}" 
+                                                                <input type="text" name="zipcode" id="zipcode" maxlength="6" class="form-control @error('zipcode') is-invalid @enderror" value="{{ $data->zipcode }}"
                                                                     placeholder="Zip Code / पिनकोड ">
                                                                 @error('zipcode')
                                                                     <span class="invalid-feedback" role="alert">
@@ -508,10 +508,13 @@
 
                                                             <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
-                                                                <select class="form-control custom-select2 @error('meat_type') is-invalid @enderror" name="meat_type[]" id="meat_type" multiple style="width: 100%; height: 38px;">
+                                                                <select class="form-control custom-select2 @error('meat_type') is-invalid @enderror" name="meat_type[]" id="meat_type" multiple style="width: 100%; height: 50px;">
                                                                     <option value=" ">Select Meat Type / (मांसाचा प्रकार)</option>
+                                                                    @php
+                                                                        $arrayMeat = explode(",", $data->meat_type);
+                                                                    @endphp
                                                                     @foreach ($meattype_mst as $key => $value)
-                                                                    <option value="{{ $key }}" {{ in_array($key, old('meat_type',$selectedMeatTypes ?? [])) ? 'selected' : '' }}>{{ $value }}</option>
+                                                                    <option value="{{ $key }}" {{ in_array($key, $arrayMeat) ? 'selected' : '' }}>{{ $value }}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 {{-- @dump($meattype_mst) --}}
@@ -539,10 +542,10 @@
 
                                                             <label class="col-sm-2"><strong>Unit / (युनिट) :<span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
-                                                                <select class="form-control @error('unit') is-invalid @enderror" name="unit" id="unit" style="width: 100%; height: 38px;">
-                                                                    <option value="">Select Unit / (युनिट)</option>
+                                                                <select class="form-control custom-select2 @error('unit') is-invalid @enderror" name="unit" id="unit" style="width: 100%; height: 38px;">
+                                                                    <option value="">Select Unit / (युनिट) </option>
                                                                     @foreach ($unit_Meat_Type as $item)
-                                                                        <option value="{{ $item->id }}" {{ old('unit') == $item->id ? 'selected' : '' }}>
+                                                                        <option value="{{ $item->id }}" {{ (old('unit') ?? $data->unit) == $item->id ? 'selected' : '' }}>
                                                                             {{ $item->unit_name }}
                                                                         </option>
                                                                     @endforeach
@@ -601,7 +604,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2"><strong>Address of the business / (व्यवसायाचा पत्ता) : <span style="color:red;">*</span> </strong></label>
                                                             <div class="col-sm-12 col-md-12 p-2">
-                                                                <textarea type="text" name="business_address" id="business_address" class="form-control @error('business_address') is-invalid @enderror" value="{{ $data->business_address }}" 
+                                                                <textarea type="text" name="business_address" id="business_address" class="form-control @error('business_address') is-invalid @enderror" value="{{ $data->business_address }}"
                                                                     placeholder="Address of the business / (व्यवसायाचा पत्ता)" style="height:120px;">{{ $data->business_address }} </textarea>
                                                                 @error('business_address')
                                                                     <span class="invalid-feedback" role="alert">
@@ -705,7 +708,7 @@
                                                         <div class="form-group row">
                                                             <label class="col-sm-2"><strong> Valid till / (पर्यंत वैध) : <span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4">
-                                                                <input type="Date" name="valid_till" id="valid_till" class="form-control  @error('valid_till') is-invalid @enderror" value="{{ $data->valid_till }}" 
+                                                                <input type="Date" name="valid_till" id="valid_till" class="form-control  @error('valid_till') is-invalid @enderror" value="{{ $data->valid_till }}"
                                                                     placeholder="valid till ">
                                                                 @error('valid_till')
                                                                     <span class="invalid-feedback" role="alert">
@@ -750,7 +753,7 @@
                                                                 ?>
 <select class="form-control custom-select2 @error('business_place') is-invalid @enderror" name="business_place" id="business_place" style="width: 100%; height: 38px;">
     <option value="">Select place</option>
-    
+
     <option value="1" {{ $data->business_place == '1' ? 'selected' : '' }}>महानगर पालिका बाजार/ Mahanagara Palika Bazar</option>
     <option value="2" {{$data->business_place == '2' ? 'selected' : '' }}>खाजगी जागा/ Private space</option>
 </select>
@@ -761,8 +764,8 @@
 @enderror                                                            </div>
 
                                                         </div>
-                                                        
-                                                        <div class="form-group row other_b" id="hidden_div" style="display:none">   
+
+                                                        <div class="form-group row other_b" id="hidden_div" style="display:none">
                                                             <label class="col-sm-2"><strong> Other  : <span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4">
                                                                 <input type="text" name="business_place_other" id="business_place_other" class="form-control  @error('business_place_other') is-invalid @enderror" value="{{ old('business_place_other') }}" placeholder="other ">
@@ -816,8 +819,8 @@
                                                         <div id="div2" style="display: none;">
 
                                                             <div class="form-group row">
-                                                             
-                                                             <label class="col-sm-2"><strong>Upload ID proof (Adharcard) of the applicant  <br> (अर्जदाराचा आयडी पुरावा (आधारकार्ड) अपलोड करा ) : <span style="color:red;">*</span></strong></label> 
+
+                                                             <label class="col-sm-2"><strong>Upload ID proof (Adharcard) of the applicant  <br> (अर्जदाराचा आयडी पुरावा (आधारकार्ड) अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                    <input type="file" name="adharcard_doc" id="adharcard_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('adharcard_doc') is-invalid @enderror" value="{{ old('$data->adharcard_doc') }}" placeholder="Upload adharcard of applicant">
                                                                    <input type="hidden" name="old_adharcard_doc" value="{{ $data->old_adharcard_doc ?? '' }}">
@@ -831,16 +834,16 @@
                                                                        </span>
                                                                    @enderror
 
-                                                                   <?php 
+                                                                   <?php
                                                                    // Check if the adharcard document exists
                                                                    if(!empty($data->adharcard_doc)) {
                                                                        $document_path = $data->adharcard_doc;
                                                                        $filter_path = explode(".", $document_path);
                                                                        $size_of_array = count($filter_path);
                                                                        $filter_ext = $filter_path[$size_of_array - 1];
-                                                               
+
                                                                        // Check if the file is an image
-                                                                       if ($filter_ext == 'jpg' || $filter_ext == 'jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+                                                                       if ($filter_ext == 'jpg' || $filter_ext == 'jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                            $filter_ext == 'JPG' || $filter_ext == 'JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF') {
                                                                            ?>
                                                                            <p class="mt-3 mb-0" id="image_div">
@@ -864,9 +867,9 @@
                                                                        <?php
                                                                    }
                                                                    ?>
-                                                           
+
                                                                </div>
-                                                               
+
                                                                <label class="col-sm-2"><strong>Upload Ration card, electricity / telephone bill. <br> ( रेशन कार्ड, वीज / टेलिफोन बिल अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                    <input type="file" name="residitional_proof_doc" id="residitional_proof_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('residitional_proof_doc') is-invalid @enderror" value="{{ old('residitional_proof_doc') }}" placeholder="Upload residitional proof of applicat">
@@ -886,8 +889,8 @@
                                                                            $filter_path =  explode(".",$document_path);
                                                                            $size_of_array = count($filter_path);
                                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                                           
-                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                            {?>
                                                                         <p class="mt-3 mb-0" id="image_div">
@@ -901,19 +904,19 @@
                                                                                         <button type="button"class="btn btn-info">
                                                                                             View File
                                                                                         </button>
-                                                                                        </p>                                                                
+                                                                                        </p>
                                                                                     </a>
                                                                         <?php } else { ?><a href="#" class="text-danger">No document found</a><?php } ?>
                                                                     </div>
                                                                 </a>
-                                              
-                                                               </div> 
-                                                               
-                                                               
-                                                                 
+
+                                                               </div>
+
+
+
                                                            </div>
-                                                           
-                                                          
+
+
                                                            <div class="form-group row">
                                                                <label class="col-sm-2"><strong>Upload legal document of the business place <br> ( जागेचा अधिकृततेचा पुरावा अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
@@ -934,8 +937,8 @@
                                                                            $filter_path =  explode(".",$document_path);
                                                                            $size_of_array = count($filter_path);
                                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                                           
-                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                            {?>
                                                                         <p class="mt-3 mb-0" id="image_div">
@@ -949,13 +952,13 @@
                                                                                         <button type="button"class="btn btn-info">
                                                                                             View File
                                                                                         </button>
-                                                                                        </p>                                                                
+                                                                                        </p>
                                                                                     </a>
                                                                         <?php } else { ?><a href="#" class="text-danger">No document found</a><?php } ?>
                                                                     </div>
                                                                 </a>
                                                     </div>
-                                                               
+
                                                                <label class="col-sm-2"><strong>Upload business registration certificate <br> ( व्यवसाय नोंदणी प्रमाणपत्र अपलोड करा ) : </strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                     <input type="file" name="business_registration_doc" id="business_registration_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('business_registration_doc') is-invalid @enderror" value="{{ old('business_registration_doc') }}" placeholder="Upload business registration certificate">
@@ -964,21 +967,21 @@
                                                                    <br>
                                                                    <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
                                                                    <br>
-                                                                  
+
                                                                    @error('business_registration_doc')
                                                                        <span class="invalid-feedback" role="alert">
                                                                            <strong>{{ $message }}</strong>
                                                                        </span>
                                                                    @enderror
                                                                    <div class="form-group">
-                                                                    <?php 
+                                                                    <?php
                                                                     // Check if the business registration document exists
                                                                     if(!empty($data->business_registration_doc)) {
                                                                         $document_path = $data->business_registration_doc;
                                                                         $filter_path = explode(".", $document_path);
                                                                         $size_of_array = count($filter_path);
                                                                         $filter_ext = strtolower($filter_path[$size_of_array - 1]); // Convert extension to lowercase
-                                                                
+
                                                                         // Check if the file is an image
                                                                         if ($filter_ext == 'jpg' || $filter_ext == 'jpeg' || $filter_ext == 'png' || $filter_ext == 'gif') {
                                                                             ?>
@@ -989,14 +992,14 @@
                                                                         } else {
                                                                             // If the file is not an image, you can choose to do nothing or display a message.
                                                                             ?>
-                                                                           
-                                                                                                
+
+
                                                                                                                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/business_registration_doc/{{ $data->business_registration_doc }}" target="_blank">
                                                                                                                                         <p class="mt-3 mb-0" id="image_div">
                                                                                                                                         <button type="button"class="btn btn-info">
                                                                                                                                             View File
                                                                                                                                         </button>
-                                                                                                                                        </p>                                                                
+                                                                                                                                        </p>
                                                                                                                                     </a>
                                                                             <?php
                                                                         }
@@ -1008,9 +1011,9 @@
                                                                     }
                                                                     ?>
                                                                 </div>
-                                                                
-                                                               </div> 
-                                                               
+
+                                                               </div>
+
                                                            </div>
                                                             <div class="form-group row">
                                                                <label class="col-sm-2"><strong>Upload receipt of recently paid property tax <br> ( मालमत्ता कर भरल्याचा पुरावा अपलोड करा ): </strong></label>
@@ -1032,8 +1035,8 @@
                                                                            $filter_path =  explode(".",$document_path);
                                                                            $size_of_array = count($filter_path);
                                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                                           
-                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                            {?>
                                                                         <p class="mt-3 mb-0" id="image_div">
@@ -1047,13 +1050,13 @@
                                                                                         <button type="button"class="btn btn-info">
                                                                                             View File
                                                                                         </button>
-                                                                                        </p>                                                                
+                                                                                        </p>
                                                                                     </a>
                                                                         <?php } else { ?> <a href="#" class="text-danger">No document found</a> <?php } ?>
                                                                     </div>
                                                                 </a>
                                                                </div>
-                                                               
+
                                                                <label class="col-sm-2"><strong>Upload receipt of recently paid water ( पानी पट्टी पावती अपलोड करा ) : </strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                    <input type="file" name="paid_water_doc" id="paid_water_doc" accept=".png, .jpg, .jpeg, .pdf"  class="form-control @error('paid_water_doc') is-invalid @enderror" value="{{ old('paid_water_doc') }}" placeholder="Upload receipt of recently paid water">
@@ -1073,8 +1076,8 @@
                                                                            $filter_path =  explode(".",$document_path);
                                                                            $size_of_array = count($filter_path);
                                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                                           
-                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                            {?>
                                                                         <p class="mt-3 mb-0" id="image_div">
@@ -1088,17 +1091,17 @@
                                                                                         <button type="button"class="btn btn-info">
                                                                                             View File
                                                                                         </button>
-                                                                                        </p>                                                                
+                                                                                        </p>
                                                                                     </a>
                                                                         <?php } else { ?> <a href="#" class="text-danger">No document found</a> <?php } ?>
                                                                     </div>
                                                                 </a>
-                                                               </div> 
+                                                               </div>
                                                            </div>
 
                                                            <div class="form-group row">
-                                                               
-                                                               
+
+
                                                                  <label class="col-sm-2"><strong>Upload details & authority letter from authorized slaughter house / poultry form & authority letter <br>( अधिकृत कुक्कुट पालन करणाऱ्या संस्थेचे व कत्तलखाण्याची माहिती ई संमातीपत्र अपलोड करा ) : </strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                    <input type="file" name="slaughter_letter_doc" id="slaughter_letter_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('slaughter_letter_doc') is-invalid @enderror" value="{{ old('slaughter_letter_doc') }}" placeholder="Upload details & authority letter from authorized slaughter house / poultry form & authority letter">
@@ -1112,15 +1115,15 @@
                                                                            <strong>{{ $message }}</strong>
                                                                        </span>
                                                                    @enderror
-                                                                   
+
                                           <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/slaughter_letter_doc/{{ $data->slaughter_letter_doc }}" target="_blank">
                                             <div class="form-group">
                                                 <?php $document_path = $data->slaughter_letter_doc;
                                                    $filter_path =  explode(".",$document_path);
                                                    $size_of_array = count($filter_path);
                                                    $filter_ext = $filter_path[$size_of_array - 1];
-                                                   
-                                                if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                 $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                    {?>
                                                 <p class="mt-3 mb-0" id="image_div">
@@ -1134,13 +1137,13 @@
                                                                 <button type="button"class="btn btn-info">
                                                                     View File
                                                                 </button>
-                                                                </p>                                                                
+                                                                </p>
                                                             </a>
                                                 <?php } else { ?> <a href="#" class="text-danger">No document found</a> <?php } ?>
                                             </div>
                                         </a>
                                                                </div>
-                                                               
+
                                                                <label class="col-sm-2"><strong>Upload pest control treatment certificate issued from authorized agency <br> ( नोंदणीकृत  संस्थेकडून  कीटनाशक फवारणी केल्याचे प्रमाणपत्र अपलोड करा ): </strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                    <input type="file" name="treatment_authorized_doc" id="treatment_authorized_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('treatment_authorized_doc') is-invalid @enderror" value="{{ old('treatment_authorized_doc') }}" placeholder="Upload pest control treatment certificate issued from authorized agency">
@@ -1160,8 +1163,8 @@
                                                                            $filter_path =  explode(".",$document_path);
                                                                            $size_of_array = count($filter_path);
                                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                                           
-                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                            {?>
                                                                         <p class="mt-3 mb-0" id="image_div">
@@ -1175,7 +1178,7 @@
                                                                                         <button type="button"class="btn btn-info">
                                                                                             View File
                                                                                         </button>
-                                                                                        </p>                                                                
+                                                                                        </p>
                                                                                     </a>
                                                                         <?php } else { ?> <a href="#" class="text-danger">No document found</a> <?php } ?>
                                                                     </div>
@@ -1185,7 +1188,7 @@
 
 
                                                            <div class="form-group row">
-                                                               <label class="col-sm-2"><strong>Upload medical fitness certificate of workers 
+                                                               <label class="col-sm-2"><strong>Upload medical fitness certificate of workers
                             issued by registered  general practitioner <br> (  कामगारांचे वैद्यकीय फिटनेस प्रमाणपत्र अपलोड करा नोंदणीकृत जनरल प्रॅक्टिशनरने जारी केले आहे ):</strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                    <input type="file" name="fitness_certificate_doc" id="fitness_certificate_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('fitness_certificate_doc') is-invalid @enderror" value="{{ old('fitness_certificate_doc') }}" placeholder="Upload medical fitness certificate issued by Municipal hospital">
@@ -1205,8 +1208,8 @@
                                                                            $filter_path =  explode(".",$document_path);
                                                                            $size_of_array = count($filter_path);
                                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                                           
-                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                            {?>
                                                                         <p class="mt-3 mb-0" id="image_div">
@@ -1220,14 +1223,14 @@
                                                                                         <button type="button"class="btn btn-info">
                                                                                             View File
                                                                                         </button>
-                                                                                        </p>                                                                
+                                                                                        </p>
                                                                                     </a>
                                                                         <?php } else { ?> <a href="#" class="text-danger">No document found</a> <?php } ?>
                                                                     </div>
                                                                 </a>
-                                                               </div> 
-                                                               
-                                                               <label class="col-sm-2"><strong>Upload Factory registration and license to operate the factory <br> (कारखाना नोंदणी व कारखाना चालवण्याचा परवाना ): </strong></label>
+                                                               </div>
+
+                                                               {{-- <label class="col-sm-2"><strong>Upload Factory registration and license to operate the factory <br> (कारखाना नोंदणी व कारखाना चालवण्याचा परवाना ): </strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                    <input type="file" name="Factory_reg_and_license_doc" id="Factory_reg_and_license_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('Factory_reg_and_license_doc') is-invalid @enderror" value="{{ old('Factory_reg_and_license_doc') }}" placeholder="Upload Factory registration and license to operate the factory">
                                                                    <input type="hidden" name="old_Factory_reg_and_license_doc" value="{{ $data->Factory_reg_and_license_doc ?? '' }}">
@@ -1246,8 +1249,8 @@
                                                                            $filter_path =  explode(".",$document_path);
                                                                            $size_of_array = count($filter_path);
                                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                                           
-                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                            {?>
                                                                         <p class="mt-3 mb-0" id="image_div">
@@ -1261,13 +1264,13 @@
                                                                                         <button type="button"class="btn btn-info">
                                                                                             View File
                                                                                         </button>
-                                                                                        </p>                                                                
+                                                                                        </p>
                                                                                     </a>
                                                                         <?php } else { ?> <a href="#" class="text-danger">No document found</a> <?php } ?>
                                                                     </div>
                                                                 </a>
-                                                               </div> 
-                                                               
+                                                               </div> --}}
+
                                                                 <label class="col-sm-2"><strong>Upload FSSAI Registration Certificate  <br> (FSSAI नोंदणी प्रमाणपत्र अपलोड करा ) : <span style="color:red;">*</span></strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                    <input type="file" name="issued_doc" id="issued_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('issued_doc') is-invalid @enderror" value="{{ old('issued_doc') }}" placeholder="Upload document issued by APEDA, MPCB(ETP), FSSAI">
@@ -1287,8 +1290,8 @@
                                                                            $filter_path =  explode(".",$document_path);
                                                                            $size_of_array = count($filter_path);
                                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                                           
-                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                            {?>
                                                                         <p class="mt-3 mb-0" id="image_div">
@@ -1302,12 +1305,12 @@
                                                                                         <button type="button"class="btn btn-info">
                                                                                             View File
                                                                                         </button>
-                                                                                        </p>                                                                
+                                                                                        </p>
                                                                                     </a>
                                                                         <?php } else { ?> <a href="#" class="text-danger">No document found</a> <?php } ?>
                                                                     </div>
                                                                 </a>
-                                                               </div> 
+                                                               </div>
                                                            </div>
                                                            <div class="form-group row">
                                                                <label class="col-sm-2"><strong>Upload applicant signature / ( अर्जदाराची स्वाक्षरी अपलोड करा ) : <span style="color:red;">*</span></strong></label>
@@ -1323,15 +1326,15 @@
                                                                            <strong>{{ $message }}</strong>
                                                                        </span>
                                                                    @enderror
-                                                                   
+
                                           <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/applicant_signature/{{ $data->applicant_signature }}" target="_blank">
                                             <div class="form-group">
                                                 <?php $document_path = $data->applicant_signature;
                                                    $filter_path =  explode(".",$document_path);
                                                    $size_of_array = count($filter_path);
                                                    $filter_ext = $filter_path[$size_of_array - 1];
-                                                   
-                                                if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                 $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                    {?>
                                                 <p class="mt-3 mb-0" id="image_div">
@@ -1345,13 +1348,13 @@
                                                                 <button type="button"class="btn btn-info">
                                                                     View File
                                                                 </button>
-                                                                </p>                                                                
+                                                                </p>
                                                             </a>
                                                 <?php } else { ?> <a href="#" class="text-danger">No document found</a> <?php } ?>
                                             </div>
                                         </a>
                                                                </div>
-                                                               
+
                                                                <label class="col-sm-2"><strong>Upload applicant profile photo / ( अर्जदाराचा प्रोफाइल फोटो अपलोड करा ): <span style="color:red;">*</span></strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                    <input type="file" name="profile_photo" id="profile_photo" accept=".png, .jpg, .jpeg, .pdf"  class="form-control @error('profile_photo') is-invalid @enderror" value="{{ old('profile_photo') }}" placeholder="Upload applicant profile photo">
@@ -1371,8 +1374,8 @@
                                                                            $filter_path =  explode(".",$document_path);
                                                                            $size_of_array = count($filter_path);
                                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                                           
-                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                            {?>
                                                                         <p class="mt-3 mb-0" id="image_div">
@@ -1386,18 +1389,18 @@
                                                                                         <button type="button"class="btn btn-info">
                                                                                             View File
                                                                                         </button>
-                                                                                        </p>                                                                
+                                                                                        </p>
                                                                                     </a>
                                                                         <?php } else { ?> <a href="#" class="text-danger">No document found</a> <?php } ?>
                                                                     </div>
                                                                 </a>
-                                                               </div> 
+                                                               </div>
                                                            </div>
-                           
+
                                                            </div>
                                                            <div id="div1" style="display: none;">
                                                                 <div class="form-group row">
-                                                             
+
                                                              <label class="col-sm-2"><strong>Upload Municipal Corporation Permission Letter <br> (महापालिकेचे परवानगी पत्र करा ) : <span style="color:red;">*</span></strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
                                                                    <input type="file" name="municipal_corpor_doc" id="municipal_corpor_doc" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('municipal_corpor_doc') is-invalid @enderror" value="{{ old('municipal_corpor_doc') }}" placeholder="Upload municipal corpor doc of applicant">
@@ -1417,8 +1420,8 @@
                                                                            $filter_path =  explode(".",$document_path);
                                                                            $size_of_array = count($filter_path);
                                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                                           
-                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                            {?>
                                                                         <p class="mt-3 mb-0" id="image_div">
@@ -1432,15 +1435,15 @@
                                                                                         <button type="button"class="btn btn-info">
                                                                                             View File
                                                                                         </button>
-                                                                                        </p>                                                                
+                                                                                        </p>
                                                                                     </a>
                                                                         <?php } else { ?> <a href="#" class="text-danger">No document found</a> <?php } ?>
                                                                     </div>
                                                                 </a>
                                                                </div>
-                                                               
-                                                              
-                                                                 
+
+
+
                                                            </div>
 
                                                             <div class="form-group row">
@@ -1487,7 +1490,7 @@
                                                 </div>
 
 
-                                               
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -1579,7 +1582,7 @@
     <!-- Get Taluka List -->
     <script>
         $(document).ready(function () {
-            
+
             $('#district_id').on('change', function () {
                 var idCountry = this.value;
                 $("#taluka_id").html('');
@@ -1601,7 +1604,7 @@
                     }
                 });
             });
-            
+
         });
     </script>
 
@@ -1711,7 +1714,7 @@
                 return;
             }
 
-           
+
             var selectedValue = businessPlaceInput.trim();
 
             // Hide both divs initially

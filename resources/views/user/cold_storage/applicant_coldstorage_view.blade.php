@@ -229,7 +229,7 @@
                                                         <div class="form-group row">
                                                             <?php
                                                             $applicant_title_id = '';
-                                                            
+
                                                             if ($meat_registration_view->applicant_title_id == 1) {
                                                                 $applicant_title_id = 'Kum.';
                                                             } elseif ($meat_registration_view->applicant_title_id == 2) {
@@ -245,7 +245,7 @@
                                                             } elseif ($meat_registration_view->applicant_title_id == 7) {
                                                                 $applicant_title_id = 'Dr.';
                                                             }
-                                                            
+
                                                             ?>
 
 
@@ -332,11 +332,11 @@
                                                         <div class="form-group row">
                                                             <?php
                                                             $country_id = '';
-                                                            
+
                                                             if ($meat_registration_view->country_id == 1) {
                                                                 $country_id = 'India';
                                                             }
-                                                            
+
                                                             ?>
                                                             <label class="col-sm-2"><strong>Country / <br> ( देश ) : <span style="color:red;">*</span></strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
@@ -345,11 +345,11 @@
 
                                                             <?php
                                                             $state_id = '';
-                                                            
+
                                                             if ($meat_registration_view->state_id == 1) {
                                                                 $state_id = 'Maharashtra';
                                                             }
-                                                            
+
                                                             ?>
                                                             <label class="col-sm-2"><strong>State / ( राज्य ) <span style="color:red;">*</span>: </strong></label>
                                                             <div class="col-sm-4 col-md-4 p-2">
@@ -403,19 +403,19 @@
                                                             <!--    <input readonly class="form-control" value="{{ $meat_registration_view->unit }}">-->
                                                             <!--</div>-->
                                                              <div class="col-sm-4 col-md-4 p-2">
-                                                            <select class="form-control custom-select2 @error('unit') is-invalid @enderror" 
-                                                                    name="unit" 
-                                                                    id="meat_type" 
+                                                            <select class="form-control custom-select2 @error('unit') is-invalid @enderror"
+                                                                    name="unit"
+                                                                    id="meat_type"
                                                                     style="width: 100%; height: 38px;">
                                                                 <option value="">Select Unit / (युनिट)</option>
                                                                 @foreach ($unit_Meat_Type as $item)
-                                                                    <option disabled value="{{ $item->id }}" 
+                                                                    <option disabled value="{{ $item->id }}"
                                                                         {{ (old('unit') ?? $meat_registration_view->unit) == $item->id ? 'selected' : '' }}>
                                                                         {{ $item->unit_name }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
-                                                        
+
                                                             @error('unit') <!-- Updated error checking to match the correct field name -->
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
@@ -425,7 +425,7 @@
 
 
 
-                                                           
+
 
                                                         </div>
                                                         <div class="form-group row">
@@ -435,7 +435,7 @@
                                                         <div class="form-group row">
                                                             <?php
                                                             $provision_water = '';
-                                                            
+
                                                             if ($meat_registration_view->provision_water == 1) {
                                                                 $provision_water = 'Yes';
                                                             }
@@ -450,7 +450,7 @@
 
                                                             <?php
                                                             $provision_electricty = '';
-                                                            
+
                                                             if ($meat_registration_view->provision_electricty == 1) {
                                                                 $provision_electricty = 'Yes';
                                                             }
@@ -473,7 +473,7 @@
                                                         <div class="form-group row">
                                                             <?php
                                                             $sewerage_disposing = '';
-                                                            
+
                                                             if ($meat_registration_view->sewerage_disposing == 1) {
                                                                 $sewerage_disposing = 'Yes';
                                                             }
@@ -496,7 +496,7 @@
 
                                                         <?php
                                                         $place = '';
-                                                        
+
                                                         if ($meat_registration_view->place_id == 1) {
                                                             $place = 'Yes';
                                                         }
@@ -540,7 +540,7 @@
                                                                 <?php
                                                                 $originalDate = $meat_registration_view->valid_till;
                                                                 $newDate = date('d-m-Y', strtotime($originalDate));
-                                                                
+
                                                                 ?>
                                                                 <input readonly class="form-control" value="{{ $newDate }}">
                                                             </div>
@@ -563,14 +563,14 @@
 
                                                                 <?php
                                                                 $business_place = '';
-                                                                
+
                                                                 if ($meat_registration_view->business_place == 1) {
                                                                     $business_place = 'महानगर पालिका बाजार/ Mahanagara Palika Bazar';
                                                                 }
                                                                 if ($meat_registration_view->business_place == 2) {
                                                                     $business_place = 'खाजगी जागा/ Private space';
                                                                 }
-                                                                
+
                                                                 ?>
                                                                 <input readonly class="form-control" id="business_place" value="{{ $business_place }}">
                                                             </div>
@@ -606,8 +606,8 @@
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                                             <p class="mt-3 mb-0" id="image_div">
@@ -639,8 +639,8 @@
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                                             <p class="mt-3 mb-0" id="image_div">
@@ -674,8 +674,8 @@
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                                             <p class="mt-3 mb-0" id="image_div">
@@ -698,10 +698,10 @@
                                                                 </div>
 
                                                                 <label class="col-sm-2"><strong>Upload business registration certificate <br> ( व्यवसाय नोंदणी प्रमाणपत्र अपलोड करा ) : </strong></label>
-                                                      
+
                                                         <div class="col-sm-4 col-md-4 p-2">
     <div class="form-group">
-        <?php 
+        <?php
         // Check if the business registration document exists
         if (!empty($meat_registration_view->business_registration_doc)) {
             $document_path = $meat_registration_view->business_registration_doc;
@@ -726,7 +726,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                 <?php
             }
@@ -747,7 +747,7 @@
                                                                 <label class="col-sm-2"><strong>Upload receipt of recently paid property tax <br> ( नुकत्याच भरलेल्या मालमत्ता कराची पावती अपलोड करा ): </strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
     <div class="form-group">
-        <?php 
+        <?php
         // Check if the property tax document exists
         if (!empty($meat_registration_view->property_tax_doc)) {
             $document_path = $meat_registration_view->property_tax_doc;
@@ -772,7 +772,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                 <?php
             }
@@ -790,7 +790,7 @@
                                                                 <label class="col-sm-2"><strong>Upload receipt of recently paid water ( पानी पट्टी पावती अपलोड करा ) : </strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
     <div class="form-group">
-        <?php 
+        <?php
         // Check if the paid water document exists
         if (!empty($meat_registration_view->paid_water_doc)) {
             $document_path = $meat_registration_view->paid_water_doc;
@@ -815,7 +815,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                 <?php
             }
@@ -837,7 +837,7 @@
                                                                         कत्तलखाण्याची माहिती ई संमातीपत्र अपलोड करा ) : </strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
     <div class="form-group">
-        <?php 
+        <?php
         // Check if the slaughter letter document exists
         if (!empty($meat_registration_view->slaughter_letter_doc)) {
             $document_path = $meat_registration_view->slaughter_letter_doc;
@@ -862,7 +862,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                 <?php
             }
@@ -881,7 +881,7 @@
                                                                             style="color:red;"></span></strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
     <div class="form-group">
-        <?php 
+        <?php
         // Check if the treatment authorized document exists
         if (!empty($meat_registration_view->treatment_authorized_doc)) {
             $document_path = $meat_registration_view->treatment_authorized_doc;
@@ -906,7 +906,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                 <?php
             }
@@ -927,7 +927,7 @@
                                                                         issued by registered general practitioner <br> ( कामगारांचे वैद्यकीय फिटनेस प्रमाणपत्र अपलोड करा नोंदणीकृत जनरल प्रॅक्टिशनरने): </strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
     <div class="form-group">
-        <?php 
+        <?php
         // Check if the fitness certificate document exists
         if (!empty($meat_registration_view->fitness_certificate_doc)) {
             $document_path = $meat_registration_view->fitness_certificate_doc;
@@ -952,7 +952,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                 <?php
             }
@@ -972,7 +972,7 @@
                                                                 <label class="col-sm-2"><strong>Upload Factory registration and license to operate the factory <br> (कारखाना नोंदणी व कारखाना चालवण्याचा परवाना ): </strong></label>
                                                               <div class="col-sm-4 col-md-4 p-2">
     <div class="form-group">
-        <?php 
+        <?php
         // Check if the Factory registration and license document exists
         if (!empty($meat_registration_view->Factory_reg_and_license_doc)) {
             $document_path = $meat_registration_view->Factory_reg_and_license_doc;
@@ -997,7 +997,7 @@
                                                                         <button type="button"class="btn btn-info">
                                                                             View File
                                                                         </button>
-                                                                        </p>                                                                
+                                                                        </p>
                                                                     </a>
                 <?php
             }
@@ -1015,15 +1015,15 @@
                                                                 <label class="col-sm-2"><strong>Upload FSSAI Registration Certificate <br> (FSSAI नोंदणी प्रमाणपत्र अपलोड करा ) : <span
                                                                             style="color:red;"></span></strong></label>
                                                                <div class="col-sm-4 col-md-4 p-2">
-    
+
     <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/issued_doc/{{ $meat_registration_view->issued_doc }}" target="_blank">
                                                                         <div class="form-group">
                                                                             <?php $document_path = $meat_registration_view->issued_doc;
                                                                             $filter_path =  explode(".",$document_path);
                                                                             $size_of_array = count($filter_path);
                                                                             $filter_ext = $filter_path[$size_of_array - 1];
-                                                                            
-                                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                                             $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                                             {?>
                                                                             <p class="mt-3 mb-0" id="image_div">
@@ -1056,8 +1056,8 @@
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                                             <p class="mt-3 mb-0" id="image_div">
@@ -1088,8 +1088,8 @@
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
+
+                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
                                                         $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
                                                            {?>
                                                                             <p class="mt-3 mb-0" id="image_div">
@@ -1123,10 +1123,10 @@
                                                            $filter_path =  explode(".",$document_path);
                                                            $size_of_array = count($filter_path);
                                                            $filter_ext = $filter_path[$size_of_array - 1];
-                                                           
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' || 
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
+
+                                                            if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                            $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                            {?>
                                                                             <p class="mt-3 mb-0" id="image_div">
                                                                                 <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/municipal_corpor_doc/{{ $meat_registration_view->municipal_corpor_doc }} " alt="image"
                                                                                     class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
@@ -1154,7 +1154,7 @@
 
 
                                                                 </div>
-                                                            </div>
+                                                        </div>
                                                     </section>
                                                 </div>
                                             </form>
