@@ -91,9 +91,9 @@ class ColdStorageRegistrationRenewalController extends Controller
 
      public function store(Request $request)
      {
-        //   dd($request->all());
+    //    dd($request->all());
         $mainid = Auth::guard('meatregistereduser')->user()->id;
-//  dd($mainid);
+  dd($mainid);
       $check =  DB::table('coldstorage_renewal_license_tbl AS t1')
                                         ->select('*')
                                         ->where('t1.register_table_id', '=', $mainid)
@@ -636,7 +636,7 @@ class ColdStorageRegistrationRenewalController extends Controller
 
         $data->renwal_liceans_no = $unique_id;
         $data->save();
-    //  dd($data);
+      dd($data);
         // ColdStorageRegistration_Model::where('id',$request->get('register_table_id'))->update(['is_renewal' =>0]);
 
         // dd($data->register_table_id);
@@ -697,7 +697,7 @@ class ColdStorageRegistrationRenewalController extends Controller
 
     public function User_coldStorageRenewalForm_View(Request $request, $application_id, $user_type)
     {
-
+        // dd($request->all());
          $meattype_mst = MeatType_Master::orderBy('id','desc')->pluck('meat_name', 'id')->whereNull('deleted_at');
          $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
         if($user_type == 'Cold_Storage')
@@ -748,55 +748,58 @@ class ColdStorageRegistrationRenewalController extends Controller
 
     public function UpdateColdStorageRenewal(Request $request, $id)
     {
+        // dd($request->all());
         $this->validate($request, [
 
+            'unit'=>'required'
             // Basic Details
-            'applicant_title_id' => 'required|numeric',
-            'applicant_fname' => 'required|string',
-            'applicant_mname' => 'required|string',
-            'applicant_lname' => 'required|string',
+            // 'applicant_title_id' => 'required|numeric',
+            // 'applicant_fname' => 'required|string',
+            // 'applicant_mname' => 'required|string',
+            // 'applicant_lname' => 'required|string',
 
-            'mobile_number' => 'required|string',
-            'email' => 'required|string',
+            // 'mobile_number' => 'required|string',
+            // 'email' => 'required|string',
 
-            'aadhar_number' => 'required|string',
+            // 'aadhar_number' => 'required|string',
 
             // Residential Address of Applicant
-            'house_number' => 'required|string',
+            // 'house_number' => 'required|string',
 
-            'street_1' => 'required|string',
+            // 'street_1' => 'required|string',
 
-            'area_1' => 'required|string',
+            // 'area_1' => 'required|string',
 
-            'country_id' => 'required|string',
-            'state_id' => 'required|string',
-            'district_id' => 'required|string',
-            'taluka_id' => 'required|string',
-            'zipcode' => 'required|string',
+            // 'country_id' => 'required|string',
+            // 'state_id' => 'required|string',
+            // 'district_id' => 'required|string',
+            // 'taluka_id' => 'required|string',
+            // 'zipcode' => 'required|string',
 
-            // Business Details
-            'business_name' => 'required|string',
-            'business_type' => 'required|numeric',
-            'meat_type' => 'required|string',
-            'per_day_capacity' => 'required|string',
-            'provision_water' => 'required|numeric',
-            'provision_electricty' => 'required|numeric',
-            'business_address' => 'required|string',
-            'sewerage_disposing' => 'required|numeric',
+            // // Business Details
+            // 'business_name' => 'required|string',
+            // 'business_type' => 'required|numeric',
+            // 'meat_type' => 'required|string',
+            // 'per_day_capacity' => 'required|string',
+            // 'provision_water' => 'required|numeric',
+            // 'provision_electricty' => 'required|numeric',
+            // 'business_address' => 'required|string',
+            // 'sewerage_disposing' => 'required|numeric',
 
-            'place_id' => 'required|numeric',
+            // 'place_id' => 'required|numeric',
 
-            'regi_authority_name' => 'required|string',
-            'register_number' => 'required|string',
-            'valid_till' => 'required|string',
+            // 'regi_authority_name' => 'required|string',
+            // 'register_number' => 'required|string',
+            // 'valid_till' => 'required|string',
 
-             'areaof_business_place' => 'required|string',
-             'business_place' => 'required|numeric',
+            //  'areaof_business_place' => 'required|string',
+            //  'business_place' => 'required|numeric',
 
 
 
          ],[
               // Basic Details
+              'unit.required'=>'Select any one',
               'applicant_title_id.required' => 'Applicant Title is required',
               'applicant_fname.required' => 'Applicant First Name is required',
               'applicant_mname.required' => 'Applicant Middle Name is required',
@@ -1019,7 +1022,7 @@ class ColdStorageRegistrationRenewalController extends Controller
 
         $data->mobile_number = $request->get('mobile_number');
         $data->email = $request->get('email');
-
+// dd($data->email);
         $data->aadhar_number = $request->get('aadhar_number');
 
         // Residential Address of Applicant
@@ -1034,7 +1037,8 @@ class ColdStorageRegistrationRenewalController extends Controller
         $data->district_id = $request->get('district_id');
         $data->taluka_id = $request->get('taluka_id');
         $data->zipcode = $request->get('zipcode');
-
+        $data->unit=$request->get('unit');
+        // dd($data->unit);
         // Business Details
         $data->business_name = $request->get('business_name');
         $data->business_type = $request->get('business_type');
@@ -1091,6 +1095,7 @@ class ColdStorageRegistrationRenewalController extends Controller
         $data->modified_by = Auth::guard('meatregistereduser')->user()->id;
 
         $data->save();
+        //  dd($data);
             // 'inserted_by' => $data->id,
 
 
@@ -1258,6 +1263,7 @@ class ColdStorageRegistrationRenewalController extends Controller
 
     public function coldStorageRenewalForm_View(Request $request, $application_id, $user_type)
     {
+        dd($request->all());
 
         $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
 
