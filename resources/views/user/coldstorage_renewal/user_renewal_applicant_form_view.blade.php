@@ -411,11 +411,11 @@
                                 <div class="form-group row">
                                     <?php
                                     $country_id = '';
-                                    
+
                                     if ($data->country_id == 1) {
                                         $country_id = 'India';
                                     }
-                                    
+
                                     ?>
                                     <label class="col-sm-2"><strong>Country / <br> ( देश ) : <span
                                                 style="color:red;">*</span></strong></label>
@@ -570,6 +570,11 @@
                                                     {{ $value }}</option>
                                             @endforeach
                                         </select>
+                                        @error('meat_type')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                     </div>
                                     {{-- <label class="col-sm-2"><strong>Kind of Business / (व्यवसायाचा प्रकार) : <span style="color:red;">*</span> </strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
@@ -1514,7 +1519,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                   
+
 
                                     <div class="form-group row">
                                         <label class="col-sm-2"><strong>Upload applicant signature / ( अर्जदाराची
@@ -1773,7 +1778,7 @@
                     </div>
                 </div>
           </form>
-                  
+
 
         </div>
     </div>

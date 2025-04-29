@@ -14,16 +14,16 @@
                     </ul>
                     <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
                 </div>
-                <div class="col-lg-5 col-md-6 col-sm-12">                
+                <div class="col-lg-5 col-md-6 col-sm-12">
                     <button class="btn btn-primary btn-icon float-right right_icon_toggle_btn" type="button"><i class="zmdi zmdi-arrow-right"></i></button>
                 </div>
             </div>
         </div>
-        
+
         <!--<div class="container-fluid">-->
         <!--    <div class="row clearfix">-->
         <!--        <div class="col-lg-12">-->
-                    
+
         <!--            <div class="card"  id="divToPrint">-->
         <!--                <div class="body" style="padding:60px;">-->
         <!--                    <div class="row">-->
@@ -32,23 +32,23 @@
         <!--                                <img class="img-fluid " src="{{ url('/') }}/assets/images/PMC-logo.png" alt="Awesome Image" style="height:150px; width:220px;">-->
         <!--                            </div>-->
         <!--                        </div>-->
-        
+
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-lg-12">
-                    
+
                     <div class="card"  id="divToPrint">
                         <div class="body" style="padding:60px;">
                            <div class="row">
                                 <div class="col-md-3">
                                     <div class="icon-box" style="text-align: center;">
-                                         <img class="img-fluid " src="{{ url('/') }}/assets/images/PMC-logo.png" alt="Awesome Image" style="height: 105px;width: 140px;"> 
-                                      
+                                         <img class="img-fluid " src="{{ url('/') }}/assets/images/PMC-logo.png" alt="Awesome Image" style="height: 105px;width: 140px;">
+
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="icon-box" style="text-align: center;">
-                                      
+
                                         <img class="img-fluid " src="{{ url('/') }}/assets/images/75th_logo.png" alt="Awesome Image" style="height: 107px;width: 131px;">
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                     </div>
                                 </div>
                                  </div>
-        
+
                                        <div class="row">
                                  <div class="col-md-12 text-center">
                                 <!--<div class="col-md-8 text-center">-->
@@ -75,9 +75,9 @@
                                 <!--<div class="col-md-1" >-->
                                 </div>
                             </div>
-                            
+
                             <hr>
-                            <div class="row">                                
+                            <div class="row">
                                 <div class="col-md-8 col-sm-8">
                                     <p class="mb-1"><strong>दूरध्वनी कार्यालय : </strong> ०२२-२७४५८०४०/४१/४२ </p>
                                     <p class="mb-1"><strong>उपायुक्त्त कार्यालय : </strong> ०२२-२७४५५७५१ </p>
@@ -90,10 +90,10 @@
                                 </div>
                             </div>
                             <hr class="mb-1">
-                            
-                            
+
+
                             <div class="row pt-0">
-                               
+
                                  <div class="col-md-9   col-sm-9 ">
                                   वाचा  -  <br><p class="font-weight-bold" >1.महाराष्ट्र महानगरपालिका अधिनियम १९४९ चे कलाम ६९ (१)</p>
                                 </div>
@@ -102,39 +102,39 @@
                                    {{ \Carbon\Carbon::now()->format('d/m/Y') }}
                                 </div>
                             </div>
-                            
+
                              <div class="row">
-                                <div class="col-md-12 col-sm-12 pt-5 text-center">
+                                {{-- <div class="col-md-12 col-sm-12 pt-5 text-center">
                                     <!--<h5><strong>Reference number - </strong></h5>-->
                                     <p class="font-weight-bold">संदर्भ क्रमांक -</p>
-                                </div>
+                                </div> --}}
                                 <!-- <div class="col-md-12 col-sm-12 pt-5 text-center">-->
-                                   
+
                                 <!--    <p class="font-weight-bold">परवाना क्रमांक  : -  {{ $meat_renewal_pdf->renwal_liceans_no }} </p>-->
                                 <!--</div>-->
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 pt-5 text-center">
                                     <h5><strong>चिकन /मटण / मासे / म्हशीचे मांस क्रिया शीतगृह <br>( processing /cold storage) व्यवसाय  परवाना </strong></h5>
                                     <!--<p class="font-weight-bold">License to keep dogs </p>-->
                                 </div>
-                                
+
                             </div>
-                            
+
                             <div class="row">
                                  <div class="col-md-12 col-sm-12 pt-1 text-start">
                                     <p>महाराष्ट्र महानगरपालिका  अधिनियम ,१९४९ चे  कलम ३३१ आणि ४५८  चे  पोटकलम  (२६) (२७) (२८) (२९) आणि (४८) अन्वये तयार करण्यात आलेली  पनवेल महानगरपालिकेचे  बाजार, खाजगी बाजार व कत्तलखाने   बाबतचची उपविधीस  अनुसरून , व उक्त कायद्यातील कलम ३३५ व ३८२ अन्वेय नमूद व्यक्तीस व ठिकाणी  चिकन/मटण/मासे/म्हैसवर्गीय  मांस   क्रिया  / शीतगृह (processing cold storage) व्ययसाय परवाना देण्यात येत आहे </p>
                                 </div>
                             </div>
-                            
-                            <div class="row pt-3">                                
+
+                            <div class="row pt-3">
                                 <div class="col-md-8 col-sm-8">
                                      <p class="mb-0">
                                         <strong>परवानाधारकाचे नाव - </strong>
                                         <?php
                                                     $applicant_title_id = '';
-                                                    
+
                                                     if($meat_renewal_pdf->applicant_title_id == 1)
                                                     {
                                                         $applicant_title_id = 'Kum.';
@@ -169,15 +169,15 @@
                                 </div>
                                 <div class="col-md-4 col-sm-4 ">
                                     <p class="mb-0">
-                                        <strong>License No. - </strong>  
+                                        <strong>License No. - </strong>
                                         {{ $meat_renewal_pdf->renwal_liceans_no }}
                                     </p>
                                 </div>
-                               
+
                             </div>
-                           
-                            
-                            <div class="row pt-3">                                
+
+
+                            <div class="row pt-3">
                                 <div class="col-md-8 col-sm-8">
                                     <p class="mb-0">
                                         <strong> मांस व्यवसायाचे नाव- </strong>
@@ -186,13 +186,13 @@
                                 </div>
                                 <div class="col-md-4 col-sm-4 ">
                                     <p class="mb-0">
-                                        <strong> old License No. - </strong>  
+                                        <strong> old License No. - </strong>
                                         {{ $meat_renewal_pdf->licence_no }}
                                     </p>
                                 </div>
                             </div>
-                            
-                            <div class="row pt-3">                                
+
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
                                         <strong> मांस व्यवसाय पत्ता- </strong>
@@ -200,8 +200,8 @@
                                     </p>
                                 </div>
                             </div>
-                            
-                             <div class="row pt-3">                                
+
+                             <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
                                         <strong> व्यवसाय नोंदणी क्रमांक - </strong>
@@ -209,38 +209,18 @@
                                     </p>
                                 </div>
                             </div>
-                            
-                            <div class="row pt-3">                                
+
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
-                                        <strong>मांस व्यवसाय प्रकार - </strong>
-                                              <?php
-                                                    $business_type = '';
-                                                    
-                                                    if($meat_renewal_pdf->business_type == 1)
-                                                    {
-                                                        $business_type = 'Butcher Shop ( मांस  विक्री  केंद्र )';
-                                                    }
-                                                    else if($meat_renewal_pdf->business_type == 2)
-                                                    {
-                                                        $business_type = 'Meat Processing Plant ( मांस  प्रक्रिया   केंद्र  )';
-                                                    }
-                                                    else if($meat_renewal_pdf->business_type == 3)
-                                                    {
-                                                        $business_type = 'Transportation of Meat ( मांसाची  वाहतूक )';
-                                                    }
-                                                    else if($meat_renewal_pdf->business_type == 4)
-                                                    {
-                                                        $business_type = 'Other ( इतर )';
-                                                    }
-                                                ?>
-                                                
-                                            {{ $business_type }}
+                                        <strong>मांस प्रकार - </strong>
+
+                                            {{ $commaSeparatedMeatNames }}
                                     </p>
                                 </div>
                             </div>
-                            
-                            <div class="row pt-3">                                
+
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
                                         <strong>मांस व्यवसाय प्रति दिवस क्षमता - </strong>
@@ -248,9 +228,9 @@
                                     </p>
                                 </div>
                             </div>
-                             
-                            
-                            <div class="row pt-3">                                
+
+
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
                                         <strong>परवाना जारी करण्याची तारीख - </strong>
@@ -258,13 +238,13 @@
                                     </p>
                                 </div>
                             </div>
-                            <?php 
+                            <?php
                             $approve_date = $meat_renewal_pdf->approve_date_of_license_obtain;
-                            
+
                             $newEndingDate = date("d-m-Y", strtotime(date("d-m-Y", strtotime($approve_date)) . " + 1 year"));
-                            
+
                             ?>
-                            <div class="row pt-3">                                
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                    <p class="mb-0">
                                         <strong>परवाना वैध दिनांक    </strong>
@@ -272,16 +252,16 @@
                                     </p>
                                 </div>
                             </div>
-                           
-                            
-                            <div class="row pt-3"> 
+
+
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12 text-right">
                                     <p class="mb-0">
-                                        
+
                                          <strong>
                                             <img src="{{url('/')}}/PMC_Cold_Storage/re_hod_sign/{{ $meat_renewal_pdf->re_hod_sign }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:100px;">
                                        </strong> <br>
-                                       
+
                                         @if(!empty($meat_renewal_pdf->re_final_approve_by == Auth::id()))
                                         <strong>{{ Auth::user()->name }}</strong><br>
                                         @endif
@@ -290,8 +270,8 @@
                                     </p>
                                 </div>
                             </div>
-                            
-                        </div>    
+
+                        </div>
                     </div>
                     <div class="submit-section text-right pt-5" >
 					    <a href='{{ url("/admin_approve_list_renewal/{$meat_renewal_pdf->status}") }}' class="btn btn-danger btn-lg text-light" >Cancel</a>
@@ -312,7 +292,7 @@
         document.body.innerHTML = originalContents;
         $("#print").css("display", "block");
         // location.reload();
-    
+
     }
 </script>
-@include('common.footer')  
+@include('common.footer')

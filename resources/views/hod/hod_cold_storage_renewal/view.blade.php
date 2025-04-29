@@ -239,7 +239,7 @@
 
                                     <label class="col-sm-2"><strong>Meat Type / (मांसाचा प्रकार) : <span style="color:red;">*</span></strong></label>
                                     <div class="col-sm-4 col-md-4 p-2">
-                                        <input readonly  class="form-control " value="{{ $meat_renewal_view->meat_name }}" >
+                                       {{ $commaSeparatedMeatNames }}
                                     </div>
                                 </div>
                                 <div class="form-group row">

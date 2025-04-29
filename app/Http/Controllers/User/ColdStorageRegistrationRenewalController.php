@@ -751,7 +751,8 @@ class ColdStorageRegistrationRenewalController extends Controller
         // dd($request->all());
         $this->validate($request, [
 
-            'unit'=>'required'
+            'unit'=>'required',
+            'meat_type' => 'required',
             // Basic Details
             // 'applicant_title_id' => 'required|numeric',
             // 'applicant_fname' => 'required|string',
@@ -779,7 +780,7 @@ class ColdStorageRegistrationRenewalController extends Controller
             // // Business Details
             // 'business_name' => 'required|string',
             // 'business_type' => 'required|numeric',
-            // 'meat_type' => 'required|string',
+
             // 'per_day_capacity' => 'required|string',
             // 'provision_water' => 'required|numeric',
             // 'provision_electricty' => 'required|numeric',
@@ -800,6 +801,7 @@ class ColdStorageRegistrationRenewalController extends Controller
          ],[
               // Basic Details
               'unit.required'=>'Select any one',
+              'meat_type.required' => 'Meat Type is required',
               'applicant_title_id.required' => 'Applicant Title is required',
               'applicant_fname.required' => 'Applicant First Name is required',
               'applicant_mname.required' => 'Applicant Middle Name is required',
@@ -824,7 +826,7 @@ class ColdStorageRegistrationRenewalController extends Controller
               // Business Details
               'business_name.required' => 'Name of the business is required',
               'business_type.required' => 'Kind of Business is required',
-              'meat_type.required' => 'Meat Type is required',
+
               'per_day_capacity.required' => 'Per Day Capacity is required',
               'provision_water.required' => 'Provision of water is required',
               'provision_electricty.required' => 'Provision of electricity is required',
@@ -1042,7 +1044,8 @@ class ColdStorageRegistrationRenewalController extends Controller
         // Business Details
         $data->business_name = $request->get('business_name');
         $data->business_type = $request->get('business_type');
-        $data->meat_type = $request->get('meat_type');
+        $data->meat_type = implode(",", $request->get('meat_type'));
+        // dd($data->meat_type);
         $data->per_day_capacity = $request->get('per_day_capacity');
         $data->provision_water = $request->get('provision_water');
         $data->provision_electricty = $request->get('provision_electricty');
@@ -1272,7 +1275,7 @@ class ColdStorageRegistrationRenewalController extends Controller
 
     public function coldStorageRenewalForm_View(Request $request, $application_id, $user_type)
     {
-        dd($request->all());
+        // dd($request->all());
 
         $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
 

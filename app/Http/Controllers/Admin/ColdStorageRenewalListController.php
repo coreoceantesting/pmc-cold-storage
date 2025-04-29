@@ -62,8 +62,13 @@ class ColdStorageRenewalListController extends Controller
                                         ->orderBy('t1.id', 'DESC')
                                         ->first();
           //dd($meat_renewal_view);
+          $array = explode(",",$meat_renewal_view->meat_type);
+          $meatNames = DB::table('meat_type_mst')
+          ->whereIn('id', $array)
+          ->pluck('meat_name');
+          $commaSeparatedMeatNames = $meatNames->implode(', ');
 
-        return view('admin.cold_storage_renewal.view', compact('meat_renewal_view','unit_Meat_Type'));
+        return view('admin.cold_storage_renewal.view', compact('meat_renewal_view','unit_Meat_Type','commaSeparatedMeatNames'));
     }
 
     //Cold_renewal_invoice
