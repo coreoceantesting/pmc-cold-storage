@@ -93,7 +93,7 @@ class ColdStorageRegistrationRenewalController extends Controller
      {
     //    dd($request->all());
         $mainid = Auth::guard('meatregistereduser')->user()->id;
-  dd($mainid);
+//   dd($mainid);
       $check =  DB::table('coldstorage_renewal_license_tbl AS t1')
                                         ->select('*')
                                         ->where('t1.register_table_id', '=', $mainid)
@@ -636,7 +636,7 @@ class ColdStorageRegistrationRenewalController extends Controller
 
         $data->renwal_liceans_no = $unique_id;
         $data->save();
-      dd($data);
+    //   dd($data);
         // ColdStorageRegistration_Model::where('id',$request->get('register_table_id'))->update(['is_renewal' =>0]);
 
         // dd($data->register_table_id);
@@ -1189,7 +1189,7 @@ class ColdStorageRegistrationRenewalController extends Controller
 
     public function GenerateenglishrenewalLicensepdf(request $request, $id)
     {
-
+        // $user_id = Auth::guard('meatregistered_users')->user()->id;
          $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
            $meat_renewal_pdf =  DB::table('coldstorage_renewal_license_tbl AS t1')
                                         ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.cold_storage_aplication_no as licence_no',
@@ -1213,6 +1213,23 @@ class ColdStorageRegistrationRenewalController extends Controller
                                         ->orderBy('t1.id', 'DESC')
                                         ->first();
 
+
+                                        $hasMultipleRenewal = DB::table('coldstorage_renewal_license_tbl')
+                                        ->where([
+                                          'register_table_id' => $meat_renewal_pdf->register_table_id,
+                                          're_final_approve' => 1,
+                                        ])
+                                        ->orderByDesc('id')
+                                        ->limit(2)
+                                        ->get();
+
+                                        if ($hasMultipleRenewal->count() > 1) {
+                                            $oldLicense = $hasMultipleRenewal->skip(1)->take(1)->first();
+                                          } else {
+                                            $oldLicense = DB::table('coldstorage_registration_tbl')->where(['id' => $meat_renewal_pdf->register_table_id])->first();
+                                          }
+                                        // dd($oldLicense);
+
         $current_date = $meat_renewal_pdf->inserted_dt;
         // dd($current_date);
 
@@ -1228,7 +1245,7 @@ class ColdStorageRegistrationRenewalController extends Controller
                     ->whereIn('id', $array)
                     ->pluck('meat_name');
         $commaSeparatedMeatNames = $meatNames->implode(', ');
-        return view('user.coldstorage_renewal.generate_english_coldstorage_renewal_pdf', compact('meat_renewal_pdf','fiscalYear','commaSeparatedMeatNames','unit_Meat_Type'));
+        return view('user.coldstorage_renewal.generate_english_coldstorage_renewal_pdf', compact('meat_renewal_pdf','fiscalYear','oldLicense','commaSeparatedMeatNames','unit_Meat_Type'));
       }
 
     public function GenerateMarathirenewalLicensepdf(request $request, $id)

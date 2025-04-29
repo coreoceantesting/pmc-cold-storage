@@ -1701,65 +1701,65 @@
 
 
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-2"><strong>Upload previous year licence copy / ( मागील
-                                                वर्षाच्या
-                                                परवान्याची प्रत अपलोड करा ) : <span
-                                                    style="color:red;">*</span></strong></label>
-                                        <div class="col-sm-4 col-md-4 p-2">
-                                            <input type="file" name="old_licence" id="old_licence"
-                                                accept=".png, .jpg, .jpeg, .pdf"
-                                                class="form-control @error('old_licence') is-invalid @enderror"
-                                                value="{{ $data->old_licence }}" placeholder="Upload old_licence ">
-                                            <small class="text-secondary text-justify "> Note : The file should be less
-                                                than 2MB
-                                                .</small>
-                                            <br>
-                                            <small class="text-secondary text-justify "> Note : Only files in .jpg,
-                                                .jpeg, .png,
-                                                .pdf format can be uploaded .</small>
-                                            <br>
-                                            @error('old_licence')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
 
-                                            <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}"
-                                                target="_blank">
-                                                <div class="form-group">
-                                                    <?php $document_path = $data->old_licence;
-                                                           $filter_path =  explode(".",$document_path);
-                                                           $size_of_array = count($filter_path);
-                                                           $filter_ext = $filter_path[$size_of_array - 1];
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2"><strong>Upload previous year licence copy / ( मागील
+                                            वर्षाच्या
+                                            परवान्याची प्रत अपलोड करा ) : <span
+                                                style="color:red;">*</span></strong></label>
+                                    <div class="col-sm-4 col-md-4 p-2">
+                                        <input type="file" name="old_licence" id="old_licence"
+                                            accept=".png, .jpg, .jpeg, .pdf"
+                                            class="form-control @error('old_licence') is-invalid @enderror"
+                                            value="{{ $data->old_licence }}" placeholder="Upload old_licence ">
+                                        <small class="text-secondary text-justify "> Note : The file should be less
+                                            than 2MB
+                                            .</small>
+                                        <br>
+                                        <small class="text-secondary text-justify "> Note : Only files in .jpg,
+                                            .jpeg, .png,
+                                            .pdf format can be uploaded .</small>
+                                        <br>
+                                        @error('old_licence')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
 
-                                                        if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
-                                                        $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                           {?>
+                                        <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}"
+                                            target="_blank">
+                                            <div class="form-group">
+                                                <?php $document_path = $data->old_licence;
+                                                       $filter_path =  explode(".",$document_path);
+                                                       $size_of_array = count($filter_path);
+                                                       $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                    if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                    $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                       {?>
+                                                <p class="mt-3 mb-0" id="image_div">
+                                                    <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}"
+                                                        alt="image" class="img-fluid rounded" width="200"
+                                                        height="100" style="max-height:150px;">
+                                                </p>
+                                                <?php }
+                                                            elseif($filter_ext == 'pdf'){
+                                                                ?>
+                                                <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}"
+                                                    target="_blank">
                                                     <p class="mt-3 mb-0" id="image_div">
-                                                        <img src="{{ url('/') }}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}"
-                                                            alt="image" class="img-fluid rounded" width="200"
-                                                            height="100" style="max-height:150px;">
+                                                        <button type="button"class="btn btn-info">
+                                                            View File
+                                                        </button>
                                                     </p>
-                                                    <?php }
-                                                                elseif($filter_ext == 'pdf'){
-                                                                    ?>
-                                                    <a href="{{ url('/') }}/PMC_Cold_Storage/meat_file/old_licence/{{ $data->old_licence }}"
-                                                        target="_blank">
-                                                        <p class="mt-3 mb-0" id="image_div">
-                                                            <button type="button"class="btn btn-info">
-                                                                View File
-                                                            </button>
-                                                        </p>
-                                                    </a>
-                                                    <?php } else { ?> <a href="#"> Document Not Uploaded </a>
-                                                    <?php } ?>
-                                                </div>
-                                            </a>
-                                        </div>
+                                                </a>
+                                                <?php } else { ?> <a href="#"> Document Not Uploaded </a>
+                                                <?php } ?>
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
-
 
 
                                 <div class="form-group row mt-4">

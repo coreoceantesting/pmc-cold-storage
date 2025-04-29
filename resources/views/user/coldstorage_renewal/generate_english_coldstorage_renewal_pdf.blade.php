@@ -365,9 +365,10 @@
                                   <div class="col-md-4 col-sm-4 ">
                                     <p class="mb-0">
                                         <strong>old License No. - </strong>
-                                        {{ $meat_renewal_pdf->licence_no }}
+                                        {{ $oldLicense->renwal_liceans_no }}
                                     </p>
                                 </div>
+                                {{-- @dump($oldLicense->licence_no) --}}
                             </div>
 
                             <div class="row pt-3">

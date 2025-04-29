@@ -1446,27 +1446,27 @@
 
                                                            </div>
 
-                                                            <div class="form-group row">
-                                                                <label class="col-sm-2"><strong>Upload previous year licence copy / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                                                <div class="col-sm-4 col-md-4 p-2">
-                                                                    <input type="hidden" name="old_old_licence" value="{{ $data->old_licence ?? '' }}">
-                                                                    <input type="file" name="old_licence" id="old_licence" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('old_licence') is-invalid @enderror"
-                                                                        value="{{ !empty($data->old_licence) ? $data->old_licence : '' }}" placeholder="Upload applicant signature">
-                                                                    <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
-                                                                    <br>
-                                                                    <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
-                                                                    <br>
-                                                                    @error('old_licence')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
 
-
-                                                            </div>
                                                         </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-sm-2"><strong>Upload previous year licence copy / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                                            <div class="col-sm-4 col-md-4 p-2">
+                                                                <input type="hidden" name="old_old_licence" value="{{ $data->old_licence ?? '' }}">
+                                                                <input type="file" name="old_licence" id="old_licence" accept=".png, .jpg, .jpeg, .pdf" class="form-control @error('old_licence') is-invalid @enderror"
+                                                                    value="{{ !empty($data->old_licence) ? $data->old_licence : '' }}" placeholder="Upload applicant signature">
+                                                                <small class="text-secondary text-justify "> Note : The file should be less than 2MB .</small>
+                                                                <br>
+                                                                <small class="text-secondary text-justify "> Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</small>
+                                                                <br>
+                                                                @error('old_licence')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
 
+
+                                                        </div>
                                                         <div class="form-group row mt-4">
                                                             <!-- Back button on the left -->
                                                             <div class="col-md-6" style="display: flex; justify-content: start;">

@@ -115,7 +115,7 @@
 
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 pt-5 text-center">
-                                    <h5><strong>chicken /mutton / fish / Buffalo meat activity/<br> processing/cold storage Business license </strong></h5>
+                                    <h5><strong>Licence For Cold Storage Business License</strong></h5>
                                     <!--<p class="font-weight-bold">License to keep dogs </p>-->
                                 </div>
 
@@ -221,8 +221,11 @@
                             <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
+                                        @php
+                                        $unitName = $unit_Meat_Type->firstWhere('id', $meat_renewal_pdf->unit);
+                                    @endphp
                                         <strong>Meat business Per day capacity - </strong>
-                                        {{ $meat_renewal_pdf->per_day_capacity  }}
+                                        {{ $meat_renewal_pdf->per_day_capacity  }} {{ $unitName ? $unitName->unit_name : 'Unit not found' }}
                                     </p>
                                 </div>
                             </div>
