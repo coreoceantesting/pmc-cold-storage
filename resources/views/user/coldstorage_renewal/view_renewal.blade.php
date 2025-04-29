@@ -1406,41 +1406,41 @@
                                                 </a>
                                             </div>
                                         </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-2"><strong>Upload previous year licence copy  / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
-                                               <div class="col-sm-4 col-md-4 p-2">
-
-                                                     <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }}" target="_blank">
-                                                               <div class="form-group">
-                                                                   <?php $document_path = $meat_renewal_view->old_licence;
-                                                                      $filter_path =  explode(".",$document_path);
-                                                                      $size_of_array = count($filter_path);
-                                                                      $filter_ext = $filter_path[$size_of_array - 1];
-
-                                                                   if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
-                                                                   $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
-                                                                      {?>
-                                                                   <p class="mt-3 mb-0" id="image_div">
-                                                                       <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
-                                                                   </p>
-                                                                   <?php }
-                                                                           elseif($filter_ext == 'pdf'){
-                                                                               ?>
-                                                                               <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }}" target="_blank" >
-                                                                                   <p class="mt-3 mb-0" id="image_div">
-                                                                                   <button type="button"class="btn btn-info">
-                                                                                       View File
-                                                                                   </button>
-                                                                                   </p>
-                                                                               </a>
-                                                                   <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
-                                                               </div>
-                                                           </a>
-                                               </div>
-                                           </div>
 
 
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2"><strong>Upload previous year licence copy  / ( मागील वर्षाच्या परवान्याची प्रत अपलोड करा ) : <span style="color:red;">*</span></strong></label>
+                                       <div class="col-sm-4 col-md-4 p-2">
+
+                                             <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }}" target="_blank">
+                                                       <div class="form-group">
+                                                           <?php $document_path = $meat_renewal_view->old_licence;
+                                                              $filter_path =  explode(".",$document_path);
+                                                              $size_of_array = count($filter_path);
+                                                              $filter_ext = $filter_path[$size_of_array - 1];
+
+                                                           if($filter_ext == 'jpg' || $filter_ext=='jpeg' || $filter_ext == 'png' || $filter_ext == 'gif' ||
+                                                           $filter_ext == 'JPG' || $filter_ext=='JPEG' || $filter_ext == 'PNG' || $filter_ext == 'GIF' )
+                                                              {?>
+                                                           <p class="mt-3 mb-0" id="image_div">
+                                                               <img src="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }} " alt="image" class="img-fluid rounded" width="200" height="100" style="max-height:150px;">
+                                                           </p>
+                                                           <?php }
+                                                                   elseif($filter_ext == 'pdf'){
+                                                                       ?>
+                                                                       <a href="{{url('/')}}/PMC_Cold_Storage/meat_file/old_licence/{{ $meat_renewal_view->old_licence }}" target="_blank" >
+                                                                           <p class="mt-3 mb-0" id="image_div">
+                                                                           <button type="button"class="btn btn-info">
+                                                                               View File
+                                                                           </button>
+                                                                           </p>
+                                                                       </a>
+                                                           <?php } else { ?> <a href="#"> Document Not Uploaded </a> <?php } ?>
+                                                       </div>
+                                                   </a>
+                                       </div>
+                                   </div>
 
                                             <div class="form-group row mt-4">
                                                 <label class="col-md-3"></label>
