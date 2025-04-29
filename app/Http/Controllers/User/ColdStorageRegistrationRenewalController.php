@@ -1190,6 +1190,7 @@ class ColdStorageRegistrationRenewalController extends Controller
     public function GenerateenglishrenewalLicensepdf(request $request, $id)
     {
 
+         $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
            $meat_renewal_pdf =  DB::table('coldstorage_renewal_license_tbl AS t1')
                                         ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.cold_storage_aplication_no as licence_no',
                                         't5.adharcard_doc','t5.residitional_proof_doc','t5.legal_business_doc','t5.business_registration_doc',
@@ -1227,12 +1228,12 @@ class ColdStorageRegistrationRenewalController extends Controller
                     ->whereIn('id', $array)
                     ->pluck('meat_name');
         $commaSeparatedMeatNames = $meatNames->implode(', ');
-        return view('user.coldstorage_renewal.generate_english_coldstorage_renewal_pdf', compact('meat_renewal_pdf','fiscalYear','commaSeparatedMeatNames'));
+        return view('user.coldstorage_renewal.generate_english_coldstorage_renewal_pdf', compact('meat_renewal_pdf','fiscalYear','commaSeparatedMeatNames','unit_Meat_Type'));
       }
 
     public function GenerateMarathirenewalLicensepdf(request $request, $id)
     {
-
+        $unit_Meat_Type = DB::table('unit_Meat_Type')->get();
            $meat_renewal_pdf =  DB::table('coldstorage_renewal_license_tbl AS t1')
                                         ->select('t1.*', 't2.dist_name','t3.taluka_name', 't4.meat_name','t5.cold_storage_aplication_no as licence_no',
                                         't5.adharcard_doc','t5.residitional_proof_doc','t5.legal_business_doc','t5.business_registration_doc',
@@ -1270,7 +1271,7 @@ class ColdStorageRegistrationRenewalController extends Controller
                     ->whereIn('id', $array)
                     ->pluck('meat_name');
         $commaSeparatedMeatNames = $meatNames->implode(', ');
-        return view('user.coldstorage_renewal.generate_marathi_coldstorage_renewal_pdf', compact('meat_renewal_pdf','fiscalYear','commaSeparatedMeatNames'));
+        return view('user.coldstorage_renewal.generate_marathi_coldstorage_renewal_pdf', compact('meat_renewal_pdf','fiscalYear','commaSeparatedMeatNames','unit_Meat_Type'));
       }
 
     public function coldStorageRenewalForm_View(Request $request, $application_id, $user_type)

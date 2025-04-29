@@ -293,7 +293,7 @@
 
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 pt-5 text-center">
-                                     <h5><strong>चिकन /मटण / मासे / म्हशीचे मांस क्रिया शीतगृह <br>( processing /cold storage) व्यवसाय  परवाना </strong></h5>
+                                     <h5><strong>शीतगृह व्यवसाय परवाना </strong></h5>
 
                                 </div>
 
@@ -424,8 +424,11 @@
                             <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
+                                        @php
+                                        $unitName = $unit_Meat_Type->firstWhere('id', $meat_renewal_pdf->unit);
+                                    @endphp
                                         <strong>मांस व्यवसाय प्रति दिवस क्षमता - </strong>
-                                        {{ $meat_renewal_pdf->per_day_capacity  }}
+                                        {{ $meat_renewal_pdf->per_day_capacity  }} {{ $unitName ? $unitName->unit_name : 'Unit not found' }}
                                     </p>
                                 </div>
                             </div>
