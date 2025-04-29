@@ -29,12 +29,12 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
-    
+
     <!-- Toaster Message -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-        
+
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -45,7 +45,7 @@
 
         gtag('config', 'UA-119386393-1');
     </script>
-    
+
 </head>
 <style>
     input,
@@ -54,15 +54,15 @@
     }
 </style>
 <body>
-    
+
     <div class="col-12" style="padding-top:20px; padding-bottom:20px;">
         <div class="align-items-center">
 
             <div class="min-height-200px">
-                
+
 				<div class="page-header" style="border: 1px solid #000000;">
 					<div class="row">
-					    
+
 					    <div class="col-sm-2 col-xs-12 text-right d-flex justify-content-center d-block d-sm-none mb-4">
 							<div class="user-info-dropdown">
                 				<div class="dropdown">
@@ -71,7 +71,7 @@
                 							<img src="{{ url('/') }}/assets/images/PMC-logo.png" alt="">
                 						</span>
                 						<span class="user-name">
-                						    {{ Auth::guard('meatregistereduser')->user()->name }} 
+                						    {{ Auth::guard('meatregistereduser')->user()->name }}
                 						</span>
                 					</a>
                 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
@@ -85,7 +85,7 @@
                 				</div>
                 			</div>
 						</div>
-						
+
 						<div class="col-sm-10 col-xs-12 d-flex flex-column align-items-center align-items-sm-start">
 							<div class="title">
 								<h4>PMC Cold Storage Application</h4>
@@ -98,7 +98,7 @@
 								</ol>
 							</nav>
 						</div>
-						
+
 						<div class="col-sm-2 col-xs-12 text-right d-none d-sm-block">
 						    <div class="user-info-dropdown">
                 				<div class="dropdown">
@@ -107,7 +107,7 @@
                 							<img src="{{ url('/') }}/assets/images/PMC-logo.png" alt="">
                 						</span>
                 						<span class="user-name">
-                						    {{ Auth::guard('meatregistereduser')->user()->name }} 
+                						    {{ Auth::guard('meatregistereduser')->user()->name }}
                 						</span>
                 					</a>
                 					<div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list" >
@@ -121,11 +121,11 @@
                 				</div>
                 			</div>
 						</div>
-						
+
 					</div>
 				</div>
-				
-				
+
+
 				<!-- Export Datatable start -->
     			<div class="card-box mb-30" style="border: 1px solid #000000;">
     					<div class="pd-20">
@@ -146,7 +146,7 @@
         								<th>Hod Status</th>
         								<th>Admin Status</th>
                                         <th>Final Status</th>
-                                    
+
         								@if (!empty($user_list) && count($user_list) > 0)
                                             @if($user_list[0]->hod_status == '2')
                                                 <th>Reasons for Rejection</th>
@@ -155,24 +155,25 @@
                                             @elseif($user_list[0]->final_approve == '2')
                                                 <th>Reasons for Rejection</th>
                                             @endif
-                                           
+
                                         @endif
-                                        
-                                        
+
+
                 <!--                        @if($meat_license_status == '2')-->
         								<!--<th>Reasons for Rejection</th>-->
         								<!--@endif-->
-        								@if (!empty($user_list) && count($user_list) > 0)
-        								@if($user_list[0]->final_approve == 1)
+        								{{-- @if (!empty($user_list) && count($user_list) > 0)
+        								@if($user_list[0]->final_approve == 1) --}}
         								<th class="no-export">Cold Storage License Certificate</th>
-        								@endif
-        								 @endif
-        								 	@if (!empty($user_list) && count($user_list) > 0)
-                                        	 @if($user_list[0]->status == '1') 
+        								{{-- @endif
+        								 @endif --}}
+        								 	{{-- @if (!empty($user_list) && count($user_list) > 0)
+                                        	 @if($user_list[0]->status == '1') --}}
                                              <th>Invoice</th>
-                                            @endif
-                                        	  @endif
+                                            {{-- @endif
+                                        	  @endif --}}
                                         <th>Action</th>
+                                        {{-- <th>Invoice</th> --}}
     								</tr>
     							</thead>
     							<tbody>
@@ -182,12 +183,12 @@
                                             <td><b>{{ $key+1 }}</b></td>
                                             <td><b>{{ $value->cold_storage_aplication_no }}</b></td>
                                             <td>{{ $value->applicant_fname }} {{ $value->applicant_mname }} {{ $value->applicant_lname }}</td>
-                                          
+
                                             <td>{{ $value->email }}</td>
                                             <td>{{ $value->mobile_number }}</td>
                                             <td>{{ $value->business_name }}</td>
                                             <td>{{ $value->business_address }}</td>
-                						
+
                        <!--                     @if($value->status == 0)-->
                        <!--                     <td><span class="badge badge-primary p-1">Pending</span></td>-->
                 							<!--@elseif($value->status == 1)-->
@@ -195,7 +196,7 @@
                        <!--                     @elseif($value->status == 2)-->
                        <!--                     <td><span class="badge badge-danger p-1">Rejected</span></td>-->
                        <!--                     @endif-->
-                       
+
                                             @if($value->hod_status == 0)
                                             <td><span class="badge badge-primary p-1">Pending</span></td>
                 							@elseif($value->hod_status == 1)
@@ -217,7 +218,7 @@
                                             @elseif($value->final_approve == 2)
                                             <td><span class="badge badge-danger p-1">Rejected</span></td>
                                             @endif
-                                            
+
                                             @if($value->hod_status == '2')
         								      <td>{{ $value->reject_resion }}</td>
         								    @elseif($value->status == '2')
@@ -225,40 +226,40 @@
         								    @elseif($value->final_approve == '2')
         								      <td>{{ $value->final_reason_for_rejection }}</td>
         								    @endif
-                                            
+
                     <!--                        @if($value->status == '2')-->
             								<!--<td>{{ $value->reject_resion }}</td>-->
             								<!--@endif-->
-            								
-            								 @if($value->final_approve == 1)
-                                            
+
+
                                             <td style="display:flex;">
-                                            
+                                                @if($value->final_approve == 1)
+
                                              <a href='{{ url("/user/self_affadevit_pdf/{$value->id}") }}' class="btn btn-success btn-sm">
                                                Affidavit
                                              </a>
                                                &nbsp;&nbsp;
                                               <a href='{{ url("/user/generate_english_coldstorage_license_pdf/{$value->id}") }}' class="btn btn-danger btn-sm">
-                                               English 
+                                               English
                                              </a>
                                               &nbsp;&nbsp;
                                               <a href='{{ url("/user/generate_marathi_coldstorage_license_pdf/{$value->id}") }}' class="btn btn-danger btn-sm">
-                                               Marathi 
+                                               Marathi
                                              </a>
-                                            
+
+                                             @endif
                                              </td>
-                                               @endif
-                                               
-                                               @if($value->status == 1)
-                                               <td> 
+
+                                               <td>
+                                                   @if($value->status == 1)
                                                <a href='{{ url("/user/appli_form/invoice_coldstorage/{$value->id}/{$value->type}") }}' class="btn btn-primary waves-effect m-r-20" target="_blank">
                                                   Invoice
                                                 </a>
-                                                </td>
                                                 @endif
-                                                
+                                                </td>
+
                                                <td style="display:flex;" class="no-export">
-                                                 
+
                                                 @if($value->hod_status == '0' && $value->status == '0' && $value->final_approve == '0')
                                                  <a href='{{ url("/user/appli_form/View/{$value->id}/{$value->type}") }}' class="btn btn-warning btn-sm">
                                                     <i class="material-icons"><i class="micon dw dw-pencil-1"></i></i>
@@ -275,13 +276,13 @@
                                                     View
                                                 </a>
                                                </td>
-                                          
-                                            
-                                            
+
+
+
             							</tr>
-            							
+
             							<!-- Large Refund modal -->
-                                      
+
                                     @endforeach
                                     @else
                                       <p>No user data available.</p>
@@ -293,10 +294,10 @@
     			<!-- Export Datatable End -->
 
 
-                        <?php 
+                        <?php
                   // print_r($renewal_list);
 
-                if($renewal_list != ''){ 
+                if($renewal_list != ''){
 
 
                     ?>
@@ -320,7 +321,7 @@
                                     	<th>Hod Status</th>
         								<th>Admin Status</th>
                                         <th>Final Status</th>
-                                        
+
                                         @if (!empty($renewal_list) && count($renewal_list) > 0)
                                             @if($renewal_list[0]->re_hod_status == '2')
                                                 <th>Reasons for Rejection</th>
@@ -329,19 +330,19 @@
                                             @elseif($renewal_list[0]->re_final_approve == '2')
                                                 <th>Reasons for Rejection</th>
                                             @endif
-                                            
-                                            
+
+
 
                                         @endif
-                                        
-                                        
+
+
         								<th class="no-export">Cold Storage License Certificate</th>
-        							
-        								 
-        								 
+
+
+
                                              <th>Invoice</th>
-                                       
-                
+
+
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -351,12 +352,12 @@
                                             <td><b>{{ $key+1 }}</b></td>
                                             <td><b>{{ $value->renwal_liceans_no }}</b></td>
                                             <td>{{ $value->applicant_fname }} {{ $value->applicant_mname }} {{ $value->applicant_lname }}</td>
-                                          
+
                                             <td>{{ $value->email }}</td>
                                             <td>{{ $value->mobile_number }}</td>
                                             <td>{{ $value->business_name }}</td>
                                             <td>{{ $value->business_address }}</td>
-                                        
+
                                             <!--@if($value->status == 0)-->
                                             <!--<td><span class="badge badge-primary p-1">Pending</span></td>-->
                                             <!--@elseif($value->status == 1)-->
@@ -364,7 +365,7 @@
                                             <!--@elseif($value->status == 2)-->
                                             <!--<td><span class="badge badge-danger p-1">Rejected</span></td>-->
                                             <!--@endif-->
-                                            
+
                                             @if($value->re_hod_status == 0)
                                             <td><span class="badge badge-primary p-1">Pending</span></td>
                 							@elseif($value->re_hod_status == 1)
@@ -386,7 +387,7 @@
                                             @elseif($value->re_final_approve == 2)
                                             <td><span class="badge badge-danger p-1">Rejected</span></td>
                                             @endif
-                                     
+
                                             @if($value->re_hod_status == '2')
         								      <td>{{ $value->reason_for_rejection_hod }}</td>
         								    @elseif($value->status == '2')
@@ -394,40 +395,40 @@
         								    @elseif($value->re_final_approve == '2')
         								      <td>{{ $value->re_final_reason_for_rejection }}</td>
         								    @endif
-                                            
+
                     {{-- <!--                        @if($value->status == '2')-->
             								<!--<td>{{ $value->reject_resion }}</td>-->
             								<!--@endif--> --}}
-            								
-                                            
+
+
                                             <td style="display:flex;">
                                                 @if($value->re_final_approve == 1)
-                                            
+
                                               <a href='{{ url("/user/self_affadevit_renewal_pdf/{$value->id}") }}' class="btn btn-success btn-sm">
                                                Affidavit
                                              </a>
                                                &nbsp;&nbsp;
                                               <a href='{{ url("/user/generate_english_coldstorage_renewal_license_pdf/{$value->id}") }}' class="btn btn-danger btn-sm">
-                                               English 
+                                               English
                                              </a>
                                               &nbsp;&nbsp;
                                               <a href='{{ url("/user/generate_marathi_coldstorage_renewal_license_pdf/{$value->id}") }}' class="btn btn-danger btn-sm">
-                                               Marathi 
+                                               Marathi
                                              </a>
-                                            
+
                                              @endif
                                              </td>
-                                               
-                                               <td> 
+
+                                               <td>
                                                    @if($value->status == 1)
                                                <a href='{{ url("/user/appli_form/invoice_renewal/{$value->id}/{$value->type}") }}' class="btn btn-primary waves-effect m-r-20" target="_blank">
-                                                  
-                                                  
+
+
                                                   Invoice
                                                 </a>
                                                 @endif
                                                 </td>
-                                                
+
                                                <td style="display:flex;" class="no-export">
                                                   @if($value->re_hod_status == '0' && $value->status == '0' && $value->re_final_approve == '0')
                                                 <a href='{{ url("/user/appli_form/View_renewal/{$value->id}/{$value->type}") }}' class="btn btn-warning btn-sm">
@@ -444,31 +445,31 @@
                                                     <i class="material-icons"><i class="micon dw dw-eye"></i></i>
                                                     View
                                                 </a>
-                                              
+
                                             </td>
-                                            
-                                            
-                                            
-                                            
+
+
+
+
                                         </tr>
-                                        
+
                                         <!-- Large Refund modal -->
-                                      
+
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 <!--  meat application Renewal End -->
-                
+
                 <?php } ?>
 			</div>
-			
+
         </div>
     </div>
-	
-	
-	
+
+
+
     <!-- js -->
 	<script src="{{ url('/') }}/userend/assets/vendors/scripts/core.js"></script>
 	<script src="{{ url('/') }}/userend/assets/vendors/scripts/script.min.js"></script>
@@ -478,7 +479,7 @@
 	<script src="{{ url('/') }}/userend/assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
 	<script src="{{ url('/') }}/userend/assets/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 	<script src="{{ url('/') }}/userend/assets/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-	
+
 	<!-- buttons for Export datatable -->
 	<script src="{{ url('/') }}/userend/assets/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
 	<script src="{{ url('/') }}/userend/assets/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
@@ -487,10 +488,10 @@
 	<script src="{{ url('/') }}/userend/assets/src/plugins/datatables/js/buttons.flash.min.js"></script>
 	<script src="{{ url('/') }}/userend/assets/src/plugins/datatables/js/pdfmake.min.js"></script>
 	<script src="{{ url('/') }}/userend/assets/src/plugins/datatables/js/vfs_fonts.js"></script>
-	
+
 	<!-- Datatable Setting js -->
 	<script src="{{ url('/') }}/userend/assets/vendors/scripts/datatable-setting.js"></script></body>
-	
+
 	<script>
         @if(Session::has('message'))
         toastr.options =
@@ -528,7 +529,7 @@
                 toastr.warning("{{ session('warning') }}");
         @endif
     </script>
-        
+
 	<script>
         $(document).ready(function(){
             $("select").change(function(){

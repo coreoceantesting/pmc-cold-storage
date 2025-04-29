@@ -1219,7 +1219,12 @@ class ColdStorageRegistrationRenewalController extends Controller
 
         $fiscalYear = $currentMonth > 3 ? Carbon::createFromFormat('d-m-Y', '31-03-'.date('Y'))->addYear()->toDateString() : Carbon::createFromFormat('d-m-Y', '31-03-'.date('Y'))->toDateString();
 
-        return view('user.coldstorage_renewal.generate_english_coldstorage_renewal_pdf', compact('meat_renewal_pdf','fiscalYear'));
+        $array = explode(",",$meat_renewal_pdf->meat_type);
+        $meatNames = DB::table('meat_type_mst')
+                    ->whereIn('id', $array)
+                    ->pluck('meat_name');
+        $commaSeparatedMeatNames = $meatNames->implode(', ');
+        return view('user.coldstorage_renewal.generate_english_coldstorage_renewal_pdf', compact('meat_renewal_pdf','fiscalYear','commaSeparatedMeatNames'));
       }
 
     public function GenerateMarathirenewalLicensepdf(request $request, $id)
@@ -1257,8 +1262,12 @@ class ColdStorageRegistrationRenewalController extends Controller
 
         $fiscalYear = $currentMonth > 3 ? Carbon::createFromFormat('d-m-Y', '31-03-'.date('Y'))->addYear()->toDateString() : Carbon::createFromFormat('d-m-Y', '31-03-'.date('Y'))->toDateString();
 
-
-        return view('user.coldstorage_renewal.generate_marathi_coldstorage_renewal_pdf', compact('meat_renewal_pdf','fiscalYear'));
+        $array = explode(",",$meat_renewal_pdf->meat_type);
+        $meatNames = DB::table('meat_type_mst')
+                    ->whereIn('id', $array)
+                    ->pluck('meat_name');
+        $commaSeparatedMeatNames = $meatNames->implode(', ');
+        return view('user.coldstorage_renewal.generate_marathi_coldstorage_renewal_pdf', compact('meat_renewal_pdf','fiscalYear','commaSeparatedMeatNames'));
       }
 
     public function coldStorageRenewalForm_View(Request $request, $application_id, $user_type)

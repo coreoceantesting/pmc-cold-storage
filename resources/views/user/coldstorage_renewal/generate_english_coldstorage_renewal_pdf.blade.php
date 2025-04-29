@@ -28,7 +28,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -39,27 +39,27 @@
 
         gtag('config', 'UA-119386393-1');
     </script>
-    
+
 </head>
 
 <style>
     .error{
         color:red;
     }
-    
+
     .wizard-content .wizard>.steps>ul>li.current>a {
         color: #1b00ff;
         font-size: 18px;
         cursor: default;
         font-weight: bolder;
     }
-    
+
     .wizard-content .wizard>.steps>ul>li.current .step {
         border-color: #1b00ff;
         background-color: #fff;
         color: #1b00ff;
     }
-    
+
     .wizard-content .wizard>.actions>ul>li>a {
         background: #1b00ff;
         color: #fff;
@@ -70,19 +70,19 @@
         min-width: 100px;
         text-align: center;
     }
-    
+
     .wizard-content .wizard>.actions>ul>li>a[href="#previous"] {
         background-color: #fff;
         color: #1b00ff;
         border: 1px solid #1b00ff;
     }
-    
+
     .wizard-content .wizard>.steps>ul>li.done .step {
         background-color: #1b00ff;
         border-color: #1b00ff;
         color: #fff;
     }
-    
+
     .wizard-content .wizard.wizard-circle>.steps>ul>li:after, .wizard-content .wizard.wizard-circle>.steps>ul>li:before {
         top: 45px;
         width: 50%;
@@ -92,14 +92,14 @@
 </style>
 
 <body>
-    
+
     <div class="col-12" style="padding-top:20px; padding-bottom:20px;">
         <div class="align-items-center">
 
             <div class="min-height-200px">
                 <div class="page-header" style="border: 1px solid #000000;">
                     <div class="row">
-                        
+
                         <div class="col-sm-2 col-xs-12 text-right d-flex justify-content-center d-block d-sm-none mb-4">
                             <div class="user-info-dropdown">
                                 <div class="dropdown">
@@ -113,11 +113,11 @@
                                             </span>
                                         @elseif(Auth::guard('web')->check())
                                            <span class="user-name">
-                                                {{ Auth::user()->name }} 
+                                                {{ Auth::user()->name }}
                                             </span>
                                         @else
                                            <span class="user-name">
-                                                
+
                                             </span>
                                         @endif
                                     </a>
@@ -132,7 +132,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-sm-10 col-xs-12 d-flex flex-column align-items-center align-items-sm-start">
                             <div class="title">
                                 <h4>Cold Storage Renewal License</h4>
@@ -145,7 +145,7 @@
                                 </ol>
                             </nav>
                         </div>
-                        
+
                         <div class="col-sm-2 col-xs-12 text-right d-none d-sm-block">
                             <div class="user-info-dropdown">
                                 <div class="dropdown">
@@ -159,14 +159,14 @@
                                             </span>
                                         @elseif(Auth::guard('web')->check())
                                            <span class="user-name">
-                                                {{ Auth::user()->name }} 
+                                                {{ Auth::user()->name }}
                                             </span>
                                         @else
                                            <span class="user-name">
-                                                
+
                                             </span>
                                         @endif
-                    
+
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list" >
                                         <a class="dropdown-item" href="{{ url('/user/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -179,7 +179,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -203,7 +203,7 @@
         <!--<div class="container-fluid">-->
         <!--    <div class="row clearfix">-->
         <!--        <div class="col-lg-12">-->
-                    
+
         <!--            <div class="card"  id="divToPrint">-->
         <!--                <div class="body" style="padding:60px;">-->
         <!--                    <div class="row">-->
@@ -212,22 +212,22 @@
         <!--                                <img class="img-fluid " src="{{ url('/') }}/assets/images/PMC-logo.png" alt="Awesome Image" style="height:150px; width:220px;">-->
         <!--                            </div>-->
         <!--                        </div>-->
-                                
-                                
-                                
+
+
+
                 <div class="pd-20 card-box mb-30" style="border: 1px solid #000000;">
 				    <div class="col-12"  id="divToPrint">
                         <div class="body" style="padding:30px;">
                              <div class="row">
                                 <div class="col-md-3">
                                     <div class="icon-box" style="text-align: center;">
-                                         <img class="img-fluid " src="{{ url('/') }}/assets/images/PMC-logo.png" alt="Awesome Image" style="height: 105px;width: 140px;"> 
-                                       
+                                         <img class="img-fluid " src="{{ url('/') }}/assets/images/PMC-logo.png" alt="Awesome Image" style="height: 105px;width: 140px;">
+
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="icon-box" style="text-align: center;">
-                                       
+
                                         <img class="img-fluid " src="{{ url('/') }}/assets/images/75th_logo.png" alt="Awesome Image" style="height: 107px;width: 131px;">
                                     </div>
                                 </div>
@@ -242,7 +242,7 @@
                                     </div>
                                 </div>
                                  </div>
-                                
+
                                  <div class="row">
                                 <div class="col-md-12 text-center">
                                 <!--<div class="col-md-8 text-center">-->
@@ -254,9 +254,9 @@
                                 <!--<div class="col-md-1" >-->
                                 </div>
                             </div>
-                            
+
                             <hr>
-                            <div class="row">                                
+                            <div class="row">
                                 <div class="col-md-8 col-sm-8">
                                     <p class="mb-1"><strong>Telephone Office : </strong> 022-27458040/41/42 </p>
                                     <p class="mb-1"><strong>Office of the Deputy Commissioner : </strong> 022-27455751 </p>
@@ -269,51 +269,51 @@
                                 </div>
                             </div>
                             <hr class="mb-1">
-                            
-                            
+
+
                             <div class="row pt-0">
-                                
+
                                  <div class="col-md-9   col-sm-9 ">
-                                  Read on -  <br> 1.Section 69 (1) of the Maharashtra Municipal Corporation Act, 1949   
+                                  Read on -  <br> 1.Section 69 (1) of the Maharashtra Municipal Corporation Act, 1949
                                 </div>
                                 <div class="col-md-3   col-sm-3 ">
                                    Date :
                                    {{ \Carbon\Carbon::now()->format('d/m/Y') }}
                                 </div>
                             </div>
-                            
+
                             <div class="row">
-                                <div class="col-md-12 col-sm-12 pt-5 text-center">
+                                {{-- <div class="col-md-12 col-sm-12 pt-5 text-center">
                                     <!--<h5><strong>Reference number - </strong></h5>-->
                                     <p class="font-weight-bold">Reference number -  </p>
-                                </div>
+                                </div> --}}
                                 <!-- <div class="col-md-12 col-sm-12 pt-5 text-center">-->
-                                   
+
                                 <!--    <p class="font-weight-bold">License Number : -  {{ $meat_renewal_pdf->renwal_liceans_no }} </p>-->
                                 <!--</div>-->
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 pt-5 text-center">
                                     <h5><strong>chicken /mutton / fish / Buffalo meat activity/<br> processing/cold storage Business license </strong></h5>
                                     <!--<p class="font-weight-bold">License to keep dogs </p>-->
                                 </div>
-                                
+
                             </div>
-                            
+
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 pt-1 text-start">
                                     <p>Pursuant to the bye-law of the Panvel Municipal Corporation relating to markets, private markets and slaughterhouses made under sub-sections (26) (27) (28) (29) and (48) of sections 331 and 458 of the Maharashtra Municipal Corporation Act, 1949, and section 335 and Chicken/Mutton/Fish/Buffalo Meat Activity/Cold Storage business license is being issued to the person and place mentioned under 382.</p>
                                 </div>
                             </div>
-                            
-                            <div class="row pt-3">                                
+
+                            <div class="row pt-3">
                                 <div class="col-md-8 col-sm-8">
                                      <p class="mb-0">
                                         <strong>Name of Licensee - </strong>
                                         <?php
                                                     $applicant_title_id = '';
-                                                    
+
                                                     if($meat_renewal_pdf->applicant_title_id == 1)
                                                     {
                                                         $applicant_title_id = 'Kum.';
@@ -348,14 +348,14 @@
                                 </div>
                                 <div class="col-md-4 col-sm-4 ">
                                     <p class="mb-0">
-                                        <strong>License No. - </strong>  
+                                        <strong>License No. - </strong>
                                         {{ $meat_renewal_pdf->renwal_liceans_no }}
                                     </p>
                                 </div>
                             </div>
-                           
-                            
-                            <div class="row pt-3">                                
+
+
+                            <div class="row pt-3">
                                 <div class="col-md-8 col-sm-8">
                                     <p class="mb-0">
                                         <strong>Meat business name - </strong>
@@ -364,13 +364,13 @@
                                 </div>
                                   <div class="col-md-4 col-sm-4 ">
                                     <p class="mb-0">
-                                        <strong>old License No. - </strong>  
+                                        <strong>old License No. - </strong>
                                         {{ $meat_renewal_pdf->licence_no }}
                                     </p>
                                 </div>
                             </div>
-                            
-                            <div class="row pt-3">                                
+
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
                                         <strong>Business address - </strong>
@@ -378,8 +378,8 @@
                                     </p>
                                 </div>
                             </div>
-                            
-                             <div class="row pt-3">                                
+
+                             <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
                                         <strong>Business registration number - </strong>
@@ -387,14 +387,14 @@
                                     </p>
                                 </div>
                             </div>
-                            
-                            <div class="row pt-3">                                
-                                <div class="col-md-12 col-sm-12">
+
+                            <div class="row pt-3">
+                                {{-- <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
-                                        <strong>Meat business Type - </strong>
+                                        <strong>Meat Type - </strong>
                                          <?php
                                                     $business_type = '';
-                                                    
+
                                                     if($meat_renewal_pdf->business_type == 1)
                                                     {
                                                         $business_type = 'Butcher Shop ( मांस  विक्री  केंद्र )';
@@ -412,13 +412,19 @@
                                                         $business_type = 'Other ( इतर )';
                                                     }
                                                 ?>
-                                                
+
                                             {{ $business_type }}
+                                    </p>
+                                </div> --}}
+                                <div class="col-md-12 col-sm-12">
+                                    <p class="mb-0">
+                                        <strong>Meat Type - </strong>
+                                        {{ $commaSeparatedMeatNames  }}
                                     </p>
                                 </div>
                             </div>
-                            
-                            <div class="row pt-3">                                
+
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
                                         <strong>Meat business Per day capacity - </strong>
@@ -426,9 +432,9 @@
                                     </p>
                                 </div>
                             </div>
-                             
-                            
-                            <div class="row pt-3">                                
+
+
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                     <p class="mb-0">
                                         <strong>Date of issue of Licence - </strong>
@@ -436,13 +442,13 @@
                                     </p>
                                 </div>
                             </div>
-                            <?php 
+                            <?php
                             $approve_date = $meat_renewal_pdf->approve_date_of_license_obtain;
-                            
+
                             $newEndingDate = date("d-m-Y", strtotime(date("d-m-Y", strtotime($approve_date)) . " + 1 year"));
-                            
+
                             ?>
-                            <div class="row pt-3">                                
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12">
                                       <p class="mb-0">
                                         <p class="mb-0">
@@ -452,9 +458,9 @@
                                     </p>
                                 </div>
                             </div>
-                           
-                            
-                            <div class="row pt-3"> 
+
+
+                            <div class="row pt-3">
                                 <div class="col-md-12 col-sm-12 text-right">
                                     <p class="mb-0">
                                          <strong>
@@ -468,8 +474,8 @@
                                     </p>
                                 </div>
                             </div>
-                            
-                        </div>    
+
+                        </div>
                     </div>
                     <div class="submit-section text-right pt-5" >
 					    <a href='{{ url("/user/appli_form") }}' class="btn btn-danger btn-lg text-light" >Cancel</a>
@@ -493,7 +499,7 @@
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/layout-settings.js"></script>
     <script src="{{ url('/') }}/userend/assets/src/plugins/jquery-steps/jquery.steps.js"></script>
     <script src="{{ url('/') }}/userend/assets/vendors/scripts/steps-setting.js"></script>
-    
+
 
 
 
@@ -507,7 +513,7 @@
         document.body.innerHTML = originalContents;
         $("#print").css("display", "block");
         // location.reload();
-    
+
     }
 </script>
 
