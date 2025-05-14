@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{ url('/') }}/assets/plugins/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ url('/') }}/assets/css/style.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/material-design-iconic-font@2.2.0/dist/css/material-design-iconic-font.min.css">
     </head>
     
     <style>
@@ -106,7 +107,7 @@
                                     @enderror
                                 </div>  
                                 
-                                <div class="input-group mb-3">
+                                {{-- <div class="input-group mb-3">
                                     <div class="input-group-append">                                
                                         <span class="input-group-text"><i class="zmdi zmdi-lock"></i></span>
                                     </div>
@@ -125,6 +126,58 @@
                                     </div>
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password" Placeholder="Enter Confirm Password (पासवर्डची पुष्टी करा)">
                                                             
+                                </div> --}}
+
+
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="zmdi zmdi-lock"></i>
+                                        </span>
+                                    </div>
+                                
+                                    <input id="password" type="password" 
+                                           class="form-control @error('password') is-invalid @enderror" 
+                                           name="password" autocomplete="new-password" 
+                                           placeholder="Enter Your Password (पासवर्ड)">
+                                
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" onclick="togglePassword()" style="cursor: pointer;">
+                                            <i class="zmdi zmdi-eye" id="togglePasswordIcon"></i>
+                                        </span>
+                                    </div>
+                                
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                
+                                
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="zmdi zmdi-lock"></i>
+                                        </span>
+                                    </div>
+                                
+                                    <input id="password-confirm" type="password" 
+                                           class="form-control @error('password_confirmation') is-invalid @enderror" 
+                                           name="password_confirmation" autocomplete="new-password" 
+                                           placeholder="Enter Confirm Password (पासवर्डची पुष्टी करा)">
+                                
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" onclick="toggleConfirmPassword()" style="cursor: pointer;">
+                                            <i class="zmdi zmdi-eye" id="toggleConfirmPasswordIcon"></i>
+                                        </span>
+                                    </div>
+                                
+                                    @error('password_confirmation')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                                 
                                 <button type="submit" class="btn btn-primary btn-block waves-effect waves-light">{{ __('Sign Up') }}</button>
@@ -163,6 +216,37 @@
                 }
             }
         </script>
+
+
+
+<script>
+    function togglePassword() {
+        const passwordField = document.getElementById("password");
+        const icon = document.getElementById("togglePasswordIcon");
+        
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            icon.classList.remove("zmdi-eye");
+            icon.classList.add("zmdi-eye-off");
+        } else {
+            passwordField.type = "password";
+            icon.classList.remove("zmdi-eye-off");
+            icon.classList.add("zmdi-eye");
+        }
+    }
+</script>
+
+
+<script>
+    function toggleConfirmPassword() {
+        const input = document.getElementById('password-confirm');
+        const icon = document.getElementById('toggleConfirmPasswordIcon');
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        icon.classList.toggle('zmdi-eye');
+        icon.classList.toggle('zmdi-eye-off');
+    }
+    </script>
     </body>
 
 </html>
